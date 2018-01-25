@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="apps/settings/style.css"/>
+<div id="settings">
+    <div class="top">
+        <button class="back">Back</button>
+    </div>
+    <section data-id="home">
+        <div class="tile" data-section="wallpaper">
+            <div class="image">
+                <i class="far fa-image fa-2x"></i>
+            </div>
+            <div class="text">Wallpaper</div>
+        </div>
+        <div class="tile" data-section="panel">
+            <div class="image">
+                <i class="fas fa-window-minimize fa-2x"></i>
+            </div>
+            <div class="text">Panel</div>
+        </div>
+        <div class="tile" data-section="date">
+            <div class="image">
+                <i class="far fa-clock fa-2x"></i>
+            </div>
+            <div class="text">Date & time</div>
+        </div>
+        <div class="tile" data-section="theme">
+            <div class="image">
+                <i class="far fa-paint-brush fa-2x"></i>
+            </div>
+            <div class="text">Theme</div>
+        </div>
+    </section>
+    <section data-id="wallpaper">
+        <div class="wallpapers"></div>
+        <div class="options">
+            <div class="box">
+                <label for="position">Position</label>
+                <select id="position">
+                    <option value="left bottom">Left Bottom</option>
+                    <option value="left top">Left Top</option>
+                    <option value="left center">Left Center</option>
+                    <option value="right bottom">Right Bottom</option>
+                    <option value="right top">Right Top</option>
+                    <option value="right center">Right Center</option>
+                    <option value="center bottom">Center Bottom</option>
+                    <option value="center top">Center Top</option>
+                    <option value="center center" selected>Center</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="bg-repeat">Background repeat</label>
+                <select id="bg-repeat">
+                    <option value="repeat-x">Repeat x</option>
+                    <option value="repeat-y">Repeat y</option>
+                    <option value="repeat">Repeat x and y</option>
+                    <option value="no-repeat" selected>No repeat</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="bg-size">Background size</label>
+                <select id="bg-size">
+                    <option value="auto">Auto</option>
+                    <option value="cover" selected>Cover</option>
+                    <option value="contain">Contain</option>
+                </select>
+            </div>
+            <div class="box">
+                <label for="bg-color">Background color</label>
+                <input id="bg-color" type="color" value="#000000">
+            </div>
+        </div>
+    </section>
+    <section data-id="panel">
+        <div class="options">
+            <div class="box">
+                <label for="panel-bg-color">Panel background color</label>
+                <input id="panel-bg-color" type="color" value="#000000">
+            </div>
+            <div class="box">
+                <label for="panel-bg-opacity">Panel background opacity</label>
+                <input id="panel-bg-opacity" type="range" min="0" max="100" step="1" value="30">
+            </div>
+        </div>
+    </section>
+    <section data-id="date">
+
+    </section>
+    <section data-id="theme">
+
+    </section>
+</div>
+<script src="apps/settings/main.js"></script>

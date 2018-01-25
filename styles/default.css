@@ -1,40 +1,44 @@
 *{
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
 }
-html, body{
-	margin:0;
-	padding:0;
-	font-family:Arial, sans-serif;
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
 }
 #osPage{
-	background:url('../pics/wallpapers/wallpaper1.jpg');
-	background-size:1600px 900px;
-	width:100%;
-	height:100%;
-	float:left;
-	position:absolute;
+    background:url('../pics/wallpapers/wallpaper1.jpg');
+    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #000;
+    width:100%;
+    height:100%;
+    float:left;
+    position:absolute;
 }
 /*Panel*/
 #panel{
-	width:100%;
-	height:50px;
-	z-index:9999999;
-	line-height:50px;
-	background:rgba(0, 0, 0, 0.3);
-	position:absolute;
-	top:0;
-	left:0;
+    width:100%;
+    height:50px;
+    z-index:9999999;
+    line-height:50px;
+    background:rgba(0, 0, 0, 0.3);
+    position:absolute;
+    top:0;
+    left:0;
 }
 #appsButton, #time, #openedWindowList{
-	height:inherit;
-	line-height:inherit;
-	color: #fff;
-	font-size:13px;
-	padding:0 10px;
-	cursor:default;
+    height:inherit;
+    line-height:inherit;
+    color: #fff;
+    font-size:13px;
+    padding:0 10px;
+    cursor:default;
 }
 #appsButton, #openedWindowList{float:left}
 #appsButton{cursor:pointer}
@@ -45,158 +49,163 @@ html, body{
 /*appList*/
 
 #appList{
-	width:150px;
-	position:absolute;
-	top:50px;
-	left:0;
-	display:none;
-	background:#eee;
-	font-size:13px;
-	line-height:20px;
+    width:150px;
+    position:absolute;
+    top:50px;
+    left:0;
+    display:none;
+    background:#eee;
+    font-size:13px;
+    line-height:20px;
 }
 #appList .appListElement{
-	width:100%;
-	height:30px;
-	line-height:30px;
-	color: #000;
-	font-size:13px;
-	cursor:pointer;
-	position:relative;
-	padding:0 5px;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
+    width:100%;
+    height:30px;
+    line-height:30px;
+    color: #000;
+    font-size:13px;
+    cursor:pointer;
+    position:relative;
+    padding:0 5px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
 }
 #appList .appListElement:hover, .submenu .app:hover{
-	background:rgba(75, 155, 255, 1);
-	color:#fff;
+    background:rgba(75, 155, 255, 1);
+    color:#fff;
 }
 .submenu{
-	display:none;
-	left:150px;
-	min-width:100px;
-	top:0;
-	background:#eee;
-	position:absolute;
+    display:none;
+    left:150px;
+    min-width:100px;
+    top:0;
+    background:#eee;
+    position:absolute;
 }
 .appListElement:hover .submenu{display:block}
 
 .submenu .app{
-	color:#000;
-	width:100%;
-	padding:0 5px;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
+    color:#000;
+    width:100%;
+    padding:0 5px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
 }
 ul, li, ul li{
-	width:inherit;
-	margin:0;
-	padding:0;
-	list-style:none;
+    width:inherit;
+    margin:0;
+    padding:0;
+    list-style:none;
 }
 li.app span{
-	width:20px;
-	height:20px;
-	float:left;
-	margin:5px;
+    width:20px;
+    height:20px;
+    float:left;
+    margin:5px;
 }
 
 /*windowList*/
 
 #openedWindowList .barWindow{
-	min-width:100px;
-	height:inherit;
-	line-height:inherit;
-	color:rgba(255,255,255,0.5);
-	cursor:pointer;
+    min-width:100px;
+    height:inherit;
+    line-height:inherit;
+    color:rgba(255,255,255,0.5);
+    cursor:pointer;
+    float: left;
 }
 #openedWindowList .barWindow.focused{color:#fff}
 #openedWindowList .barWindow.minimized{display:none}
 #openedWindowList .barWindow:hover{background:rgba(0,0,0,0.3)}
 .barWindow .barIcon{
-	width:30px;
-	height:30px;
-	float:left;
-	margin:5px 0px;
+    width:30px;
+    height:30px;
+    float:left;
+    margin:5px 0px;
 }
 .barIcon img{
-	width:20px;
-	height:20px;
-	float:left;
-	margin:5px
+    width:20px;
+    height:20px;
+    float:left;
+    margin:5px
 }
 .barWindow .barTitle{
-	float:left;
-	height:inherit;
-	line-height:inherit;
+    float:left;
+    height:inherit;
+    line-height:inherit;
 }
 /*desktop*/
 
 #desktop{
-	position:absolute;
-	width:100%;
-	height:calc(100% - 50px);
-	top:50px;
-	left:0px;
+    position:absolute;
+    width:100%;
+    height:calc(100% - 50px);
+    top:50px;
+    left:0px;
 }
 #desktop .icon{
-	width:25px;
-	height:40px;
-	position:absolute;
+    width:25px;
+    height:40px;
+    position:absolute;
 }
 
 /*app window*/
 #desktop .appWindow{
-	position:absolute;
-	min-width:200px;
-	min-height:100px;
-	background:#ebebeb;
-	border-radius:2px;
-	opacity:0.7;
+    position:absolute;
+    min-width:200px;
+    min-height:100px;
+    background:#ebebeb;
+    border-radius:2px;
+    opacity:0.7;
 }
 #desktop .appWindow.focused{
-	z-index:1;
-	opacity:1;
-	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
+    z-index:1;
+    opacity:1;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
 }
 .appWindow .appWindowTop{
-	width:100%;
-	height:30px;
-	float:left;
+    width:100%;
+    height:30px;
+    float:left;
 }
 .appWindowTop .appWindowIcon{
-	width:30px;
-	height:30px;
-	float:left;
+    width:30px;
+    height:30px;
+    float:left;
 }
 .appWindowTop .appWindowIcon img{
-	width:20px;
-	height:20px;
-	float:left;
-	margin:5px;
+    width:20px;
+    height:20px;
+    float:left;
+    margin:5px;
 }
 .appWindowTop .appWindowTitle{
-	width:calc(100% - 90px);
-	height:30px;
-	line-height:30px;
-	text-align:center;
-	float:left;
-	cursor:move
+    width:calc(100% - 90px);
+    height:30px;
+    line-height:30px;
+    text-align:center;
+    float:left;
+    cursor:move
 }
 .appWindowTop .appWindowButtons{
-	width:60px;
-	height:30px;
-	float:left;
+    width:60px;
+    height:30px;
+    float:left;
+    text-align: right;
 }
 .appWindowButtons .windowButton{
-	width:10px;
-	height:10px;
-	float:left;
-	margin:10px 5px;
-	border-radius:100%;
-	box-sizing:border-box;
-	border:1px solid rgba(113, 93, 93, 0.51);
-	cursor:pointer
+    width:10px;
+    height:10px;
+    margin:10px 5px;
+    border-radius:100%;
+    box-sizing:border-box;
+    border:1px solid rgba(113, 93, 93, 0.51);
+    cursor:pointer;
+    display: inline-block;
 }
 .appWindowButtons .windowButton.close{background:#FF2C2C}
 .appWindowButtons .windowButton.minimize{background:#F1FF22}
 .appWindowButtons .windowButton.maximize, .appWindowButtons .windowButton.unmaximize{background:#00ADFF}
+.appWindow .appContent{
+    width: 100%;
+}

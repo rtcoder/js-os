@@ -22,14 +22,24 @@ function timer() {
         $("#time").text(czas);
     }, 1000);
 }
-function runApp(name, content, title) {
-    $("#desktop").append('<div class="appWindow focused" id="' + name + '" data-maximized="false"><div class="appWindowTop"><div class="appWindowIcon"><img src="icons/default/' + name + '.png"/></div><div class="appWindowTitle">' + title + '</div><div class="appWindowButtons"><div class="windowButton minimize"></div><div class="windowButton maximize"></div><div class="windowButton close"></div></div></div><div class="appContent">' + content + '</div></div>');
+function runApp(name, content, title, options) {
+    options = JSON.parse(options)
+    let windowTitle = '<div class="appWindowTitle">' + title + '</div>';
+    let windowIcon = '<div class="appWindowIcon"><img src="icons/default/' + name + '.png"/></div>';
+    let windowButtonMax = options.windowButtons.max ? '<div class="windowButton maximize" title="maximize"></div>' : '';
+    let windowButtonMin = options.windowButtons.min ? '<div class="windowButton minimize" title="minimize"></div>' : '';
+    let windowButtonClose = options.windowButtons.close ? '<div class="windowButton close" title="close"></div>' : '';
+    let windowButtons = '<div class="appWindowButtons">' + windowButtonMin + windowButtonMax + windowButtonClose + '</div>';
+    let windowContent = '<div class="appContent">' + content + '</div>';
+    let windowTop = '<div class="appWindowTop">' + windowIcon + windowTitle + windowButtons + '</div>';
+    let app = '<div class="appWindow focused" id="' + name + '" data-maximized="false">' + windowTop + windowContent + '</div>';
+    $("#desktop").append(app);
 
     $("#openedWindowList").append('<div class="barWindow focused" data-appId="' + name + '"><div class="barIcon"><img src="icons/default/' + name + '.png"></div><div class="barTitle">' + title + '</div></div>');
 
     $(".appWindow").draggable({handle: ".appWindowTitle"});
     runningApps.push(name);
-    initWindowButtons();
+    initWindowButtons(options);
 }
 
 function closeApp(appId) {
@@ -91,7 +101,7 @@ function unmaximizeApp(appId) {
             }, 200);
     $(".appWindow").draggable({handle: ".appWindowTitle"});
 }
-function initWindowButtons() {
+function initWindowButtons(options) {
     $(".windowButton").click(function () {
         var c = $(this).attr("class");
         var idWindow = $(this)
@@ -160,10 +170,11 @@ function initEvents() {
             alert("already running");
         } else {
             var path = $(this).attr("data-path");
+            var options = $(this).attr("data-options");
             var title = $(this).attr("title");
             console.log("run: " + appName);
             $.get(path, function (data) {
-                runApp(appName, data, title);
+                runApp(appName, data, title, options);
             });
             $("#appList").hide();
         }
@@ -175,7 +186,7 @@ function createMenu() {
     $.each(appList, function (index, entry) {
         $("#appList").append('<li class="appListElement"><div class="titleApp">' + index + '</div><ul class="submenu" id="' + i + '"></ul></li>');
         $.each(entry, function (key, val) {
-            $(".submenu#" + i).append('<li class="app" title="' + val.title + '" data-path="' + val.path + '" data-appName="' + key + '"><span style="background:url(\'' + val.icon + '\');background-size:20px 20px"></span>' + val.title + '</li>');
+            $(".submenu#" + i).append('<li class="app" title="' + val.title + '" data-path="' + val.path + '" data-options=\'' + JSON.stringify(val.options) + '\' data-appName="' + key + '"><span style="background:url(\'' + val.icon + '\');background-size:20px 20px"></span>' + val.title + '</li>');
         });
         i++;
     });

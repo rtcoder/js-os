@@ -1,0 +1,81 @@
+#settings{
+    min-height: 400px;
+    min-width: 400px;
+    float: left;
+}
+#settings .top{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+}
+#settings .top .back{
+    width: 50px;
+    height: 30px;
+    float: left;
+    background: transparent;
+    border-radius: 0px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+#settings section{
+    display: none;
+    width: 100%;
+    height: 100%;
+    float: left;
+    padding: 5px;
+}
+#settings section[data-id=home]{
+    display: block;
+}
+#settings section[data-id=home] .tile{
+    width: 80px;
+    height: 90px;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid transparent;
+}
+#settings section[data-id=home] .tile:hover{
+    border: 1px solid #000;
+}
+#settings section[data-id=home] .tile .image{
+    width: 80px;
+    height: 50px;
+    float: left;
+}
+#settings section[data-id=home] .tile .image i{
+    margin: 9px auto;
+}
+#settings section[data-id=home] .tile .text{
+    width: 80px;
+    height: 40px;
+    line-height: 20px;
+    float: left;
+}
+#settings section[data-id=wallpaper] > *{
+    width: 100%;
+}
+#settings section[data-id=wallpaper] .wallpapers .image{
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#settings section[data-id=wallpaper] .wallpapers .image:hover{
+    border: 1px solid #00ADFF;
+}
+#settings section .options .box{
+    padding: 5px 0px;
+    width: 100%;
+    float: left;
+}
+#settings section[data-id=panel]{
+
+}
