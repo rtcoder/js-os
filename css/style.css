@@ -12,6 +12,9 @@ ul li {
   padding: 0;
   list-style: none;
 }
+li {
+  list-style: none;
+}
 li.app span {
   width: 20px;
   height: 20px;
