@@ -1,0 +1,388 @@
+*{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+}
+ul, ul li{
+    width:inherit;
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+li{
+    &.app{
+        span{
+            width:20px;
+            height:20px;
+            float:left;
+            margin:5px;
+        }
+    }
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+    #osPage{
+        background:url('../pics/wallpapers/wallpaper5.jpg');
+        background-size:cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-color: #000;
+        width:100%;
+        height:100%;
+        float:left;
+        position:absolute;
+        #panel{
+            z-index:9999999;
+            background:rgba(0, 0, 0, 0.3);
+            position:absolute;
+            line-height:50px;
+            #appsButton{
+                color: inherit;
+                font-size:13px;
+                padding:0 10px;
+                cursor:pointer;
+                text-align: center;
+                &:hover{
+                    background:rgba(0, 0, 0, 0.5);
+                }
+            }
+            #time{
+                color: inherit;
+                font-size:13px;
+                padding:0 10px;
+                cursor:pointer;
+            }
+            #openedWindowList{
+                color: inherit;
+                font-size:13px;
+                padding:0 10px;
+                cursor:default;
+            }
+            #appList{
+                width:150px;
+                position:absolute;
+                display:none;
+                background:#eee;
+                font-size:13px;
+                line-height:20px;
+                .appListElement{
+                    width:100%;
+                    height:30px;
+                    line-height:30px;
+                    color: #000;
+                    font-size:13px;
+                    cursor:pointer;
+                    position:relative;
+                    padding:0 5px;
+                    box-sizing:border-box;
+                    -moz-box-sizing:border-box;
+                    &:hover{
+                        background:rgba(75, 155, 255, 1);
+                        color:#fff;
+                        .submenu{
+                            display:block;
+                        }
+                    }
+                    .submenu{
+                        display:none;
+                        left:150px;
+                        min-width:100px;
+                        top:0;
+                        background:#eee;
+                        position:absolute;
+                        .app{
+                            color:#000;
+                            width:100%;
+                            padding:0 5px;
+                            box-sizing:border-box;
+                            -moz-box-sizing:border-box;
+                            &:hover{
+                                background:rgba(75, 155, 255, 1);
+                                color:#fff;
+                            }
+                        }
+                    }
+                }
+            }
+            #openedWindowList{
+                .barWindow{
+                    color:rgba(255, 255, 255, 0.5);
+                    cursor:pointer;
+                    float: left;
+                    position: relative;
+                    &.focused{
+                        color:#fff;
+                    }
+                    &.minimized{
+                        display:none;
+                    }
+                    &:hover{
+                        background: rgba(125, 125, 125, 0.3);
+                    }
+                    .barIcon{
+                        width:30px;
+                        height:30px;
+                        float:left;
+                        img{
+                            width:20px;
+                            height:20px;
+                            float:left;
+                            margin:5px
+                        }
+                    }
+                }
+            }
+            &.top,
+            &.bottom{
+                left:0;
+                width:100%;
+                height:50px;
+                #appsButton{
+                    height:inherit;
+                    line-height:inherit;
+                    float:left;
+                }
+                #time{
+                    height:inherit;
+                    line-height:inherit;
+                    float:right;
+                }
+                #openedWindowList{
+                    height:inherit;
+                    line-height:inherit;
+                    float:left;
+                    .barWindow{
+                        min-width:100px;
+                        height:inherit;
+                        line-height:inherit;
+                        .barIcon{
+                            margin:10px 0px;
+                        }
+                        .barTitle{
+                            float:left;
+                            height:inherit;
+                            line-height:inherit;
+                        }
+                    }
+                }
+                &+#desktop{
+                    width: 100%;
+                    height: ~"calc(100% - 50px)";
+                    left: 0;
+                }
+            }
+            &.left,
+            &.right{
+                top:0;
+                width:70px;
+                height:100%;
+                #appsButton{
+                    height:50px;
+                    line-height:50px;
+                    position: absolute;
+                    width: inherit;
+                    top: 0;
+                }
+                #time{
+                    height:50px;
+                    line-height:20px;
+                    width: inherit;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                }
+                #openedWindowList{
+                    width: inherit;
+                    top: 50px;
+                    left: 0;
+                    height: auto;
+                    position: absolute;
+                    .barWindow{
+                        width: 50px;
+                        height: 50px;
+                        line-height: 50px;
+                        .barIcon{
+                            margin:10px;
+                        }
+                        .barTitle{
+                            position: absolute;
+                            height: 30px;
+                            background: rgb(127, 127, 127);
+                            line-height: 30px;
+                            top: 10px;
+                            display: none;
+                            padding: 0px 5px;
+                        }
+                        &:hover{
+                            .barTitle{
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                &+#desktop{
+                    width: ~"calc(100% - 70px)";
+                    height: 100%;
+                    top: 0;
+                }
+            }
+            &.top{
+                top:0;
+                #appList{
+                    top:50px;
+                    left:0;
+                }
+                &+#desktop{
+                    top:50px;
+                }
+            }
+            &.bottom{
+                bottom:0;
+                #appList{
+                    bottom:50px;
+                    left:0;
+                }
+                &+#desktop{
+                    top: 0;
+                }
+            }
+            &.left{
+                left:0;
+                #appList{
+                    top:0;
+                    left:70px;
+                }
+                #openedWindowList{
+                    .barWindow{
+                        .barTitle{
+                            left: 60px;
+                        }
+                    }
+                }
+                &+#desktop{
+                    left: 70px;
+                }
+            }
+            &.right{
+                right:0;
+                #appList{
+                    top:0;
+                    right:70px;
+                    .appListElement{
+                        .submenu{
+                            right:150px;
+                            left: auto;
+                        }
+                    }
+                }
+                #openedWindowList{
+                    .barWindow{
+                        .barTitle{
+                            right: 60px;
+                        }
+                    }
+                }
+                &+#desktop{
+                    left: 0;
+                }
+            }
+        }
+        #desktop{
+            position: absolute;
+            .icon{
+                width:25px;
+                height:40px;
+                position:absolute;
+            }
+            .appWindow{
+                position:absolute;
+                min-width:200px;
+                min-height:100px;
+                width: auto !important;
+                height: auto !important;
+                background:#ebebeb;
+                border-radius:2px;
+                opacity:0.7;
+                &.focused{
+                    z-index:1;
+                    opacity:1;
+                    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
+                }
+                .appWindowTop{
+                    width:100%;
+                    height:30px;
+                    float:left;
+                    .appWindowIcon{
+                        width:30px;
+                        height:30px;
+                        float:left;
+                        img{
+                            width:20px;
+                            height:20px;
+                            float:left;
+                            margin:5px;
+                        }
+                    }
+                    .appWindowTitle{
+                        width:~"calc(100% - 90px)";
+                        height:30px;
+                        line-height:30px;
+                        text-align:center;
+                        float:left;
+                        cursor:move
+                    }
+                    .appWindowButtons{
+                        width:60px;
+                        height:30px;
+                        float:left;
+                        text-align: right;
+                        .windowButton{
+                            width:10px;
+                            height:10px;
+                            margin:10px 5px;
+                            border-radius:100%;
+                            box-sizing:border-box;
+                            border:1px solid rgba(113, 93, 93, 0.51);
+                            cursor:pointer;
+                            display: inline-block;
+                            &.close{
+                                background:#FF2C2C;
+                            }
+                            &.minimize{
+                                background:#F1FF22;
+                            }
+                            &.maximize,
+                            &.unmaximize{
+                                background:#00ADFF;
+                            }
+                        }
+                    }
+                }
+                .appContent{
+                    width: 100%;
+                }
+            }
+        }
+    }
+    &.dark{
+        #osPage{
+            #panel{
+                color: #fff;
+            }
+        }
+    }
+    &.light{
+        #osPage{
+            #panel{
+                color: #000;
+            }
+        }
+    }
+}

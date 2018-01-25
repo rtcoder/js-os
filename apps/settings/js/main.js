@@ -45,23 +45,21 @@ function hexToRgba(hex, opacity) {
         let c = $('#panel').css('background-color');
         let rgb = c.replace(/^(rgb|rgba)\(/, '').replace(/\)$/, '').replace(/\s/g, '').split(',');
         let alpha = rgb[3];
-
         $('#panel').css('background-color', hexToRgba($(this).val(), alpha * 100));
-
     });
 
     $('#panel-bg-opacity').change(function () {
         let c = $('#panel').css('background-color');
         let rgb = c.replace(/^(rgb|rgba)\(/, '').replace(/\)$/, '').replace(/\s/g, '').split(',');
-
         $('#panel').css('background-color', 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + parseFloat($(this).val()) / 100 + ')');
-
     }).mousemove(function () {
-
         let c = $('#panel').css('background-color');
         let rgb = c.replace(/^(rgb|rgba)\(/, '').replace(/\)$/, '').replace(/\s/g, '').split(',');
-
         $('#panel').css('background-color', 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + parseFloat($(this).val()) / 100 + ')');
+    });
 
+    $('#panel-position').change(function () {
+        $('#panel').removeClass('top right bottom left');
+        $('#panel').addClass($(this).val());
     });
 })();

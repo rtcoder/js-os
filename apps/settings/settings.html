@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="apps/settings/style.css"/>
+<link rel="stylesheet" href="apps/settings/css/style.css"/>
 <div id="settings">
     <div class="top">
         <button class="back">Back</button>
@@ -79,6 +79,15 @@
                 <label for="panel-bg-opacity">Panel background opacity</label>
                 <input id="panel-bg-opacity" type="range" min="0" max="100" step="1" value="30">
             </div>
+            <div class="box">
+                <label for="panel-position">Panel position</label>
+                <select id="panel-position">
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                    <option value="left">Left</option>
+                    <option value="right">Right</option>
+                </select>
+            </div>
         </div>
     </section>
     <section data-id="date">
@@ -88,4 +97,4 @@
 
     </section>
 </div>
-<script src="apps/settings/main.js"></script>
+<script src="apps/settings/js/main.js"></script>
