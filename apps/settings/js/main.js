@@ -78,4 +78,9 @@ function hexToRgba(hex, opacity) {
         $('body').removeClass('dark light');
         $('body').addClass($(this).val());
     });
+
+    $('#app-list-type').change(function () {
+        $('#appList').removeClass('list grid');
+        $('#appList').addClass($(this).val());
+    });
 })();

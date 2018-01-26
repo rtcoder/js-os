@@ -21,11 +21,6 @@
   width: 45px;
   height: 45px;
   margin: 4px;
-  background: #f6f6f6;
-  border: 1px solid #c1c1c1;
   outline: none;
-}
-#calc #keyboardNum .CalcKey:active {
-  border-color: #000;
 }
 /*# sourceMappingURL=style.css.map */

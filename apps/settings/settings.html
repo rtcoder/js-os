@@ -1,41 +1,54 @@
 <link rel="stylesheet" href="apps/settings/css/style.css"/>
-<div id="settings">
+<div id="settings-window">
     <div class="top">
         <button class="back">Back</button>
     </div>
     <section data-id="home">
-        <div class="tile" data-section="wallpaper">
-            <div class="image">
-                <i class="far fa-image fa-2x"></i>
+        <div class="section">
+            <h3>Appearance</h3>
+            <div class="tile" data-section="wallpaper">
+                <div class="image">
+                    <i class="far fa-image fa-2x"></i>
+                </div>
+                <div class="text">Wallpaper</div>
             </div>
-            <div class="text">Wallpaper</div>
+            <div class="tile" data-section="panel">
+                <div class="image">
+                    <i class="fas fa-window-minimize fa-2x"></i>
+                </div>
+                <div class="text">Panel</div>
+            </div>
+            <div class="tile" data-section="app-list">
+                <div class="image">
+                    <i class="fas fa-rocket fa-2x"></i>
+                </div>
+                <div class="text">App List</div>
+            </div>
+            <div class="tile" data-section="theme">
+                <div class="image">
+                    <i class="far fa-paint-brush fa-2x"></i>
+                </div>
+                <div class="text">Theme</div>
+            </div>
         </div>
-        <div class="tile" data-section="panel">
-            <div class="image">
-                <i class="fas fa-window-minimize fa-2x"></i>
+        <div class="section">
+            <h3>System</h3>
+            <div class="tile" data-section="date">
+                <div class="image">
+                    <i class="far fa-clock fa-2x"></i>
+                </div>
+                <div class="text">Date & time</div>
             </div>
-            <div class="text">Panel</div>
-        </div>
-        <div class="tile" data-section="date">
-            <div class="image">
-                <i class="far fa-clock fa-2x"></i>
+            <div class="tile" data-section="info">
+                <div class="image">
+                    <i class="far fa-info-circle fa-2x"></i>
+                </div>
+                <div class="text">About</div>
             </div>
-            <div class="text">Date & time</div>
-        </div>
-        <div class="tile" data-section="theme">
-            <div class="image">
-                <i class="far fa-paint-brush fa-2x"></i>
-            </div>
-            <div class="text">Theme</div>
-        </div>
-        <div class="tile" data-section="info">
-            <div class="image">
-                <i class="far fa-info-circle fa-2x"></i>
-            </div>
-            <div class="text">About</div>
         </div>
     </section>
     <section data-id="wallpaper">
+        <h3>Wallpaper</h3>
         <div class="wallpapers"></div>
         <div class="options">
             <div class="box">
@@ -76,6 +89,7 @@
         </div>
     </section>
     <section data-id="panel">
+        <h3>Panel</h3>
         <div class="options">
             <div class="box">
                 <label for="panel-bg-color">Panel background color</label>
@@ -97,6 +111,7 @@
         </div>
     </section>
     <section data-id="date">
+        <h3>Date & Time</h3>
         <div class="options">
             <div class="box">
                 <label for="show-seconds">
@@ -107,6 +122,7 @@
         </div>
     </section>
     <section data-id="theme">
+        <h3>Theme</h3>
         <div class="options">
             <div class="box">
                 <label for="os-theme">Theme</label>
@@ -117,7 +133,20 @@
             </div>
         </div>
     </section>
+    <section data-id="app-list">
+        <h3>App List</h3>
+        <div class="options">
+            <div class="box">
+                <label for="app-list-type">App List Layout</label>
+                <select id="app-list-type">
+                    <option value="list">List</option>
+                    <option value="grid">Grid</option>
+                </select>
+            </div>
+        </div>
+    </section>
     <section data-id="info">
+        <h3>Info</h3>
         JS OS by rtCoder
     </section>
 </div>

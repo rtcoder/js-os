@@ -74,13 +74,12 @@ function maximizeApp(appId) {
             .attr("data-t", t)
             .attr("data-l", l)
             .attr("data-maximized", "true")
-            .animate({
+            .css({
                 top: "0px",
                 left: "0px",
                 width: "100%",
                 height: "100%"
-            }, 200)
-            .draggable('destroy');
+            });
 }
 
 function unmaximizeApp(appId) {
@@ -95,14 +94,13 @@ function unmaximizeApp(appId) {
             .removeAttr("data-h")
             .removeAttr("data-t")
             .removeAttr("data-l")
-            .animate({
+            .css({
                 top: t + "px",
                 left: l + "px",
 //                width: w + "px",
                 width: "auto",
                 height: h + "px"
-            }, 200);
-    $(".appWindow").draggable({handle: ".appWindowTitle"});
+            });
 }
 function initWindowButtons(options) {
     $(".windowButton").click(function () {
@@ -159,18 +157,19 @@ function initWindowButtons(options) {
 }
 function initEvents() {
     $("#desktop").click(function () {
-        $("#appList").hide();
+        $("#appsButton").removeClass('active');
         if (!appIsHovered) {
             $(".appWindow, .barWindow").removeClass("focused");
         }
     });
     $("#appsButton").click(function () {
-        $("#appList").toggle();
+        $(this).toggleClass('active');
     });
     $(".app").click(function () {
         var appName = $(this).attr("data-appName");
         if (runningApps.indexOf(appName) >= 0) {
             alert("already running");
+            console.log(runningApps)
         } else {
             var path = $(this).attr("data-path");
             var options = $(this).attr("data-options");
@@ -179,7 +178,7 @@ function initEvents() {
             $.get(path, function (data) {
                 runApp(appName, data, title, options);
             });
-            $("#appList").hide();
+            $("#appsButton").removeClass('active');
         }
     });
 }
@@ -189,7 +188,13 @@ function createMenu() {
     $.each(appList, function (index, entry) {
         $("#appList").append('<li class="appListElement"><div class="titleApp">' + index + '</div><ul class="submenu" id="' + i + '"></ul></li>');
         $.each(entry, function (key, val) {
-            $(".submenu#" + i).append('<li class="app" title="' + val.title + '" data-path="' + val.path + '" data-options=\'' + JSON.stringify(val.options) + '\' data-appName="' + key + '"><span style="background:url(\'' + val.icon + '\');background-size:20px 20px"></span>' + val.title + '</li>');
+            let title = '<span>' + val.title + '</span>';
+            let title_attr = 'title="' + val.title + '"';
+            let data_path = 'data-path="' + val.path + '"';
+            let data_options = "data-options='" + JSON.stringify(val.options) + "'";
+            let data_appName = 'data-appName="' + key + '"';
+            let icon = '<span style="background-image:url(\'' + val.icon + '\');background-size:20px 20px"></span>';
+            $(".submenu#" + i).append('<li class="app" ' + title_attr + ' ' + data_path + ' ' + data_options + ' ' + data_appName + '>' + icon + title + '</li>');
         });
         i++;
     });

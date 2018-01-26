@@ -3,6 +3,7 @@
     <head>
         <title>JS OS</title>
         <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/themes.css"/>
         <link rel="stylesheet" href="vendor/jquery-ui/css/jquery-ui.min.css"/>
         <link rel="stylesheet" href="vendor/fontawesome/css/fontawesome-all.min.css"/>
         <meta charset="utf-8"/>
@@ -13,11 +14,13 @@
     </head>
     <body class="light">
         <div id="osPage">
-            <div id="panel" class="top">
-                <div id="appsButton">Apps</div>
+            <div id="panel" class="right">
+                <div id="appsButton">
+                    <i class="fal fa-rocket fa-2x"></i>
+                </div>
                 <div id="openedWindowList"></div>
                 <div id="time"></div>
-                <div id="appList"></div>
+                <div id="appList" class="grid"></div>
             </div>
             <div id="desktop"></div>
         </div>

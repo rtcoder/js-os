@@ -5,22 +5,11 @@
     user-select: none;
     box-sizing: border-box;
 }
-ul, ul li{
+ul, ul li,li{
     width:inherit;
     margin:0;
     padding:0;
     list-style:none;
-}
-li{
-    list-style: none;
-    &.app{
-        span{
-            width:20px;
-            height:20px;
-            float:left;
-            margin:5px;
-        }
-    }
 }
 body{
     width: 100vw;
@@ -34,14 +23,12 @@ body{
         background-size:cover;
         background-position: center center;
         background-repeat: no-repeat;
-        background-color: #000;
         width:100%;
         height:100%;
         float:left;
         position:absolute;
         #panel{
             z-index:9999999;
-            background:rgba(0, 0, 0, 0.3);
             position:absolute;
             line-height:50px;
             #appsButton{
@@ -50,8 +37,10 @@ body{
                 padding:0 10px;
                 cursor:pointer;
                 text-align: center;
-                &:hover{
-                    background:rgba(0, 0, 0, 0.5);
+                &.active{
+                    &~#appList{
+                        display: block;
+                    }
                 }
             }
             #time{
@@ -65,63 +54,12 @@ body{
                 font-size:13px;
                 padding:0 10px;
                 cursor:default;
-            }
-            #appList{
-                width:150px;
-                position:absolute;
-                display:none;
-                background:#eee;
-                font-size:13px;
-                line-height:20px;
-                .appListElement{
-                    width:100%;
-                    height:30px;
-                    line-height:30px;
-                    color: #000;
-                    font-size:13px;
-                    cursor:pointer;
-                    position:relative;
-                    padding:0 5px;
-                    box-sizing:border-box;
-                    -moz-box-sizing:border-box;
-                    &:hover{
-                        background:rgba(75, 155, 255, 1);
-                        color:#fff;
-                        .submenu{
-                            display:block;
-                        }
-                    }
-                    .submenu{
-                        display:none;
-                        left:150px;
-                        min-width:100px;
-                        top:0;
-                        background:#eee;
-                        position:absolute;
-                        .app{
-                            color:#000;
-                            width:100%;
-                            padding:0 5px;
-                            box-sizing:border-box;
-                            -moz-box-sizing:border-box;
-                            &:hover{
-                                background:rgba(75, 155, 255, 1);
-                                color:#fff;
-                            }
-                        }
-                    }
-                }
-            }
-            #openedWindowList{
                 .barWindow{
                     cursor:pointer;
                     float: left;
                     position: relative;
                     &.minimized{
                         display:none;
-                    }
-                    &:hover{
-                        background: rgba(125, 125, 125, 0.3);
                     }
                     .barIcon{
                         width:30px;
@@ -132,6 +70,84 @@ body{
                             height:20px;
                             float:left;
                             margin:5px
+                        }
+                    }
+                }
+            }
+            #appList{
+                &.list{
+                    width:150px;
+                    position:absolute;
+                    display:none;
+                    font-size:13px;
+                    line-height:20px;
+                    .appListElement{
+                        width:100%;
+                        height:30px;
+                        line-height:30px;
+                        font-size:13px;
+                        cursor:pointer;
+                        position:relative;
+                        padding:0 5px;
+                        &:hover{
+                            .submenu{
+                                display:block;
+                            }
+                        }
+                        .submenu{
+                            display:none;
+                            left:150px;
+                            min-width:100px;
+                            top:0;
+                            position:absolute;
+                            .app{
+                                width:100%;
+                                padding:0 5px;
+                                span{
+                                    width:20px;
+                                    height:20px;
+                                    float:left;
+                                    margin:5px;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.grid{
+                    width:250px;
+                    position:absolute;
+                    display:none;
+                    font-size:13px;
+                    line-height:20px;
+                    .appListElement{
+                        width:100%;
+                        height:auto;
+                        float: left;
+                        line-height:30px;
+                        font-size:13px;
+                        cursor:pointer;
+                        position:relative;
+                        padding:0 5px;
+                        .submenu{
+                            width:100%;
+                            float: left;
+                            .app{
+                                width:70px;
+                                height:70px;
+                                padding:5px;
+                                float: left;
+                                span{
+                                    width: 100%;
+                                    float: left;
+                                    text-align: center;
+                                    line-height: 15px;
+                                    &:first-child{
+                                        min-height: 30px;
+                                        background-position: center center;
+                                        background-repeat: no-repeat;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -182,7 +198,7 @@ body{
                 height:100%;
                 #appsButton{
                     height:50px;
-                    line-height:50px;
+                    line-height:60px;
                     position: absolute;
                     width: inherit;
                     top: 0;
@@ -200,13 +216,18 @@ body{
                     top: 50px;
                     left: 0;
                     height: auto;
+                    padding: 0px;
                     position: absolute;
                     .barWindow{
-                        width: 50px;
+                        width: 70px;
                         height: 50px;
                         line-height: 50px;
                         .barIcon{
                             margin:10px;
+                            width: 50px;
+                            img{
+                                margin: 5px 15px;
+                            }
                         }
                         .barTitle{
                             position: absolute;
@@ -258,7 +279,7 @@ body{
                 #openedWindowList{
                     .barWindow{
                         .barTitle{
-                            left: 60px;
+                            left: 70px;
                         }
                     }
                 }
@@ -271,17 +292,19 @@ body{
                 #appList{
                     top:0;
                     right:70px;
-                    .appListElement{
-                        .submenu{
-                            right:150px;
-                            left: auto;
+                    &.list{
+                        .appListElement{
+                            .submenu{
+                                right:150px;
+                                left: auto;
+                            }
                         }
                     }
                 }
                 #openedWindowList{
                     .barWindow{
                         .barTitle{
-                            right: 60px;
+                            right: 70px;
                         }
                     }
                 }
@@ -301,15 +324,13 @@ body{
                 position:absolute;
                 min-width:200px;
                 min-height:100px;
-                width: auto !important;
-                height: auto !important;
-                background:#ebebeb;
+                width: auto;
+                height: auto;
                 border-radius:2px;
-                opacity:0.7;
+                opacity:0.9;
                 &.focused{
                     z-index:1;
                     opacity:1;
-                    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
                 }
                 .appWindowTop{
                     width:100%;
@@ -344,20 +365,8 @@ body{
                             height:10px;
                             margin:10px 5px;
                             border-radius:100%;
-                            box-sizing:border-box;
-                            border:1px solid rgba(113, 93, 93, 0.51);
                             cursor:pointer;
                             display: inline-block;
-                            &.close{
-                                background:#FF2C2C;
-                            }
-                            &.minimize{
-                                background:#F1FF22;
-                            }
-                            &.maximize,
-                            &.unmaximize{
-                                background:#00ADFF;
-                            }
                         }
                     }
                 }
@@ -365,77 +374,6 @@ body{
                     width: 100%;
                 }
             }
-        }
-    }
-    &.dark{
-        #osPage{
-            #panel{
-                color: #fff;
-                #openedWindowList{
-                    .barWindow{
-                        color:rgba(255, 255, 255, 0.5);
-                        &.focused{
-                            color:#fff;
-                        }
-                    }
-                }
-                &.left,
-                &.right{
-                    #openedWindowList{
-                        .barWindow{
-                            .barTitle{
-                                background: rgb(76, 76, 76);
-                                color: #eee;
-                            }
-                        }
-                    }
-                }
-            }
-            #desktop{
-                .appWindow{
-                    color:#eee;
-                    background:#1f1f1f;
-                }
-            }
-        }
-        button{
-            color:#eee;
-        }
-    }
-    &.light{
-        #osPage{
-            #panel{
-                color: #000;
-                #openedWindowList{
-                    .barWindow{
-                        color:rgba(0, 0, 0, 0.5);
-                        &.focused{
-                            color:#000;
-                        }
-                    }
-                }
-
-                &.left,
-                &.right{
-                    #openedWindowList{
-                        .barWindow{
-                            .barTitle{
-                                background: rgb(165, 165, 165);
-                                color: #000;
-                            }
-                        }
-                    }
-                }
-            }
-            #desktop{
-                .appWindow{
-                    color:#000;
-                    background:#ebebeb;
-                }
-            }
-        }
-        button{
-            color:#000;
         }
     }
 }

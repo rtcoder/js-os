@@ -1,41 +1,46 @@
-#settings {
+#settings-window {
   min-height: 400px;
   min-width: 400px;
   float: left;
 }
-#settings .top {
+#settings-window .top {
   width: 100%;
   height: 50px;
   display: none;
   line-height: 50px;
   float: left;
 }
-#settings .top .back {
+#settings-window .top .back {
   width: 50px;
   height: 30px;
   float: left;
-  background: transparent;
   border-radius: 0px;
-  border: none;
   cursor: pointer;
   margin-left: 10px;
 }
-#settings section {
+#settings-window section {
   display: none;
   width: 100%;
   height: 100%;
   float: left;
   padding: 5px;
 }
-#settings section .options .box {
+#settings-window section .section {
+  width: 100%;
+  float: left;
+}
+#settings-window section h3 {
+  margin: 5px 0px;
+}
+#settings-window section .options .box {
   padding: 5px 0px;
   width: 100%;
   float: left;
 }
-#settings section[data-id=home] {
+#settings-window section[data-id=home] {
   display: block;
 }
-#settings section[data-id=home] .tile {
+#settings-window section[data-id=home] .tile {
   width: 80px;
   height: 90px;
   float: left;
@@ -43,27 +48,27 @@
   text-align: center;
   border: 1px solid transparent;
 }
-#settings section[data-id=home] .tile:hover {
+#settings-window section[data-id=home] .tile:hover {
   border: 1px solid #000;
 }
-#settings section[data-id=home] .tile .image {
+#settings-window section[data-id=home] .tile .image {
   width: 80px;
   height: 50px;
   float: left;
 }
-#settings section[data-id=home] .tile .image i {
+#settings-window section[data-id=home] .tile .image i {
   margin: 9px auto;
 }
-#settings section[data-id=home] .tile .text {
+#settings-window section[data-id=home] .tile .text {
   width: 80px;
   height: 40px;
   line-height: 20px;
   float: left;
 }
-#settings section[data-id=wallpaper] > * {
+#settings-window section[data-id=wallpaper] > * {
   width: 100%;
 }
-#settings section[data-id=wallpaper] .wallpapers .image {
+#settings-window section[data-id=wallpaper] .wallpapers .image {
   width: 150px;
   height: 150px;
   float: left;
@@ -74,7 +79,7 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
-#settings section[data-id=wallpaper] .wallpapers .image:hover {
+#settings-window section[data-id=wallpaper] .wallpapers .image:hover {
   border: 1px solid #00ADFF;
 }
 /*# sourceMappingURL=style.css.map */

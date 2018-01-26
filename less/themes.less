@@ -1,0 +1,218 @@
+body{
+    &.dark{
+        #osPage{
+            background-color: #000;
+            #panel{
+                color: #fff;
+                background:rgba(0, 0, 0, 0.3);
+                #appsButton{
+                    color: #09d;
+                    &.active,
+                    &:hover{
+                        background:rgba(0, 0, 0, 0.5);
+                    }
+                }
+                #appList{
+                    background:#eee;
+                    &.list{
+                        .appListElement{
+                            color: #000;
+                            &:hover{
+                                background:rgba(75, 155, 255, 1);
+                                color:#fff;
+                            }
+                            .submenu{
+                                background:#eee;
+                                .app{
+                                    color:#000;
+                                    &:hover{
+                                        background:rgba(75, 155, 255, 1);
+                                        color:#fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &.grid{
+                        .appListElement{
+                            color: #000;
+                            .submenu{
+                                .app{
+                                    color:#000;
+                                    &:hover{
+                                        background:rgba(75, 155, 255, 1);
+                                        color:#fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                #openedWindowList{
+                    .barWindow{
+                        color:rgba(255, 255, 255, 0.5);
+                        &.focused{
+                            color:#fff;
+                        }
+                    }
+                }
+                &.left,
+                &.right{
+                    #openedWindowList{
+                        .barWindow{
+                            .barTitle{
+                                background: rgb(76, 76, 76);
+                                color: #eee;
+                            }
+                        }
+                    }
+                }
+            }
+            #desktop{
+                .appWindow{
+                    color:#eee;
+                    background:#1f1f1f;
+                    &.focused{
+                        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
+                    }
+                    .appWindowTop{
+                        .appWindowButtons{
+                            .windowButton{
+                                border:1px solid rgba(113, 93, 93, 0.51);
+                                &.close{
+                                    background:#FF2C2C;
+                                }
+                                &.minimize{
+                                    background:#F1FF22;
+                                }
+                                &.maximize,
+                                &.unmaximize{
+                                    background:#00ADFF;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        button{
+            color:#eee;
+            background-color: #3a3a3a;
+            border: 1px solid #c1c1c1;
+            outline: none;
+            &:active{
+                border-color:#000;
+            }
+        }
+    }
+    &.light{
+        #osPage{
+            background-color: #000;
+            #panel{
+                color: #000;
+                background:rgba(0, 0, 0, 0.3);
+                #appsButton{
+                    color: #09d;
+                    &.active,
+                    &:hover{
+                        background:rgba(0, 0, 0, 0.5);
+                    }
+                }
+                #appList{
+                    background:#eee;
+                    &.list{
+                        .appListElement{
+                            color: #000;
+                            &:hover{
+                                background:rgba(75, 155, 255, 1);
+                                color:#fff;
+                            }
+                            .submenu{
+                                background:#eee;
+                                .app{
+                                    color:#000;
+                                    &:hover{
+                                        background:rgba(75, 155, 255, 1);
+                                        color:#fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &.grid{
+                        .appListElement{
+                            color: #000;
+                            .submenu{
+                                .app{
+                                    color:#000;
+                                    &:hover{
+                                        background:rgba(75, 155, 255, 1);
+                                        color:#fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                #openedWindowList{
+                    .barWindow{
+                        color:rgba(0, 0, 0, 0.5);
+                        &.focused{
+                            color:#000;
+                        }
+                        &:hover{
+                            background: rgba(125, 125, 125, 0.3);
+                        }
+                    }
+                }
+
+                &.left,
+                &.right{
+                    #openedWindowList{
+                        .barWindow{
+                            .barTitle{
+                                background: rgb(165, 165, 165);
+                                color: #000;
+                            }
+                        }
+                    }
+                }
+            }
+            #desktop{
+                .appWindow{
+                    color:#000;
+                    background:#ebebeb;
+                    &.focused{
+                        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
+                    }
+                    .appWindowTop{
+                        .appWindowButtons{
+                            .windowButton{
+                                border:1px solid rgba(113, 93, 93, 0.51);
+                                &.close{
+                                    background:#FF2C2C;
+                                }
+                                &.minimize{
+                                    background:#F1FF22;
+                                }
+                                &.maximize,
+                                &.unmaximize{
+                                    background:#00ADFF;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        button{
+            color:#000;
+            background-color: #f6f6f6;
+            border: 1px solid #c1c1c1;
+            outline: none;
+            &:active{
+                border-color:#000;
+            }
+        }
+    }
+}
