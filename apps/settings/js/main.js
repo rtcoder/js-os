@@ -14,9 +14,11 @@ function hexToRgba(hex, opacity) {
         let id = $(this).data('section');
         $('#settings section').hide();
         $('#settings section[data-id=' + id + ']').show();
+        $('#settings .top').show();
     });
     $('.back').click(function () {
         $('#settings section').hide();
+        $('#settings .top').hide();
         $('#settings section[data-id=home]').show();
     });
     for (let i = 1; i <= 5; i++) {
@@ -61,5 +63,19 @@ function hexToRgba(hex, opacity) {
     $('#panel-position').change(function () {
         $('#panel').removeClass('top right bottom left');
         $('#panel').addClass($(this).val());
+    });
+
+
+    $('#show-seconds').change(function () {
+        if ($(this).is(':checked')) {
+            $("#time").attr('data-seconds', 'show');
+        } else {
+            $("#time").attr('data-seconds', 'hide');
+        }
+    });
+
+    $('#os-theme').change(function () {
+        $('body').removeClass('dark light');
+        $('body').addClass($(this).val());
     });
 })();

@@ -18,8 +18,11 @@ function timer() {
         if (s < 10) {
             s = "0" + s;
         }
-        czas = g + ":" + m + ":" + s;
-        $("#time").text(czas);
+        time = g + ":" + m;
+        if ($("#time").attr('data-seconds') === 'show') {
+            time = g + ":" + m + ":" + s;
+        }
+        $("#time").text(time);
     }, 1000);
 }
 function runApp(name, content, title, options) {
