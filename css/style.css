@@ -115,13 +115,9 @@ body #osPage #panel #appList .appListElement .submenu .app:hover {
   color: #fff;
 }
 body #osPage #panel #openedWindowList .barWindow {
-  color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   float: left;
   position: relative;
-}
-body #osPage #panel #openedWindowList .barWindow.focused {
-  color: #fff;
 }
 body #osPage #panel #openedWindowList .barWindow.minimized {
   display: none;
@@ -231,7 +227,6 @@ body #osPage #panel.left #openedWindowList .barWindow .barTitle,
 body #osPage #panel.right #openedWindowList .barWindow .barTitle {
   position: absolute;
   height: 30px;
-  background: #7f7f7f;
   line-height: 30px;
   top: 10px;
   display: none;
@@ -376,7 +371,43 @@ body #osPage #desktop .appWindow .appContent {
 body.dark #osPage #panel {
   color: #fff;
 }
+body.dark #osPage #panel #openedWindowList .barWindow {
+  color: rgba(255, 255, 255, 0.5);
+}
+body.dark #osPage #panel #openedWindowList .barWindow.focused {
+  color: #fff;
+}
+body.dark #osPage #panel.left #openedWindowList .barWindow .barTitle,
+body.dark #osPage #panel.right #openedWindowList .barWindow .barTitle {
+  background: #4c4c4c;
+  color: #eee;
+}
+body.dark #osPage #desktop .appWindow {
+  color: #eee;
+  background: #1f1f1f;
+}
+body.dark button {
+  color: #eee;
+}
 body.light #osPage #panel {
+  color: #000;
+}
+body.light #osPage #panel #openedWindowList .barWindow {
+  color: rgba(0, 0, 0, 0.5);
+}
+body.light #osPage #panel #openedWindowList .barWindow.focused {
+  color: #000;
+}
+body.light #osPage #panel.left #openedWindowList .barWindow .barTitle,
+body.light #osPage #panel.right #openedWindowList .barWindow .barTitle {
+  background: #a5a5a5;
+  color: #000;
+}
+body.light #osPage #desktop .appWindow {
+  color: #000;
+  background: #ebebeb;
+}
+body.light button {
   color: #000;
 }
 /*# sourceMappingURL=style.css.map */

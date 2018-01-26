@@ -114,13 +114,9 @@ body{
             }
             #openedWindowList{
                 .barWindow{
-                    color:rgba(255, 255, 255, 0.5);
                     cursor:pointer;
                     float: left;
                     position: relative;
-                    &.focused{
-                        color:#fff;
-                    }
                     &.minimized{
                         display:none;
                     }
@@ -215,7 +211,6 @@ body{
                         .barTitle{
                             position: absolute;
                             height: 30px;
-                            background: rgb(127, 127, 127);
                             line-height: 30px;
                             top: 10px;
                             display: none;
@@ -376,14 +371,71 @@ body{
         #osPage{
             #panel{
                 color: #fff;
+                #openedWindowList{
+                    .barWindow{
+                        color:rgba(255, 255, 255, 0.5);
+                        &.focused{
+                            color:#fff;
+                        }
+                    }
+                }
+                &.left,
+                &.right{
+                    #openedWindowList{
+                        .barWindow{
+                            .barTitle{
+                                background: rgb(76, 76, 76);
+                                color: #eee;
+                            }
+                        }
+                    }
+                }
             }
+            #desktop{
+                .appWindow{
+                    color:#eee;
+                    background:#1f1f1f;
+                }
+            }
+        }
+        button{
+            color:#eee;
         }
     }
     &.light{
         #osPage{
             #panel{
                 color: #000;
+                #openedWindowList{
+                    .barWindow{
+                        color:rgba(0, 0, 0, 0.5);
+                        &.focused{
+                            color:#000;
+                        }
+                    }
+                }
+
+                &.left,
+                &.right{
+                    #openedWindowList{
+                        .barWindow{
+                            .barTitle{
+                                background: rgb(165, 165, 165);
+                                color: #000;
+                            }
+                        }
+                    }
+                }
             }
+            #desktop{
+                .appWindow{
+                    color:#000;
+                    background:#ebebeb;
+                }
+            }
+        }
+        button{
+            color:#000;
         }
     }
 }
