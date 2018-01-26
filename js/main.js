@@ -1,9 +1,8 @@
-
 var runningApps = new Array();
 var appIsHovered = false;
 
 function timer() {
-    var t, czas, g, m, s;
+    var t, time, g, m, s;
     setInterval(function () {
         t = new Date();
         g = t.getHours();
@@ -99,7 +98,8 @@ function unmaximizeApp(appId) {
             .animate({
                 top: t + "px",
                 left: l + "px",
-                width: w + "px",
+//                width: w + "px",
+                width: "auto",
                 height: h + "px"
             }, 200);
     $(".appWindow").draggable({handle: ".appWindowTitle"});
