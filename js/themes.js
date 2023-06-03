@@ -15,7 +15,6 @@ const THEMES = {
         APPS_BTN_COLOR_ACTIVE: '#00cc03',
         APPS_BTN_BG_COLOR_ACTIVE: 'rgba(0, 0, 0, 0.5)',
 
-        APP_LIST_TYPE:'grid',
         APP_LIST_BG_COLOR: '#eee',
         APP_LIST_FONT_COLOR: '#1f1f1f',
         APP_LIST_FONT_COLOR_ACTIVE: '#fff',
@@ -53,7 +52,6 @@ const THEMES = {
         APPS_BTN_COLOR_ACTIVE: '#cc00c9',
         APPS_BTN_BG_COLOR_ACTIVE: 'rgba(0, 0, 0, 0.5)',
 
-        APP_LIST_TYPE:'grid',
         APP_LIST_BG_COLOR: '#1f1f1f',
         APP_LIST_FONT_COLOR: '#eee',
         APP_LIST_FONT_COLOR_ACTIVE: '#fff',

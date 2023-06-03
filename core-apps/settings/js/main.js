@@ -20,8 +20,6 @@
         document.querySelector('#date-format').value = userSettings.dateTime.date.format;
         document.querySelector('#time-format').value = userSettings.dateTime.time.format;
 
-        document.querySelector('#app-list-type').value = userSettings.appList.APP_LIST_TYPE;
-
         document.querySelector('#os-theme').value = userSettings.theme;
     }
 
@@ -120,10 +118,5 @@
 
     document.querySelector('#os-theme').addEventListener('change', e => {
         setTheme(e.target.value);
-    });
-
-    document.querySelector('#app-list-type').addEventListener('change', e => {
-        setAppListType(e.target.value);
-        saveUserSettingsToLocalStorage();
     });
 })();

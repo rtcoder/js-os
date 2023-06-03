@@ -31,7 +31,6 @@ function applyThemeToSettings(themeName) {
     // APPS_BTN_COLOR_ACTIVE = theme.APPS_BTN_COLOR_ACTIVE;
     // APPS_BTN_BG_COLOR_ACTIVE = theme.APPS_BTN_BG_COLOR_ACTIVE;
 
-    setAppListType(theme.APP_LIST_TYPE);
     userSettings.appList.APP_LIST_BG_COLOR = theme.APP_LIST_BG_COLOR;
     userSettings.appList.APP_LIST_FONT_COLOR = theme.APP_LIST_FONT_COLOR;
     userSettings.appList.APP_LIST_FONT_COLOR_ACTIVE = theme.APP_LIST_FONT_COLOR_ACTIVE;

@@ -21,15 +21,3 @@ function setPanelBgColor(color) {
     setUserSettingsValue('panel.PANEL_BG_COLOR', hexToRgba(color, alpha * 100));
     document.body.style.setProperty(styleVars.PANEL_BG_COLOR, getUserSettingsValue('panel.PANEL_BG_COLOR'));
 }
-
-function setAppListType(type) {
-    const availableTypes = ['grid', 'list'];
-    if (!availableTypes.includes(type)) {
-        return;
-    }
-
-    setUserSettingsValue('appList.APP_LIST_TYPE', type);
-    const appList = document.querySelector('.appList');
-    appList.classList.remove(...availableTypes);
-    appList.classList.add(type);
-}
