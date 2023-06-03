@@ -1,25 +1,53 @@
 <!doctype html>
-<html>
-    <head>
-        <title>JS OS</title>
-        <link rel="stylesheet" href="css/style.css"/>
-        <link rel="stylesheet" href="css/themes.css"/>
-        <link rel="stylesheet" href="vendor/fontawesome/css/all.css"/>
-        <meta charset="utf-8"/>
-        <script src="js/appList.js"></script>
-        <script src="js/main.js"></script>
-    </head>
-    <body class="light">
-        <div id="osPage">
-            <div id="panel" class="right">
-                <div id="appsButton">
-                    <i class="far fa-rocket fa-2x"></i>
-                </div>
-                <div id="openedWindowList"></div>
-                <div id="time"></div>
-                <div id="appList" class="grid"></div>
+<html lang="en">
+<head>
+    <title>JS OS</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/themes.css"/>
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.css"/>
+    <meta charset="utf-8"/>
+</head>
+<body class="light">
+<div class="panel right">
+    <div class="appsButton">
+        <i class="fa-sharp fa-regular fa-rocket-launch fa-lg"></i>
+    </div>
+    <div class="appList grid"></div>
+    <div class="openedWindowList"></div>
+    <div class="tray">
+        <div class="time"></div>
+    </div>
+    <div class="showDesktop" title="Show Desktop"></div>
+</div>
+<div class="desktop"></div>
+
+<template id="window-template">
+    <div class="appWindow focused" id="{name}" data-maximized="false" data-buttons="{buttonsOptions}"
+         style="{style}">
+        <div class="windowTop">
+            <div class="windowIcon">
+                <img src="{icon}" alt="{title}"/>
             </div>
-            <div id="desktop"></div>
+            <div class="windowTitle">{title}</div>
+            <div class="windowButtons">
+                <div class="windowButton minimize" title="minimize"></div>
+                <div class="windowButton maximize" title="maximize"></div>
+                <div class="windowButton close" title="close"></div>
+            </div>
         </div>
-    </body>
+        <div class="appContent">{content}</div>
+    </div>
+</template>
+<template id="bar-window-template">
+    <div class="barWindow focused" data-appId="{name}">
+        <div class="barIcon">
+            <img src="{icon}" alt="{title}">
+        </div>
+        <div class="barTitle">{title}</div>
+    </div>
+</template>
+<script src="js/appList.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/main.js"></script>
+</body>
 </html>

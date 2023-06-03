@@ -1,0 +1,21 @@
+@import "desktop/app-window.css";
+
+.panel:is(.left,.right) + .desktop {
+    width: calc(100vw - var(--panelSize));
+}
+
+.panel:is(.top,.bottom) + .desktop {
+    height: calc(100vh - var(--panelSize));
+}
+
+.desktop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.desktop .icon {
+    width: 25px;
+    height: 40px;
+    position: absolute;
+}

@@ -1,0 +1,39 @@
+@import "panel/app-list.css";
+@import "panel/window-list.css";
+@import "panel/tray.css";
+
+.panel {
+    z-index: 9999999;
+    position: fixed;
+    display: grid;
+    color: var(--panelFontColor);
+    background: var(--panelBgColor);
+}
+
+.panel:is(.top,.bottom) {
+    width: 100vw;
+    height: var(--panelSize);
+    grid-template-columns: 50px auto 100px 10px;
+}
+
+.panel:is(.left,.right) {
+    width: var(--panelSize);
+    height: 100vh;
+    grid-template-rows: 50px auto 100px 10px;
+}
+
+.panel:is(.top,.left) {
+    top: 0;
+    left: 0;
+}
+
+.panel:is(.bottom,.right) {
+    bottom: 0;
+    right: 0;
+}
+
+.panel .showDesktop {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}

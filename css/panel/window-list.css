@@ -1,0 +1,84 @@
+.openedWindowList {
+    display: flex;
+}
+
+.panel:is(.top,.bottom) .openedWindowList {
+    flex-direction: row;
+    height: inherit;
+}
+
+.panel:is(.left,.right) .openedWindowList {
+    flex-direction: column;
+    width: inherit;
+}
+
+.openedWindowList .barWindow {
+    cursor: pointer;
+    display: flex;
+    width: var(--panelSize);
+    height: var(--panelSize);
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    transition: height var(--animationDuration) ease-in;
+}
+
+.openedWindowList .barWindow:hover {
+    background: var(--windowListHoveredElementBgColor);
+}
+
+.openedWindowList .barWindow.closing {
+    overflow: hidden;
+    height: 0;
+}
+
+.openedWindowList .barWindow.focused:after {
+    content: ' ';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    bottom: 5px;
+    background: var(--windowListActiveElementDotColor);
+    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 2px 0 #000;
+}
+
+.openedWindowList .barWindow img {
+    width: 30px;
+    height: 30px;
+    object-fit: scale-down;
+}
+
+.openedWindowList .barWindow .barTitle {
+    position: absolute;
+    padding: 5px;
+    opacity: 0;
+    transition: opacity var(--animationDuration) ease;
+    pointer-events: none;
+    border-radius: 5px;
+    white-space: nowrap;
+    background: var(--windowListElementTitleBgColor);
+    color: var(--windowListElementTitleFontColor);
+}
+
+.openedWindowList .barWindow:hover .barTitle {
+    opacity: 1;
+}
+
+.panel.left .openedWindowList .barWindow .barTitle {
+    left: calc(var(--panelSize) + 5px);
+}
+
+.panel.right .openedWindowList .barWindow .barTitle {
+    right: calc(var(--panelSize) + 5px);
+}
+
+.panel.top .openedWindowList .barWindow .barTitle {
+    top: calc(var(--panelSize) + 5px);
+}
+
+.panel.bottom .openedWindowList .barWindow .barTitle {
+    bottom: calc(var(--panelSize) + 5px);
+}
