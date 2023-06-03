@@ -1,0 +1,33 @@
+#settings-window section[data-id=home] {
+    display: block;
+}
+
+#settings-window section[data-id=home] .tile {
+    width: 100px;
+    height: 90px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+#settings-window section[data-id=home] .tile:hover {
+    border-color: #000;
+}
+
+#settings-window section[data-id=home] .tile .image {
+    height: 50px;
+}
+
+#settings-window section[data-id=home] .tile .image i {
+    margin: 9px auto;
+    font-size: 30px;
+}
+
+#settings-window section[data-id=home] .tile .text {
+    height: 40px;
+    line-height: 20px;
+}

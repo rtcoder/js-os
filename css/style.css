@@ -9,6 +9,10 @@
     margin: 0;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 ul,
 ul li,
 li {
@@ -22,8 +26,8 @@ body {
     overflow: hidden;
     font-family: Arial, sans-serif;
     background-color: var(--bgColor);
-    background-image: url('../pics/wallpapers/wallpaper5.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    background-image: var(--bgImage);
+    background-size: var(--bgSize);
+    background-position: var(--bgPosition);
+    background-repeat: var(--bgRepeat);
 }

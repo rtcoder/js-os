@@ -116,7 +116,9 @@
 .appWindow .appContent {
     width: 100%;
     height: 100%;
-    padding: 5px;
+    overflow: auto;
+    padding: 0 5px 5px;
+    margin-top: 5px;
 }
 
 .appWindow .appContent iframe {

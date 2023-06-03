@@ -1,58 +1,38 @@
-:root {
+body {
     --animationDuration: 0.2s;
-}
 
-body.light {
     --panelSize: 70px;
     --panelBgColor: rgba(0, 0, 0, 0.3);
     --panelFontColor: #000;
+
     --bgColor: #000;
+    --bgImage: url('../pics/wallpapers/wallpaper5.jpg');
+    --bgSize: cover;
+    --bgPosition: center center;
+    --bgRepeat: no-repeat;
+
     --appsBtnColor: #09c;
     --appsBtnColorActive: #00cc03;
     --appsBtnBgColorActive: rgba(0, 0, 0, 0.5);
+
     --appListBgColor: #eee;
     --appListFontColor: #1f1f1f;
     --appListFontColorActive: #fff;
     --appListElementBgColorActive: #4b9bff;
-    --windowListActiveElementDotColor:#fff;
-    --windowListHoveredElementBgColor:rgba(125, 125, 125, 0.3);
-    --windowListElementTitleBgColor:rgba(0, 0, 0, 0.3);
-    --windowListElementTitleFontColor:#fff;
+
+    --windowListActiveElementDotColor: #fff;
+    --windowListHoveredElementBgColor: rgba(125, 125, 125, 0.3);
+    --windowListElementTitleBgColor: rgba(0, 0, 0, 0.3);
+    --windowListElementTitleFontColor: #fff;
+
     --closeWindowButtonColor: #ff2c2c;
     --minimizeWindowButtonColor: #f1ff22;
     --maximizeWindowButtonColor: #00adff;
     --windowButtonInactiveBgColor: rgba(113, 93, 93, 0.51);
     --windowButtonBorderColor: rgba(113, 93, 93, 0.51);
     --windowButtonBorderWidth: 1px;
+
     --windowShadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
     --windowBgColor: #ebebeb;
     --windowFontColor: #000;
-}
-
-body.dark {
-    --panelSize: 70px;
-    --panelBgColor: rgba(0, 0, 0, 0.3);
-    --panelFontColor: #fff;
-    --bgColor: #000;
-    --appsBtnColor: #09c;
-    --appsBtnColorActive: #cc00c9;
-    --appsBtnBgColorActive: rgba(0, 0, 0, 0.5);
-    --appListBgColor: #1f1f1f;
-    --appListFontColor: #eee;
-    --appListFontColorActive: #fff;
-    --appListElementBgColorActive: #4b9bff;
-    --windowListActiveElementDotColor:#fff;
-    --windowListHoveredElementBgColor:rgba(125, 125, 125, 0.3);
-    --windowListElementTitleBgColor:rgba(0, 0, 0, 0.3);
-    --windowListElementTitleFontColor:#fff;
-    --closeWindowButtonColor: #ff2c2c;
-    --minimizeWindowButtonColor: #f1ff22;
-    --maximizeWindowButtonColor: #00adff;
-    --windowButtonInactiveBgColor: rgba(113, 93, 93, 0.51);
-    --windowButtonBorderColor: rgba(113, 93, 93, 0.51);
-    --windowButtonBorderWidth: 1px;
-    --windowShadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
-    --windowBgColor: #1f1f1f;
-    --windowFontColor: #eee;
-
 }

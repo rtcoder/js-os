@@ -1,19 +1,29 @@
 .panel .tray {
     display: flex;
+    flex-direction: column;
 }
 
-.panel:is(.top,.bottom) .tray .time {
+.panel:is(.top,.bottom) .tray :is(.date, .time) {
     height: 100%;
 }
 
-.panel:is(.left,.right) .tray .time {
+.panel:is(.left,.right) .tray :is(.date, .time) {
     width: 100%;
-    text-align: center;
 }
 
-.tray .time {
+.panel:is(.top,.bottom) .tray{
+    height: var(--panelSize);
+}
+
+.panel:is(.left,.right) .tray{
+    width: var(--panelSize);
+}
+
+.tray :is(.date, .time) {
     color: inherit;
     font-size: 13px;
-    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 

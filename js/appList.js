@@ -1,5 +1,6 @@
 const appList = {
     terminal: {
+        isSystemApp: true,
         title: "Terminal",
         path: "apps/terminal.html",
         icon: "icons/default/terminal.png",
@@ -96,10 +97,15 @@ const appList = {
         }
     },
     settings: {
+        isSystemApp: true,
         title: "Settings",
         path: "core-apps/settings/settings.html",
+        css: "core-apps/settings/css/style.css",
+        js: "core-apps/settings/js/main.js",
         icon: "icons/default/settings.png",
         options: {
+            width: '500px',
+            height: '500px',
             singleInstance: true,
             windowButtons: {
                 min: true,

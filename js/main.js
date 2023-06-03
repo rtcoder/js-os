@@ -8,138 +8,13 @@ const appsButton = document.querySelector('.appsButton');
 const appListContainer = document.querySelector('.appList');
 const openedWindowList = document.querySelector('.openedWindowList');
 const timeContainer = document.querySelector('.tray .time');
+const dateContainer = document.querySelector('.tray .date');
 let focusedWindow;
 
 function timer() {
-    let format = 'HH:mm';
-    if (timeContainer.getAttribute('data-seconds') === 'show') {
-        format = 'HH:mm:ss';
-    }
-    timeContainer.innerText = dateToString(new Date(), format);
+    timeContainer.innerText = dateToString(new Date(), userSettings.dateTime.time.format);
+    dateContainer.innerText = dateToString(new Date(), userSettings.dateTime.date.format);
     setTimeout(timer, 1000);
-}
-
-function runApp(name) {
-    blurAllApps();
-
-    const {title, options, url, path, icon} = appList[name];
-    const content = `<iframe src="${url || path}" frameborder="0"></iframe>`;
-    const {windowButtons, fullscreen} = options;
-    const buttonsOptions = Object.keys(windowButtons).filter(key => windowButtons[key]).join();
-
-    let style = '';
-    if (options.width) {
-        style += `width: ${options.width};`;
-    }
-    if (options.height) {
-        style += `height: ${options.height};`
-    }
-
-    const template = document.getElementById('window-template').innerHTML
-        .replaceAll('{name}', name)
-        .replaceAll('{icon}', icon)
-        .replaceAll('{title}', title)
-        .replaceAll('{buttonsOptions}', buttonsOptions)
-        .replaceAll('{style}', style)
-        .replaceAll('{fullscreen}', `${!!fullscreen}`)
-        .replaceAll('{content}', content);
-
-
-    const barTemplate = document.getElementById('bar-window-template').innerHTML
-        .replaceAll('{name}', name)
-        .replaceAll('{icon}', icon)
-        .replaceAll('{title}', title);
-
-    desktop.append(htmlToElement(template))
-    openedWindowList.append(htmlToElement(barTemplate))
-
-    runningApps.push(name);
-}
-
-function closeApp(appId) {
-    console.log("closed: " + appId);
-    const appKey = runningApps.indexOf(appId);
-    runningApps.splice(appKey, 1);
-    const appWindow = document.querySelector(`.appWindow#${appId}`);
-    const appBarIcon = document.querySelector(`.barWindow[data-appId="${appId}"]`);
-    appWindow.classList.add('closing');
-    appBarIcon.classList.add('closing');
-
-    setTimeout(() => {
-        appWindow.remove();
-        appBarIcon.remove();
-    }, animationDuration);
-
-    blurAllApps();
-}
-
-function blurAllApps() {
-    document.querySelectorAll('.appWindow').forEach(el => el.classList.remove('focused'));
-    document.querySelectorAll('.barWindow').forEach(el => el.classList.remove('focused'));
-}
-
-function allWindows(callback) {
-    document.querySelectorAll('.appWindow').forEach(callback);
-}
-
-function getAppWindow(appId) {
-    return document.querySelector(`.appWindow#${appId}`);
-}
-
-function focusApp(appId) {
-    blurAllApps();
-
-    const appWindow = getAppWindow(appId);
-    const appBarIcon = document.querySelector(`.barWindow[data-appId="${appId}"]`);
-
-    appWindow.classList.add('focused');
-    appWindow.classList.remove('minimized');
-    appBarIcon.classList.add('focused');
-}
-
-function minimizeApp(appId) {
-    console.log("minimized: " + appId);
-    getAppWindow(appId).classList.add("minimized");
-    blurAllApps();
-}
-
-function toggleMaximizeApp(appId) {
-    const appWindow = getAppWindow(appId);
-    if (appWindow.getAttribute('data-maximized') === 'true') {
-        restoreAppSize(appId);
-    } else {
-        maximizeApp(appId);
-    }
-}
-
-function maximizeApp(appId) {
-    console.log("maximized: " + appId);
-    const appWindow = getAppWindow(appId);
-    const rect = appWindow.getBoundingClientRect();
-
-    appWindow.setAttribute("data-w", `${rect.width}`);
-    appWindow.setAttribute("data-h", `${rect.height}`);
-    appWindow.setAttribute("data-t", `${rect.top}`);
-    appWindow.setAttribute("data-l", `${rect.left}`);
-    appWindow.setAttribute("data-maximized", "true");
-}
-
-function restoreAppSize(appId) {
-    console.log("restored: " + appId);
-    const appWindow = getAppWindow(appId);
-    const w = appWindow.getAttribute("data-w");
-    const h = appWindow.getAttribute("data-h");
-    const t = appWindow.getAttribute("data-t");
-    const l = appWindow.getAttribute("data-l");
-    appWindow.removeAttribute("data-w");
-    appWindow.removeAttribute("data-h");
-    appWindow.removeAttribute("data-t");
-    appWindow.removeAttribute("data-l");
-    appWindow.setAttribute("data-maximized", "false");
-    appWindow.setAttribute("data-w", `${w}px`);
-    appWindow.setAttribute("data-h", `${h}px`);
-    appWindow.setAttribute("data-t", `${t}px`);
-    appWindow.setAttribute("data-l", `${l}px`);
 }
 
 function initEvents() {
@@ -148,8 +23,11 @@ function initEvents() {
         const {target} = e;
 
         const appWindow = target.closest('.appWindow');
+
         if (appWindow) {
             const appName = appWindow.getAttribute('id');
+            blurAllApps();
+            focusApp(appName);
 
             if (target.classList.contains('windowButton')) {
 
@@ -162,6 +40,11 @@ function initEvents() {
                 if (target.classList.contains('maximize')) {
                     toggleMaximizeApp(appName);
                 }
+                return;
+            }
+
+            if (isCoreApp(appName)) {
+                dispatchAppEvents(appName, 'click', e);
             }
         }
     });
@@ -213,28 +96,45 @@ function initEvents() {
     });
     document.addEventListener('dblclick', e => {
         const windowTitleBar = e.target.closest('.windowTitle');
+        const appWindow = e.target.closest('.appWindow');
+        const appName = appWindow?.getAttribute('id');
         if (windowTitleBar) {
-            const appWindow = e.target.closest('.appWindow');
-            const appName = appWindow.getAttribute('id');
             toggleMaximizeApp(appName);
+        }
+        if (isCoreApp(appName)) {
+            dispatchAppEvents(appName, 'dblclick', e);
         }
     });
     document.addEventListener('mousedown', e => {
         isMouseDown = true;
         const windowTopBar = e.target.closest('.windowTop');
-        const _window = e.target.closest('.appWindow');
+        const appWindow = e.target.closest('.appWindow');
         if (windowTopBar) {
             isMouseDownAppTopBar = true;
-            focusedWindow = _window
+            focusedWindow = appWindow
+        }
+        const appName = appWindow?.getAttribute('id');
+        if (isCoreApp(appName)) {
+            dispatchAppEvents(appName, 'mousedown', e);
         }
     });
-    document.addEventListener('mouseup', () => {
+    document.addEventListener('mouseup', e => {
         isMouseDown = false;
         isMouseDownAppTopBar = false;
         allWindows(el => el.classList.remove('no-transition'));
+        const appWindow = e.target.closest('.appWindow');
+        const appName = appWindow?.getAttribute('id');
+        if (isCoreApp(appName)) {
+            dispatchAppEvents(appName, 'mouseup', e);
+        }
     }, true);
     window.addEventListener('mousemove', e => {
         e.preventDefault();
+        const appWindow = e.target.closest('.appWindow');
+        const appName = appWindow?.getAttribute('id');
+        if (isCoreApp(appName)) {
+            dispatchAppEvents(appName, 'mousemove', e);
+        }
         if (!isMouseDownAppTopBar || !focusedWindow) {
             return;
         }

@@ -4,13 +4,15 @@ function htmlToElement(html) {
     template.innerHTML = html;
     return template.content.firstChild;
 }
-function repeatStr(count,str) {
-    let out='';
-    for(let i=0;i<count;i++){
-        out+=str;
+
+function repeatStr(count, str) {
+    let out = '';
+    for (let i = 0; i < count; i++) {
+        out += str;
     }
     return out;
 }
+
 function padStart(string, length, chars) {
     const strLength = length ? string.length : 0;
     return (length && strLength < length)
@@ -82,4 +84,28 @@ function dateToString(date, format) {
     }
 
     return format
+}
+
+function updateObjProp(obj, value, propPath) {
+    const [head, ...rest] = propPath.split('.');
+
+    !rest.length
+        ? obj[head] = value
+        : this.updateObjProp(obj[head], value, rest.join('.'));
+}
+
+function hexToRgba(hex, opacity = 100) {
+    hex = hex.replace('#', '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    const a = opacity / 100;
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+}
+
+function convertRgbaStringToArray(rgba) {
+    return rgba.replace(/^(rgb|rgba)\(/, '')
+        .replace(/\)$/, '')
+        .replace(/\s/g, '')
+        .split(',');
 }
