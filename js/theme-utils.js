@@ -7,6 +7,7 @@ function setTheme(themeName) {
         document.body.style.setProperty(styleVars[key], theme[key]);
     });
     applyThemeToSettings(themeName);
+    setUserSettingsValue('theme', themeName);
 }
 
 function applyThemeToSettings(themeName) {
@@ -14,6 +15,7 @@ function applyThemeToSettings(themeName) {
     if (!theme) {
         return;
     }
+
     userSettings.panel.PANEL_SIZE = theme.PANEL_SIZE;
     userSettings.panel.PANEL_BG_COLOR = theme.PANEL_BG_COLOR;
     userSettings.panel.PANEL_FONT_COLOR = theme.PANEL_FONT_COLOR;

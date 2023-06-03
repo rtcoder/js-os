@@ -11,6 +11,12 @@ const timeContainer = document.querySelector('.tray .time');
 const dateContainer = document.querySelector('.tray .date');
 let focusedWindow;
 
+function setSavedUserData(){
+    updateUserSettingsFromLocalStorage();
+
+    setTheme(userSettings.theme);
+}
+
 function timer() {
     timeContainer.innerText = dateToString(new Date(), userSettings.dateTime.time.format);
     dateContainer.innerText = dateToString(new Date(), userSettings.dateTime.date.format);
@@ -173,6 +179,7 @@ function createMenu() {
     }).join('');
 }
 
+setSavedUserData();
 createMenu();
 initEvents();
 timer();

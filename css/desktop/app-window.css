@@ -44,6 +44,7 @@
     z-index: 1;
     opacity: 1;
 }
+
 .appWindow.focused[data-maximized="false"] {
     box-shadow: var(--windowShadow);
 }
@@ -62,6 +63,7 @@
     width: 30px;
     height: 30px;
     object-fit: scale-down;
+    border-radius: 30px;
 }
 
 .appWindow .windowTop .windowTitle {
@@ -88,7 +90,7 @@
     height: 10px;
     border-radius: 100%;
     display: flex;
-    background:var(--windowButtonInactiveBgColor);
+    background: var(--windowButtonInactiveBgColor);
     cursor: default;
     pointer-events: none;
     border: var(--windowButtonBorderWidth) solid var(--windowButtonBorderColor);
@@ -96,7 +98,7 @@
 
 .appWindow[data-buttons*="min"] .windowTop .windowButtons .windowButton.minimize,
 .appWindow[data-buttons*="max"] .windowTop .windowButtons .windowButton.maximize,
-.appWindow[data-buttons*="close"] .windowTop .windowButtons .windowButton.close{
+.appWindow[data-buttons*="close"] .windowTop .windowButtons .windowButton.close {
     cursor: pointer;
     pointer-events: initial;
 }
@@ -118,7 +120,6 @@
     height: 100%;
     overflow: auto;
     padding: 0 5px 5px;
-    margin-top: 5px;
 }
 
 .appWindow .appContent iframe {

@@ -48,7 +48,6 @@ function saveUserSettingsToLocalStorage() {
 
 function getUserSettingsFromLocalStorage() {
     const value = localStorage.getItem('js_os_user_settings');
-    return SETTINGS;
     if (!value) {
         return SETTINGS;
     }
@@ -57,6 +56,10 @@ function getUserSettingsFromLocalStorage() {
     } catch {
         return SETTINGS;
     }
+}
+
+function updateUserSettingsFromLocalStorage() {
+    Object.assign(userSettings,getUserSettingsFromLocalStorage());
 }
 
 function getUserSettingsValue(keyPath) {

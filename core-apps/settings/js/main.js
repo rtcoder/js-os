@@ -124,5 +124,6 @@
 
     document.querySelector('#app-list-type').addEventListener('change', e => {
         setAppListType(e.target.value);
+        saveUserSettingsToLocalStorage();
     });
 })();
