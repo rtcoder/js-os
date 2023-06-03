@@ -13,13 +13,14 @@ const appList = {
     },
     memory: {
         title: "Memory",
-        path: "apps/memory/",
+        url: 'https://rtcoder.github.io/MemoryGame/',
         icon: "icons/default/memory.png",
         options: {
+            fullscreen: true,
             singleInstance: true,
             windowButtons: {
                 min: true,
-                max: true,
+                max: false,
                 close: true
             }
         }
@@ -29,8 +30,8 @@ const appList = {
         url: 'https://rtcoder.github.io/Tic-Tac-Toe/',
         icon: "icons/default/tictactoe.png",
         options: {
-            width:'400px',
-            height:'500px',
+            width: '400px',
+            height: '500px',
             singleInstance: true,
             windowButtons: {
                 min: true,
@@ -41,9 +42,10 @@ const appList = {
     },
     web_draft: {
         title: "WebDraft",
-        path: "apps/webdraft/",
+        url: 'https://rtcoder.github.io/WebDraft/',
         icon: "icons/default/webdraft.png",
         options: {
+            fullscreen: true,
             singleInstance: true,
             windowButtons: {
                 min: true,
@@ -70,8 +72,8 @@ const appList = {
         path: "apps/calc/calc.html",
         icon: "icons/default/calc.png",
         options: {
-            width:'250px',
-            height:'360px',
+            width: '250px',
+            height: '360px',
             singleInstance: true,
             windowButtons: {
                 min: true,
@@ -95,7 +97,7 @@ const appList = {
     },
     settings: {
         title: "Settings",
-        path: "apps/settings/settings.html",
+        path: "core-apps/settings/settings.html",
         icon: "icons/default/settings.png",
         options: {
             singleInstance: true,

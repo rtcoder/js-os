@@ -59,6 +59,7 @@
     position: absolute;
     display: none;
     background-color: var(--appListBgColor);
+    box-shadow: var(--windowShadow);
 }
 
 .appList.list {

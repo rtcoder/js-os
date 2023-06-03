@@ -23,8 +23,8 @@ function runApp(name) {
     blurAllApps();
 
     const {title, options, url, path, icon} = appList[name];
-    const content = `<iframe src="${url||path}" frameborder="0"></iframe>`;
-    const {windowButtons} = options;
+    const content = `<iframe src="${url || path}" frameborder="0"></iframe>`;
+    const {windowButtons, fullscreen} = options;
     const buttonsOptions = Object.keys(windowButtons).filter(key => windowButtons[key]).join();
 
     let style = '';
@@ -41,6 +41,7 @@ function runApp(name) {
         .replaceAll('{title}', title)
         .replaceAll('{buttonsOptions}', buttonsOptions)
         .replaceAll('{style}', style)
+        .replaceAll('{fullscreen}', `${!!fullscreen}`)
         .replaceAll('{content}', content);
 
 
@@ -189,8 +190,8 @@ function initEvents() {
             return;
         }
 
-        if(target.closest('.showDesktop')){
-            allWindows(el=>{
+        if (target.closest('.showDesktop')) {
+            allWindows(el => {
                 minimizeApp(el.getAttribute('id'))
             })
         }
