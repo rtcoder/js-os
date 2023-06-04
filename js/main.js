@@ -11,7 +11,7 @@ const timeContainer = document.querySelector('.tray .time');
 const dateContainer = document.querySelector('.tray .date');
 let focusedWindow;
 
-function setSavedUserData(){
+function setSavedUserData() {
     updateUserSettingsFromLocalStorage();
 
     setTheme(userSettings.theme);
@@ -31,26 +31,26 @@ function initEvents() {
         const appWindow = target.closest('.appWindow');
 
         if (appWindow) {
-            const appName = appWindow.getAttribute('id');
+            const appId = appWindow.getAttribute('id');
             blurAllApps();
-            focusApp(appName);
+            focusApp(appId);
 
             if (target.classList.contains('windowButton')) {
 
                 if (target.classList.contains('close')) {
-                    closeApp(appName);
+                    closeApp(appId);
                 }
                 if (target.classList.contains('minimize')) {
-                    minimizeApp(appName);
+                    minimizeApp(appId);
                 }
                 if (target.classList.contains('maximize')) {
-                    toggleMaximizeApp(appName);
+                    toggleMaximizeApp(appId);
                 }
                 return;
             }
 
-            if (isCoreApp(appName)) {
-                dispatchAppEvents(appName, 'click', e);
+            if (isCoreApp(appId)) {
+                dispatchAppEvents(appId, 'click', e);
             }
         }
     });
@@ -69,12 +69,12 @@ function initEvents() {
 
         const appBarIcon = target.closest('.barWindow');
         if (appBarIcon) {
-            const appName = appBarIcon.getAttribute('data-appId');
-            const appWindow = getAppWindow(appName);
+            const appId = appBarIcon.getAttribute('data-appId');
+            const appWindow = getAppWindow(appId);
             if (appWindow.classList.contains('focused')) {
-                minimizeApp(appName)
+                minimizeApp(appId)
             } else {
-                focusApp(appName);
+                focusApp(appId);
             }
             return;
         }
@@ -91,7 +91,8 @@ function initEvents() {
             return;
         }
         const name = app.getAttribute('data-name');
-        if (runningApps.includes(name) && appList[name].options.singleInstance) {
+        if (appList[name].options.singleInstance
+            && runningApps.some(app => app.name === name)) {
             alert("already running");
             console.log(runningApps);
             return;
@@ -103,12 +104,12 @@ function initEvents() {
     document.addEventListener('dblclick', e => {
         const windowTitleBar = e.target.closest('.windowTitle');
         const appWindow = e.target.closest('.appWindow');
-        const appName = appWindow?.getAttribute('id');
+        const appId = appWindow?.getAttribute('id');
         if (windowTitleBar) {
-            toggleMaximizeApp(appName);
+            toggleMaximizeApp(appId);
         }
-        if (isCoreApp(appName)) {
-            dispatchAppEvents(appName, 'dblclick', e);
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'dblclick', e);
         }
     });
     document.addEventListener('mousedown', e => {
@@ -119,9 +120,9 @@ function initEvents() {
             isMouseDownAppTopBar = true;
             focusedWindow = appWindow
         }
-        const appName = appWindow?.getAttribute('id');
-        if (isCoreApp(appName)) {
-            dispatchAppEvents(appName, 'mousedown', e);
+        const appId = appWindow?.getAttribute('id');
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'mousedown', e);
         }
     });
     document.addEventListener('mouseup', e => {
@@ -129,17 +130,16 @@ function initEvents() {
         isMouseDownAppTopBar = false;
         allWindows(el => el.classList.remove('no-transition'));
         const appWindow = e.target.closest('.appWindow');
-        const appName = appWindow?.getAttribute('id');
-        if (isCoreApp(appName)) {
-            dispatchAppEvents(appName, 'mouseup', e);
+        const appId = appWindow?.getAttribute('id');
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'mouseup', e);
         }
     }, true);
     window.addEventListener('mousemove', e => {
-        e.preventDefault();
         const appWindow = e.target.closest('.appWindow');
-        const appName = appWindow?.getAttribute('id');
-        if (isCoreApp(appName)) {
-            dispatchAppEvents(appName, 'mousemove', e);
+        const appId = appWindow?.getAttribute('id');
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'mousemove', e);
         }
         if (!isMouseDownAppTopBar || !focusedWindow) {
             return;
@@ -166,6 +166,37 @@ function initEvents() {
         focusedWindow.style.left = left + 'px';
         focusedWindow.style.top = top + 'px';
     }, true);
+    window.addEventListener('dragstart', e => {
+        const appWindow = e.target.closest('.appWindow');
+        const appId = appWindow?.getAttribute('id');
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'dragstart', e);
+        }
+    }, true);
+    window.addEventListener('dragover', e => {
+        e.preventDefault();
+        const appWindow = e.target.closest('.appWindow');
+        const appId = appWindow?.getAttribute('id');
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'dragover', e);
+        }
+    }, true);
+    window.addEventListener('dragleave', e => {
+        const appWindow = e.target.closest('.appWindow');
+        const appId = appWindow?.getAttribute('id');
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'dragleave', e);
+        }
+    }, true);
+    window.addEventListener('drop', e => {
+        e.preventDefault();
+        const appWindow = e.target.closest('.appWindow');
+        const appId = appWindow?.getAttribute('id');
+        console.log({appId})
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'drop', e);
+        }
+    }, true);
 }
 
 function createMenu() {
@@ -173,7 +204,10 @@ function createMenu() {
         const {title, icon} = appList[appName];
 
         return `<div class="appListElement" data-name="${appName}">
-                    <img src="${icon}" alt="${title}"> ${title}
+                    <div class="icon" style="color: ${icon.bgColor}">
+                        <i class="${icon.name}"></i>
+                    </div>
+                    ${title}
                 </div>`;
 
     }).join('');

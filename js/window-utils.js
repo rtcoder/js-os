@@ -6,8 +6,12 @@ function getAppWindow(appId) {
     return document.querySelector(`.appWindow#${appId}`);
 }
 
+function getAppIconOnPanel(appId) {
+    return document.querySelector(`.barWindow[data-appId="${appId}"]`);
+}
+
 function isCoreApp(appId) {
-    return !!appList[appId]?.isSystemApp;
+    return !!appList[getAppNameById(appId)]?.isSystemApp;
 }
 
 function blurAllApps() {
@@ -23,12 +27,13 @@ function focusApp(appId) {
 
     appWindow.classList.add('focused');
     appWindow.classList.remove('minimized');
+    appBarIcon.classList.remove('minimized');
     appBarIcon.classList.add('focused');
 }
 
 function closeApp(appId) {
     console.log("closed: " + appId);
-    const appKey = runningApps.indexOf(appId);
+    const appKey = runningApps.findIndex(({id}) => id === appId);
     runningApps.splice(appKey, 1);
     const appWindow = document.querySelector(`.appWindow#${appId}`);
     const appBarIcon = document.querySelector(`.barWindow[data-appId="${appId}"]`);
@@ -43,15 +48,23 @@ function closeApp(appId) {
     blurAllApps();
 
     if (runningApps.length) {
-        focusApp(runningApps[0]);
+        focusApp(runningApps[0].id);
     }
 }
 
 function addStyleToSystemAppHtml(html, styleUrl) {
+    if (!styleUrl) {
+        return html;
+    }
+
     return `<link rel="stylesheet" href="${styleUrl}"/>${html}`;
 }
 
 function addJsScriptToSystemAppHtml(appId, scriptUrl) {
+    if (!scriptUrl) {
+        return;
+    }
+
     const appWindow = getAppWindow(appId);
     let scriptEle = document.createElement("script");
     scriptEle.async = false;
@@ -61,7 +74,7 @@ function addJsScriptToSystemAppHtml(appId, scriptUrl) {
 
 }
 
-async function runApp(name) {
+async function runApp(name, args = {}) {
     blurAllApps();
 
     const {title, options, url, path, css, js, icon, isSystemApp} = appList[name];
@@ -80,33 +93,39 @@ async function runApp(name) {
     if (options.height) {
         style += `height: ${options.height};`
     }
+    const randomId = makeId();
 
     const template = document.getElementById('window-template').innerHTML
-        .replaceAll('{name}', name)
-        .replaceAll('{icon}', icon)
-        .replaceAll('{title}', title)
-        .replaceAll('{buttonsOptions}', buttonsOptions)
-        .replaceAll('{style}', style)
-        .replaceAll('{fullscreen}', `${!!fullscreen}`)
-        .replaceAll('{isSystemApp}', `${!!isSystemApp}`)
-        .replaceAll('{content}', content);
+        .replaceAll('[name]', name)
+        .replaceAll('[id]', randomId)
+        .replaceAll('[iconName]', icon.name)
+        .replaceAll('[iconBgColor]', icon.bgColor)
+        .replaceAll('[title]', title)
+        .replaceAll('[buttonsOptions]', buttonsOptions)
+        .replaceAll('[style]', style)
+        .replaceAll('[args]', JSON.stringify(args))
+        .replaceAll('[fullscreen]', `${!!fullscreen}`)
+        .replaceAll('[isSystemApp]', `${!!isSystemApp}`)
+        .replaceAll('[content]', content);
 
 
     const barTemplate = document.getElementById('bar-window-template').innerHTML
-        .replaceAll('{name}', name)
-        .replaceAll('{icon}', icon)
-        .replaceAll('{title}', title);
+        .replaceAll('[name]', randomId)
+        .replaceAll('[iconName]', icon.name)
+        .replaceAll('[iconBgColor]', icon.bgColor)
+        .replaceAll('[title]', title);
 
     desktop.appendChild(htmlToElement(template));
     openedWindowList.append(htmlToElement(barTemplate));
-    addJsScriptToSystemAppHtml(name, js);
+    addJsScriptToSystemAppHtml(randomId, js);
 
-    runningApps.push(name);
+    runningApps.push({name, id: randomId});
 }
 
 function minimizeApp(appId) {
     console.log("minimized: " + appId);
     getAppWindow(appId).classList.add("minimized");
+    getAppIconOnPanel(appId).classList.add("minimized");
     blurAllApps();
 }
 
@@ -147,4 +166,8 @@ function restoreAppSize(appId) {
     appWindow.setAttribute("data-h", `${h}px`);
     appWindow.setAttribute("data-t", `${t}px`);
     appWindow.setAttribute("data-l", `${l}px`);
+}
+
+function getAppNameById(appId) {
+    return runningApps.find(({id}) => id === appId)?.name;
 }

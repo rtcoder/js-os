@@ -94,6 +94,22 @@ function updateObjProp(obj, value, propPath) {
         : this.updateObjProp(obj[head], value, rest.join('.'));
 }
 
+function getNestedProp(obj, keyPath) {
+    let val = obj;
+    keyPath = keyPath.replace(/\[(\w+)]/g, '.$1'); // convert indexes to properties
+    keyPath = keyPath.replace(/^\./, '');           // strip a leading dot
+    const keyPathArray = keyPath.split('.');
+    for (let i = 0; i < keyPathArray.length; ++i) {
+        const k = keyPathArray[i];
+        if (k in val) {
+            val = val[k];
+        } else {
+            return;
+        }
+    }
+    return val;
+}
+
 function hexToRgba(hex, opacity = 100) {
     hex = hex.replace('#', '');
     const r = parseInt(hex.substring(0, 2), 16);
@@ -108,4 +124,16 @@ function convertRgbaStringToArray(rgba) {
         .replace(/\)$/, '')
         .replace(/\s/g, '')
         .split(',');
+}
+
+function makeId() {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < 10) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
+    }
+    return 'app-'+result;
 }

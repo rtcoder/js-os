@@ -1,8 +1,11 @@
 (()=>{
-    const inputResult = document.querySelector("input#result");
-    const numKeyboard = document.querySelector("#keyboardNum");
-    const calc = document.querySelector("#calc");
-    const buttons = document.querySelectorAll('button');
+    const {currentScript} = document;
+    const appWindow = currentScript.parentNode;
+
+    const inputResult = appWindow.querySelector("input#result");
+    const numKeyboard = appWindow.querySelector("#keyboardNum");
+    const calc = appWindow.querySelector("#calc");
+    const buttons = appWindow.querySelectorAll('button');
 
     function parseCalculationString(s) {
         // --- Parse a calculation string into an array of numbers and operators
@@ -68,8 +71,8 @@
 
     function clickKey(key) {
         blurKeys();
-        document.querySelector(`button[data-key="${key}"]`)?.focus();
-        document.querySelector(`button[data-key="${key}"]`)?.click();
+        appWindow.querySelector(`button[data-key="${key}"]`)?.focus();
+        appWindow.querySelector(`button[data-key="${key}"]`)?.click();
     }
 
     numKeyboard.addEventListener('click', e => {

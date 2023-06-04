@@ -14,11 +14,11 @@
     background-color: var(--windowBgColor);
     color: var(--windowFontColor);
     transition: opacity var(--animationDuration) ease-in,
-    min-height var(--animationDuration) ease-in,
-    min-width var(--animationDuration) ease-in,
-    border-radius var(--animationDuration) ease-in,
-    top var(--animationDuration) ease-in,
-    left var(--animationDuration) ease-in;
+    min-height var(--animationDuration) linear,
+    min-width var(--animationDuration) linear,
+    border-radius var(--animationDuration) linear,
+    top var(--animationDuration) linear,
+    left var(--animationDuration) linear;
 }
 
 .appWindow.no-transition {
@@ -57,13 +57,21 @@
 }
 
 .appWindow .windowTop .windowIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 20px;
+    height: 20px;
+    justify-self: center;
+    align-self: center;
 }
 
-.appWindow .windowTop .windowIcon img {
-    width: 30px;
-    height: 30px;
-    object-fit: scale-down;
-    border-radius: 30px;
+.appWindow .windowTop .windowIcon i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
 }
 
 .appWindow .windowTop .windowTitle {

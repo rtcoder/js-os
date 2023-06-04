@@ -1,0 +1,113 @@
+.files-app {
+    padding-top: 10px;
+    display: grid;
+    grid-template-rows: 50px auto;
+    grid-template-columns: 100px auto;
+    grid-template-areas: "top top"
+                         "left content";
+    height: 100%;
+}
+.files-app .top-panel{
+    grid-area:top;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ccc;
+}
+.files-app .top-panel .navigation{
+    display: flex;
+    flex-direction: row;
+}
+.files-app .top-panel .navigation .navigation-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 60px;
+    font-size: 20px;
+}
+.files-app .top-panel .navigation .navigation-buttons :is(.back, .forward){
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    border-radius: 30px;
+    border: 1px solid transparent;
+}
+.files-app .top-panel .navigation .navigation-buttons :is(.back, .forward):not(.inactive){
+    cursor:pointer;
+}
+.files-app .top-panel .navigation .navigation-buttons :is(.back, .forward).inactive{
+    opacity:0.5;
+    pointer-events: none;
+}
+.files-app .top-panel .navigation .navigation-buttons :is(.back, .forward):not(.inactive):hover{
+    border-color: #ccc;
+}
+.files-app .top-panel .navigation .navigation-bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:15px;
+}
+.files-app .top-panel .navigation .navigation-bar .nav-item{
+    border:1px solid #ccc;
+    padding: 4px;
+    position: relative;
+    cursor: pointer;
+    border-radius:5px;
+}
+.files-app .top-panel .navigation .navigation-bar .nav-item:not(:last-child):after{
+    content: ' ';
+    position: absolute;
+    border-top: 2px solid var(--windowFontColor);
+    border-right: 2px solid var(--windowFontColor);
+    width: 5px;
+    aspect-ratio: 1/1;
+    display: flex;
+    right: -11px;
+    top: 50%;
+    transform:  translateY(-50%) rotate(45deg) ;
+}
+.files-app .left-panel{
+    grid-area:left;
+    border-right: 1px solid #ccc;
+}
+.files-app .content-panel{
+    grid-area:content;
+    padding: 10px;
+    border:3px solid transparent;
+}
+.files-app .content-panel.dragover{
+    border-color:#09c;
+    background-color: rgba(0, 153, 204, 0.4);
+}
+.files-app .content-panel.list{
+    display: flex;
+flex-direction: column;
+}
+.files-app .content-panel.grid{
+    display: grid;
+    grid-auto-rows: 70px;
+    grid-template-columns: repeat(auto-fill, 80px);
+    gap: 15px;
+}
+.files-app .content-panel .file-item{
+    display: flex;
+    cursor: pointer;
+}
+.files-app .content-panel .file-item.selected{
+    background-color: #ccc;
+}
+.files-app .content-panel.grid .file-item{
+    padding: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius:5px;
+}
+.files-app .content-panel.grid .file-item i{
+    font-size: 30px;
+    color: #00c5ff;
+    filter: drop-shadow(0px 0px 1px #cdcdcd);
+}

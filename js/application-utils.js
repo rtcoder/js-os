@@ -1,7 +1,6 @@
 const appEvents = {};
 
 function registerAppEvents(appId, eventListeners) {
-    console.log('registerAppEvents');
     appEvents[appId] = eventListeners;
 }
 

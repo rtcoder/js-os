@@ -45,6 +45,27 @@
     box-shadow: 0 0 2px 0 #000;
 }
 
+.openedWindowList .barWindow .barIcon {
+    height: calc(var(--panelSize) - 30px);
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: max(20px, calc(var(--panelSize) - 60px));
+    background-color: var(--color);
+}
+
+.openedWindowList .barWindow.minimized .barIcon {
+    background-color: transparent;
+    color: var(--color);
+}
+
+.openedWindowList .barWindow .barIcon i:before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .openedWindowList .barWindow img {
     width: 30px;
     height: 30px;
