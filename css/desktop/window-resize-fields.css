@@ -1,0 +1,69 @@
+.appWindow[data-resizable="false"] .resize-field,
+.appWindow[data-maximized="true"] .resize-field {
+    cursor: default;
+    pointer-events: none;
+}
+
+.resize-field {
+    position: absolute;
+    z-index: 1;
+    width: 7px;
+    height: 7px;
+}
+
+.resize-top-left,
+.resize-top-right,
+.resize-bottom-left,
+.resize-bottom-right {
+    z-index: 2;
+}
+
+.resize-right,
+.resize-left {
+    height: 100%;
+    cursor: ew-resize;
+}
+
+.resize-bottom,
+.resize-top {
+    width: 100%;
+    cursor: ns-resize;
+}
+
+.resize-top-left,
+.resize-top-right,
+.resize-top,
+.resize-left,
+.resize-right {
+    top: 0;
+}
+
+.resize-bottom-right,
+.resize-top-right,
+.resize-right {
+    right: 0;
+}
+
+.resize-bottom-left,
+.resize-top-left,
+.resize-bottom,
+.resize-top,
+.resize-left {
+    left: 0;
+}
+
+.resize-bottom-right,
+.resize-bottom-left,
+.resize-bottom {
+    bottom: 0;
+}
+
+.resize-top-right,
+.resize-bottom-left {
+    cursor: nesw-resize;
+}
+
+.resize-top-left,
+.resize-bottom-right {
+    cursor: nwse-resize;
+}

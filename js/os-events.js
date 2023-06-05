@@ -1,5 +1,6 @@
-const osEventsTypes={
-    REFRESH_WINDOW:'refreshWindow'
+const osEventsTypes = {
+    REFRESH_WINDOW: 'refreshWindow',
+    OPEN_APP: 'openApp'
 }
 const osEvents = {};
 

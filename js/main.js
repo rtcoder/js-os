@@ -1,5 +1,16 @@
 const runningApps = [];
 let isMouseDown = false;
+const mouseDownPosition = {x: 0, y: 0};
+const windowResizeMouseDown = {
+    top: false,
+    bottom: false,
+    left: false,
+    right: false,
+    topLeft: false,
+    topRight: false,
+    bottomLeft: false,
+    bottomRight: false
+};
 let isMouseDownAppTopBar = false;
 const animationDuration = 200;
 const panel = document.querySelector('.panel');
@@ -24,6 +35,11 @@ function timer() {
 }
 
 function initEvents() {
+    registerOsEvents('main', {
+        [osEventsTypes.OPEN_APP]: ({appName, args}) => {
+            runApp(appName, args)
+        }
+    })
     desktop.addEventListener('click', e => {
         appsButton.classList.remove('active');
         const {target} = e;
@@ -114,11 +130,42 @@ function initEvents() {
     });
     document.addEventListener('mousedown', e => {
         isMouseDown = true;
-        const windowTopBar = e.target.closest('.windowTop');
+        mouseDownPosition.x = e.clientX;
+        mouseDownPosition.y = e.clientY;
         const appWindow = e.target.closest('.appWindow');
-        if (windowTopBar) {
-            isMouseDownAppTopBar = true;
-            focusedWindow = appWindow
+        if (appWindow) {
+            const windowTopBar = e.target.closest('.windowTop');
+            focusedWindow = appWindow;
+            if (windowTopBar) {
+                isMouseDownAppTopBar = true;
+            }
+            const resizeField = e.target.closest('.resize-field');
+            if (resizeField) {
+                if (resizeField.classList.contains('resize-right')) {
+                    windowResizeMouseDown.right = true;
+                }
+                if (resizeField.classList.contains('resize-left')) {
+                    windowResizeMouseDown.left = true;
+                }
+                if (resizeField.classList.contains('resize-top')) {
+                    windowResizeMouseDown.top = true;
+                }
+                if (resizeField.classList.contains('resize-bottom')) {
+                    windowResizeMouseDown.bottom = true;
+                }
+                if (resizeField.classList.contains('resize-top-right')) {
+                    windowResizeMouseDown.topRight = true;
+                }
+                if (resizeField.classList.contains('resize-bottom-right')) {
+                    windowResizeMouseDown.bottomRight = true;
+                }
+                if (resizeField.classList.contains('resize-top-left')) {
+                    windowResizeMouseDown.topLeft = true;
+                }
+                if (resizeField.classList.contains('resize-bottom-left')) {
+                    windowResizeMouseDown.bottomLeft = true;
+                }
+            }
         }
         const appId = appWindow?.getAttribute('id');
         if (isCoreApp(appId)) {
@@ -127,7 +174,19 @@ function initEvents() {
     });
     document.addEventListener('mouseup', e => {
         isMouseDown = false;
+        mouseDownPosition.x = 0;
+        mouseDownPosition.y = 0;
         isMouseDownAppTopBar = false;
+
+        windowResizeMouseDown.right = false;
+        windowResizeMouseDown.left = false;
+        windowResizeMouseDown.top = false;
+        windowResizeMouseDown.bottom = false;
+        windowResizeMouseDown.topRight = false;
+        windowResizeMouseDown.bottomRight = false;
+        windowResizeMouseDown.topLeft = false;
+        windowResizeMouseDown.bottomLeft = false;
+
         allWindows(el => el.classList.remove('no-transition'));
         const appWindow = e.target.closest('.appWindow');
         const appId = appWindow?.getAttribute('id');
@@ -138,6 +197,31 @@ function initEvents() {
     window.addEventListener('mousemove', e => {
         const appWindow = e.target.closest('.appWindow');
         const appId = appWindow?.getAttribute('id');
+
+
+        const rect = focusedWindow?.getBoundingClientRect();
+        if (rect) {
+            focusedWindow.classList.add('no-transition');
+            if (windowResizeMouseDown.right || windowResizeMouseDown.bottomRight || windowResizeMouseDown.topRight) {
+                focusedWindow.style.width = e.clientX + 5 - rect.left + 'px'
+            }
+            if (windowResizeMouseDown.left || windowResizeMouseDown.bottomLeft || windowResizeMouseDown.topLeft) {
+                const diff =e.clientX- rect.left ;
+
+                focusedWindow.style.width = rect.width - diff + 'px'
+                focusedWindow.style.left = e.clientX + 'px'
+            }
+            if (windowResizeMouseDown.top || windowResizeMouseDown.topLeft || windowResizeMouseDown.topRight) {
+                const diff =e.clientY- rect.top ;
+
+                focusedWindow.style.height = rect.height - diff + 'px'
+                focusedWindow.style.top = e.clientY + 'px'
+            }
+            if (windowResizeMouseDown.bottom || windowResizeMouseDown.bottomRight || windowResizeMouseDown.bottomLeft) {
+                focusedWindow.style.height = e.clientY + 5 - rect.top + 'px'
+            }
+        }
+
         if (isCoreApp(appId)) {
             dispatchAppEvents(appId, 'mousemove', e);
         }
@@ -147,7 +231,6 @@ function initEvents() {
 
         const deltaX = e.movementX;
         const deltaY = e.movementY;
-        const rect = focusedWindow.getBoundingClientRect();
         focusedWindow.classList.add('no-transition');
         let left = rect.x + deltaX;
         if (left < 0) {
@@ -192,7 +275,6 @@ function initEvents() {
         e.preventDefault();
         const appWindow = e.target.closest('.appWindow');
         const appId = appWindow?.getAttribute('id');
-        console.log({appId})
         if (isCoreApp(appId)) {
             dispatchAppEvents(appId, 'drop', e);
         }

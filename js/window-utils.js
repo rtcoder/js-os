@@ -86,13 +86,14 @@ async function runApp(name, args = {}) {
             .then(res => res.text())
             .then(html => addStyleToSystemAppHtml(html, css));
     }
-    let style = '';
+    let style = 'left:0;right:0;';
     if (options.width) {
         style += `width: ${options.width};`;
     }
     if (options.height) {
         style += `height: ${options.height};`
     }
+    const resizable = 'resizable' in options ? options.resizable : true;
     const randomId = makeId();
 
     const template = document.getElementById('window-template').innerHTML
@@ -106,6 +107,7 @@ async function runApp(name, args = {}) {
         .replaceAll('[args]', JSON.stringify(args))
         .replaceAll('[fullscreen]', `${!!fullscreen}`)
         .replaceAll('[isSystemApp]', `${!!isSystemApp}`)
+        .replaceAll('[resizable]', `${!!resizable}`)
         .replaceAll('[content]', content);
 
 

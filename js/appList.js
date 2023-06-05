@@ -73,6 +73,7 @@ const appList = {
         path: "apps/calc/calc.html",
         icon: {name: "fa-light fa-calculator-simple", bgColor: '#00c1b1'},
         options: {
+            resizable:false,
             width: '250px',
             height: '360px',
             singleInstance: true,

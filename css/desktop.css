@@ -1,4 +1,5 @@
 @import "desktop/app-window.css";
+@import "desktop/window-resize-fields.css";
 
 .panel:is(.left,.right) + .desktop {
     width: calc(100vw - var(--panelSize));

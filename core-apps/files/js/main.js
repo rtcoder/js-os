@@ -1,6 +1,7 @@
 (() => {
     const {currentScript} = document;
     const appWindow = currentScript.parentNode;
+    const appId = appWindow.getAttribute('id');
 
     const content = appWindow.querySelector('.files-app .content-panel');
     const navigationBar = appWindow.querySelector('.navigation-bar');
@@ -19,6 +20,7 @@
                 return `<div class="file-item" 
                         draggable="true"
                         data-name="${file.name}"
+                        data-type="${file.type}"
                         data-path="${[...dirPath, file.name].join('/')}">
                         ${icon}
                         ${file.name}
@@ -83,7 +85,7 @@
     }
 
     function blurFiles() {
-        content.querySelectorAll('.file-item').forEach(el => el.classList.remove('selected'));
+        content.querySelectorAll('.file-item').forEach(el => el.classList.remove('selected', 'dragover'));
     }
 
     function selectFile(file) {
@@ -91,8 +93,13 @@
         file.classList.add('selected');
     }
 
-    function open(file) {
-        currentPath.push(file.getAttribute('data-name'));
+    function openDir(dir) {
+        const type = +dir.getAttribute('data-type');
+        if (type !== fileTypes.DIR) {
+            openFile(dir);
+            return;
+        }
+        currentPath.push(dir.getAttribute('data-name'));
         if (historyIndex !== history.length - 1) {
             history.length = historyIndex + 1
         }
@@ -102,6 +109,15 @@
         displayContent(currentPath);
         backBtn.classList.remove('inactive');
         forwardBtn.classList.add('inactive');
+    }
+
+    function openFile(file) {
+        const type = +file.getAttribute('data-type');
+        if (type === fileTypes.DIR) {
+            return;
+        }
+// const appName=resolveAppForFileType(type);
+        dispatchOsEvents(osEventsTypes.OPEN_APP, {appName: 'writer', args: {file: 's'}})
     }
 
     function openPath(pathString, affectHistory = true) {
@@ -186,14 +202,14 @@
     }
 
     openPath('');
-    registerOsEvents(appWindow.getAttribute('id'), {
+    registerOsEvents(appId, {
         [osEventsTypes.REFRESH_WINDOW]: e => {
             displayContent(currentPath);
             refreshNavigationBar();
             console.log(userSettings)
         }
     })
-    registerAppEvents(appWindow.getAttribute('id'), {
+    registerAppEvents(appId, {
         click: e => {
             const file = e.target.closest('.file-item');
             if (file) {
@@ -227,12 +243,19 @@
         dblclick: e => {
             const file = e.target.closest('.file-item');
             if (file) {
-                open(file)
+                openDir(file)
             }
         },
         dragover: e => {
             if (e.target.closest('.content-panel')) {
                 content.classList.add('dragover')
+            }
+            const file = e.target.closest('.file-item');
+            const type = file?.getAttribute('data-type');
+            if (file && type !== undefined && +type === fileTypes.DIR) {
+                file.classList.add('dragover')
+            } else {
+                blurFiles();
             }
         },
         dragleave: e => {
@@ -245,7 +268,8 @@
             const file = e.target.closest('.file-item');
             e.dataTransfer.setData("text", JSON.stringify({
                 file: file.getAttribute('data-name'),
-                from: currentPath
+                from: currentPath,
+                appId
             }));
         },
         drop: e => {
