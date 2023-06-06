@@ -315,4 +315,4 @@ setSavedUserData();
 createMenu();
 initEvents();
 timer();
-runApp('writer',{file:'home/info'})
+// runApp('writer',{file:'home/info'})
