@@ -10,6 +10,7 @@ function dispatchAppEvents(appId, eventType, event) {
 
 function resolveAppForFileType(type) {
     return {
+        [fileTypes.DIR]: 'files',
         [fileTypes.TEXT]: 'writer',
         [fileTypes.PDF]: 'writer',
         [fileTypes.CSV]: 'writer',

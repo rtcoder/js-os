@@ -5,6 +5,8 @@ const appList = {
         path: "apps/terminal.html",
         icon: {name: "fa-light fa-terminal", bgColor: '#0573ae'},
         options: {
+            width: '500px',
+            height: '500px',
             windowButtons: {
                 min: true,
                 max: true,
