@@ -43,7 +43,7 @@ function closeApp(appId) {
     setTimeout(() => {
         appWindow.remove();
         appBarIcon.remove();
-    }, animationDuration);
+    }, userSettings.animationDuration);
 
     blurAllApps();
 
@@ -77,14 +77,15 @@ function addJsScriptToSystemAppHtml(appId, scriptUrl) {
 async function runApp(name, args = {}) {
     blurAllApps();
 
-    const {title, options, url, path, css, js, icon, isSystemApp} = appList[name];
+    const {title, options, url, path, icon, isSystemApp} = appList[name];
     let content = `<iframe src="${url || path}" frameborder="0"></iframe>`;
     const {windowButtons, fullscreen} = options;
     const buttonsOptions = Object.keys(windowButtons).filter(key => windowButtons[key]).join();
+    const systemAppSources = getCoreAppPath(name);
     if (isSystemApp) {
-        content = await fetch(path)
+        content = await fetch(systemAppSources.html)
             .then(res => res.text())
-            .then(html => addStyleToSystemAppHtml(html, css));
+            .then(html => addStyleToSystemAppHtml(html, systemAppSources.css));
     }
     let style = 'left:0;right:0;';
     if (options.width) {
@@ -104,7 +105,7 @@ async function runApp(name, args = {}) {
         .replaceAll('[title]', title)
         .replaceAll('[buttonsOptions]', buttonsOptions)
         .replaceAll('[style]', style)
-        .replaceAll('[args]', JSON.stringify(args))
+        .replaceAll('[args]', encodeURIComponent(JSON.stringify(args)))
         .replaceAll('[fullscreen]', `${!!fullscreen}`)
         .replaceAll('[isSystemApp]', `${!!isSystemApp}`)
         .replaceAll('[resizable]', `${!!resizable}`)
@@ -119,7 +120,9 @@ async function runApp(name, args = {}) {
 
     desktop.appendChild(htmlToElement(template));
     openedWindowList.append(htmlToElement(barTemplate));
-    addJsScriptToSystemAppHtml(randomId, js);
+    if (isSystemApp) {
+        addJsScriptToSystemAppHtml(randomId, systemAppSources.js);
+    }
 
     runningApps.push({name, id: randomId});
 }
@@ -150,6 +153,9 @@ function maximizeApp(appId) {
     appWindow.setAttribute("data-t", `${rect.top}`);
     appWindow.setAttribute("data-l", `${rect.left}`);
     appWindow.setAttribute("data-maximized", "true");
+    setTimeout(() => {
+        dispatchOsEvents(osEventsTypes.RESIZE_WINDOW, null);
+    }, userSettings.animationDuration);
 }
 
 function restoreAppSize(appId) {
@@ -168,8 +174,16 @@ function restoreAppSize(appId) {
     appWindow.setAttribute("data-h", `${h}px`);
     appWindow.setAttribute("data-t", `${t}px`);
     appWindow.setAttribute("data-l", `${l}px`);
+    setTimeout(() => {
+        dispatchOsEvents(osEventsTypes.RESIZE_WINDOW, null);
+    }, userSettings.animationDuration);
 }
 
 function getAppNameById(appId) {
     return runningApps.find(({id}) => id === appId)?.name;
+}
+
+function setWindowTitle(appId, title) {
+    getAppWindow(appId).querySelector('.windowTitle').innerHTML = title;
+    getAppIconOnPanel(appId).querySelector('.barTitle').innerHTML = title;
 }

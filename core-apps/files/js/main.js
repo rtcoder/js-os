@@ -59,20 +59,6 @@
         modifyDirTree(foundDir.tree || [], rest, callback)
     }
 
-    function getFullFile(tree, path, name) {
-        const [dir, ...rest] = path;
-        if (!dir) {
-            return;
-        }
-        const foundDir = tree.find(obj => obj.name === dir && obj.type === fileTypes.DIR);
-        if (!foundDir) {
-            return;
-        }
-        return !rest.length
-            ? (foundDir.tree || []).find(file => file.name === name)
-            : getFullFile(foundDir.tree || [], rest, name);
-    }
-
     function getIconBaseOnType(type) {
         return {
             [fileTypes.DIR]: 'fa-sharp fa-solid fa-folder',
@@ -85,7 +71,8 @@
     }
 
     function blurFiles() {
-        content.querySelectorAll('.file-item').forEach(el => el.classList.remove('selected', 'dragover'));
+        content.querySelectorAll('.file-item')
+            .forEach(el => el.classList.remove('selected', 'dragover'));
     }
 
     function selectFile(file) {
@@ -116,8 +103,14 @@
         if (type === fileTypes.DIR) {
             return;
         }
-// const appName=resolveAppForFileType(type);
-        dispatchOsEvents(osEventsTypes.OPEN_APP, {appName: 'writer', args: {file: 's'}})
+        const appName = resolveAppForFileType(type);
+        if (!appName) {
+            return;
+        }
+        dispatchOsEvents(osEventsTypes.OPEN_APP, {
+            appName,
+            args: {file: file.getAttribute('data-path')}
+        });
     }
 
     function openPath(pathString, affectHistory = true) {

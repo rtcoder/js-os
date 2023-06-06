@@ -1,6 +1,7 @@
 const osEventsTypes = {
     REFRESH_WINDOW: 'refreshWindow',
-    OPEN_APP: 'openApp'
+    OPEN_APP: 'openApp',
+    RESIZE_WINDOW: 'resizeWindow'
 }
 const osEvents = {};
 

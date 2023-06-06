@@ -1,4 +1,5 @@
 const SETTINGS = {
+    animationDuration:100,
     dirTree: [
         {
             name: 'home',
@@ -6,7 +7,11 @@ const SETTINGS = {
             tree: [
                 {name: 'aaaa', type: fileTypes.FILE},
                 {name: 'file1', type: fileTypes.FILE},
-                {name: 'info', type: fileTypes.TEXT,content:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis quam purus, a porttitor risus tincidunt a. Sed ut mattis quam. Nullam ullamcorper pretium aliquet. Duis faucibus dui in lorem mollis, vitae imperdiet libero porttitor. Duis vel faucibus metus. Vivamus consequat diam eu lacinia sagittis. Nullam ut lectus dolor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc orci purus, pulvinar in tristique sed, condimentum et lacus. Nam non sem lorem. Aliquam fringilla molestie nunc, vitae pretium dui interdum vitae.\mFusce mollis nisi massa, finibus elementum ipsum consequat at. Phasellus euismod erat vel eleifend placerat. Suspendisse aliquet, arcu vel porttitor mollis, justo justo lacinia nibh, at fringilla lectus massa fermentum lorem. Nulla vehicula mauris ut ultricies blandit. Duis consectetur sapien mauris, id tincidunt ex suscipit id. Nunc posuere convallis tempor. Suspendisse tincidunt ante a rutrum facilisis. Nunc volutpat odio quis sapien egestas feugiat.`},
+                {
+                    name: 'info',
+                    type: fileTypes.TEXT,
+                    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis quam purus, a porttitor risus tincidunt a. Sed ut mattis quam. Nullam ullamcorper pretium aliquet. Duis faucibus dui in lorem mollis, vitae imperdiet libero porttitor. Duis vel faucibus metus. Vivamus consequat diam eu lacinia sagittis. Nullam ut lectus dolor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc orci purus, pulvinar in tristique sed, condimentum et lacus. Nam non sem lorem. Aliquam fringilla molestie nunc, vitae pretium dui interdum vitae.\n\nFusce mollis nisi massa, finibus elementum ipsum consequat at. Phasellus euismod erat vel eleifend placerat. Suspendisse aliquet, arcu vel porttitor mollis, justo justo lacinia nibh, at fringilla lectus massa fermentum lorem. Nulla vehicula mauris ut ultricies blandit. Duis consectetur sapien mauris, id tincidunt ex suscipit id. Nunc posuere convallis tempor. Suspendisse tincidunt ante a rutrum facilisis. Nunc volutpat odio quis sapien egestas feugiat.`
+                },
                 {name: 'file3', type: fileTypes.PDF},
                 {name: 'file4', type: fileTypes.IMAGE},
                 {name: 'file5', type: fileTypes.TEXT},
@@ -25,6 +30,7 @@ const SETTINGS = {
             ]
         }
     ],
+    appSettings: {},
     theme: 'light',
     wallpapersList: [
         'pics/wallpapers/wallpaper1.jpg',
@@ -74,7 +80,7 @@ function saveUserSettingsToLocalStorage() {
 
 function getUserSettingsFromLocalStorage() {
     const value = localStorage.getItem('js_os_user_settings');
-        return SETTINGS;
+    return SETTINGS;
     if (!value) {
         return SETTINGS;
     }

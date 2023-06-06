@@ -86,10 +86,11 @@ const appList = {
     },
     writer: {
         title: "Writer",
-        path: "apps/writer.html",
+        isSystemApp: true,
         icon: {name: "fa-sharp fa-regular fa-align-left", bgColor: '#05aea8'},
         options: {
-            singleInstance: true,
+            width: '500px',
+            height: '500px',
             windowButtons: {
                 min: true,
                 max: true,
@@ -100,9 +101,6 @@ const appList = {
     settings: {
         isSystemApp: true,
         title: "Settings",
-        path: "core-apps/settings/settings.html",
-        css: "core-apps/settings/css/style.css",
-        js: "core-apps/settings/js/main.js",
         icon: {name: "fa-sharp fa-regular fa-gear", bgColor: '#f30'},
         options: {
             width: '500px',
@@ -118,9 +116,6 @@ const appList = {
     files: {
         isSystemApp: true,
         title: "Files",
-        path: "core-apps/files/index.html",
-        css: "core-apps/files/css/style.css",
-        js: "core-apps/files/js/main.js",
         icon: {name: "fa-sharp fa-regular fa-folders", bgColor: '#ffd800'},
         options: {
             width: '500px',

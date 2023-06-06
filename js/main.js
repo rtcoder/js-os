@@ -12,7 +12,6 @@ const windowResizeMouseDown = {
     bottomRight: false
 };
 let isMouseDownAppTopBar = false;
-const animationDuration = 200;
 const panel = document.querySelector('.panel');
 const desktop = document.querySelector('.desktop');
 const appsButton = document.querySelector('.appsButton');
@@ -206,19 +205,22 @@ function initEvents() {
                 focusedWindow.style.width = e.clientX + 5 - rect.left + 'px'
             }
             if (windowResizeMouseDown.left || windowResizeMouseDown.bottomLeft || windowResizeMouseDown.topLeft) {
-                const diff =e.clientX- rect.left ;
+                const diff = e.clientX - rect.left;
 
                 focusedWindow.style.width = rect.width - diff + 'px'
                 focusedWindow.style.left = e.clientX + 'px'
             }
             if (windowResizeMouseDown.top || windowResizeMouseDown.topLeft || windowResizeMouseDown.topRight) {
-                const diff =e.clientY- rect.top ;
+                const diff = e.clientY - rect.top;
 
                 focusedWindow.style.height = rect.height - diff + 'px'
                 focusedWindow.style.top = e.clientY + 'px'
             }
             if (windowResizeMouseDown.bottom || windowResizeMouseDown.bottomRight || windowResizeMouseDown.bottomLeft) {
                 focusedWindow.style.height = e.clientY + 5 - rect.top + 'px'
+            }
+            if(Object.keys(windowResizeMouseDown).map(key=>windowResizeMouseDown[key]).some(key=>key===true)){
+                dispatchOsEvents(osEventsTypes.RESIZE_WINDOW,null);
             }
         }
 
@@ -279,6 +281,20 @@ function initEvents() {
             dispatchAppEvents(appId, 'drop', e);
         }
     }, true);
+    window.addEventListener('keyup', e => {
+        const appWindow = e.target.closest('.appWindow');
+        const appId = appWindow?.getAttribute('id');
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'keyup', e);
+        }
+    }, true);
+    window.addEventListener('keydown', e => {
+        const appWindow = e.target.closest('.appWindow');
+        const appId = appWindow?.getAttribute('id');
+        if (isCoreApp(appId)) {
+            dispatchAppEvents(appId, 'keydown', e);
+        }
+    }, true);
 }
 
 function createMenu() {
@@ -299,3 +315,4 @@ setSavedUserData();
 createMenu();
 initEvents();
 timer();
+runApp('writer',{file:'home/info'})

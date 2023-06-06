@@ -1,0 +1,946 @@
+[
+  {
+    "name": "1C",
+    "code": "1c"
+  },
+  {
+    "name": "4D",
+    "code": "4d"
+  },
+  {
+    "name": "ABAP",
+    "code": "abap"
+  },
+  {
+    "name": "ABNF",
+    "code": "abnf"
+  },
+  {
+    "name": "Access logs",
+    "code": "accesslog"
+  },
+  {
+    "name": "Ada",
+    "code": "ada"
+  },
+  {
+    "name": "Apex",
+    "code": "apex"
+  },
+  {
+    "name": "Arduino (C++ w/Arduino libs)",
+    "code": "arduino"
+  },
+  {
+    "name": "ARM assembler",
+    "code": "arm"
+  },
+  {
+    "name": "AVR assembler",
+    "code": "avrasm"
+  },
+  {
+    "name": "ActionScript",
+    "code": "actionscript"
+  },
+  {
+    "name": "Alan IF",
+    "code": "alan"
+  },
+  {
+    "name": "Alan",
+    "code": "ln"
+  },
+  {
+    "name": "AngelScript",
+    "code": "angelscript"
+  },
+  {
+    "name": "Apache",
+    "code": "apache, apacheconf"
+  },
+  {
+    "name": "AppleScript",
+    "code": "applescript"
+  },
+  {
+    "name": "Arcade",
+    "code": "arcade"
+  },
+  {
+    "name": "AsciiDoc",
+    "code": "asciidoc"
+  },
+  {
+    "name": "AspectJ",
+    "code": "aspectj"
+  },
+  {
+    "name": "AutoHotkey",
+    "code": "autohotkey"
+  },
+  {
+    "name": "AutoIt",
+    "code": "autoit"
+  },
+  {
+    "name": "Awk",
+    "code": "awk"
+  },
+  {
+    "name": "Bash",
+    "code": "bash"
+  },
+  {
+    "name": "Basic",
+    "code": "basic"
+  },
+  {
+    "name": "BBCode",
+    "code": "bbcode"
+  },
+  {
+    "name": "Blade (Laravel)",
+    "code": "blade"
+  },
+  {
+    "name": "BNF",
+    "code": "bnf"
+  },
+  {
+    "name": "BQN",
+    "code": "bqn"
+  },
+  {
+    "name": "Brainfuck",
+    "code": "brainfuck"
+  },
+  {
+    "name": "C#",
+    "code": "csharp"
+  },
+  {
+    "name": "C",
+    "code": "c"
+  },
+  {
+    "name": "C++",
+    "code": "cpp"
+  },
+  {
+    "name": "C/AL",
+    "code": "cal"
+  },
+  {
+    "name": "C3",
+    "code": "c3"
+  },
+  {
+    "name": "Cache Object Script",
+    "code": "cos"
+  },
+  {
+    "name": "Candid",
+    "code": "candid"
+  },
+  {
+    "name": "CMake",
+    "code": "cmake"
+  },
+  {
+    "name": "COBOL",
+    "code": "cobol"
+  },
+  {
+    "name": "Coq",
+    "code": "coq"
+  },
+  {
+    "name": "CSP",
+    "code": "csp"
+  },
+  {
+    "name": "CSS",
+    "code": "css"
+  },
+  {
+    "name": "Cap’n Proto",
+    "code": "capnproto"
+  },
+  {
+    "name": "Chaos",
+    "code": "chaos"
+  },
+  {
+    "name": "Chapel",
+    "code": "chapel"
+  },
+  {
+    "name": "Cisco CLI",
+    "code": "cisco"
+  },
+  {
+    "name": "Clojure",
+    "code": "clojure"
+  },
+  {
+    "name": "CoffeeScript",
+    "code": "coffeescript"
+  },
+  {
+    "name": "CpcdosC+",
+    "code": "cpc"
+  },
+  {
+    "name": "Crmsh",
+    "code": "crmsh"
+  },
+  {
+    "name": "Crystal",
+    "code": "crystal"
+  },
+  {
+    "name": "cURL",
+    "code": "curl"
+  },
+  {
+    "name": "Cypher (Neo4j)",
+    "code": "cypher"
+  },
+  {
+    "name": "D",
+    "code": "d"
+  },
+  {
+    "name": "Dafny",
+    "code": "dafny"
+  },
+  {
+    "name": "Dart",
+    "code": "dart"
+  },
+  {
+    "name": "Delphi",
+    "code": "dpr"
+  },
+  {
+    "name": "Diff",
+    "code": "diff"
+  },
+  {
+    "name": "Django",
+    "code": "django"
+  },
+  {
+    "name": "DNS Zone file",
+    "code": "dns"
+  },
+  {
+    "name": "Dockerfile",
+    "code": "dockerfile"
+  },
+  {
+    "name": "DOS",
+    "code": "dos"
+  },
+  {
+    "name": "dsconfig",
+    "code": "dsconfig"
+  },
+  {
+    "name": "DTS (Device Tree)",
+    "code": "dts"
+  },
+  {
+    "name": "Dust",
+    "code": "dust"
+  },
+  {
+    "name": "Dylan",
+    "code": "dylan"
+  },
+  {
+    "name": "EBNF",
+    "code": "ebnf"
+  },
+  {
+    "name": "Elixir",
+    "code": "elixir"
+  },
+  {
+    "name": "Elm",
+    "code": "elm"
+  },
+  {
+    "name": "Erlang",
+    "code": "erlang"
+  },
+  {
+    "name": "Excel",
+    "code": "excel"
+  },
+  {
+    "name": "Extempore",
+    "code": "extempore"
+  },
+  {
+    "name": "F#",
+    "code": "fsharp"
+  },
+  {
+    "name": "FIX",
+    "code": "fix"
+  },
+  {
+    "name": "Flix",
+    "code": "flix"
+  },
+  {
+    "name": "Fortran",
+    "code": "fortran"
+  },
+  {
+    "name": "FunC",
+    "code": "func"
+  },
+  {
+    "name": "G-Code",
+    "code": "gcode"
+  },
+  {
+    "name": "Gams",
+    "code": "gams"
+  },
+  {
+    "name": "GAUSS",
+    "code": "gauss"
+  },
+  {
+    "name": "GDScript",
+    "code": "godot"
+  },
+  {
+    "name": "Gherkin",
+    "code": "gherkin"
+  },
+  {
+    "name": "Glimmer and EmberJS",
+    "code": "hbs"
+  },
+  {
+    "name": "GN for Ninja",
+    "code": "gn"
+  },
+  {
+    "name": "Go",
+    "code": "go"
+  },
+  {
+    "name": "Grammatical Framework",
+    "code": "gf"
+  },
+  {
+    "name": "Golo",
+    "code": "golo"
+  },
+  {
+    "name": "Gradle",
+    "code": "gradle"
+  },
+  {
+    "name": "GraphQL",
+    "code": "graphql"
+  },
+  {
+    "name": "Groovy",
+    "code": "groovy"
+  },
+  {
+    "name": "GSQL",
+    "code": "gsql"
+  },
+  {
+    "name": "HTML",
+    "code": "html"
+  },
+  {
+    "name": "HTTP",
+    "code": "http, https"
+  },
+  {
+    "name": "Haml",
+    "code": "haml"
+  },
+  {
+    "name": "Handlebars",
+    "code": "handlebars"
+  },
+  {
+    "name": "Haskell",
+    "code": "haskell"
+  },
+  {
+    "name": "Haxe",
+    "code": "haxe"
+  },
+  {
+    "name": "High-level shader language",
+    "code": "hlsl"
+  },
+  {
+    "name": "Hy",
+    "code": "hy"
+  },
+  {
+    "name": "Ini",
+    "code": "ini"
+  },
+  {
+    "name": "Inform7",
+    "code": "inform7"
+  },
+  {
+    "name": "IRPF90",
+    "code": "irpf90"
+  },
+  {
+    "name": "Iptables",
+    "code": "iptables"
+  },
+  {
+    "name": "JSON",
+    "code": "json"
+  },
+  {
+    "name": "Java",
+    "code": "java"
+  },
+  {
+    "name": "JavaScript",
+    "code": "javascript"
+  },
+  {
+    "name": "Jolie",
+    "code": "jolie"
+  },
+  {
+    "name": "Julia",
+    "code": "julia"
+  },
+  {
+    "name": "Kotlin",
+    "code": "kotlin"
+  },
+  {
+    "name": "name",
+    "code": ""
+  },
+  {
+    "name": "LaTeX",
+    "code": "tex"
+  },
+  {
+    "name": "Leaf",
+    "code": "leaf"
+  },
+  {
+    "name": "Lean",
+    "code": "lean"
+  },
+  {
+    "name": "Lasso",
+    "code": "lasso"
+  },
+  {
+    "name": "Less",
+    "code": "less"
+  },
+  {
+    "name": "LDIF",
+    "code": "ldif"
+  },
+  {
+    "name": "Lisp",
+    "code": "lisp"
+  },
+  {
+    "name": "LiveCode Server",
+    "code": "livecodeserver"
+  },
+  {
+    "name": "LiveScript",
+    "code": "livescript"
+  },
+  {
+    "name": "LookML",
+    "code": "lookml"
+  },
+  {
+    "name": "Lua",
+    "code": "lua"
+  },
+  {
+    "name": "Macaulay2",
+    "code": "macaulay2"
+  },
+  {
+    "name": "Makefile",
+    "code": "makefile"
+  },
+  {
+    "name": "Markdown",
+    "code": "markdown"
+  },
+  {
+    "name": "Mathematica",
+    "code": "mathematica"
+  },
+  {
+    "name": "Matlab",
+    "code": "matlab"
+  },
+  {
+    "name": "Maxima",
+    "code": "maxima"
+  },
+  {
+    "name": "Maya Embedded Language",
+    "code": "mel"
+  },
+  {
+    "name": "Mercury",
+    "code": "mercury"
+  },
+  {
+    "name": "MIPS Assembler",
+    "code": "mips"
+  },
+  {
+    "name": "Mint",
+    "code": "mint"
+  },
+  {
+    "name": "mIRC Scripting Language",
+    "code": "mirc"
+  },
+  {
+    "name": "Mizar",
+    "code": "mizar"
+  },
+  {
+    "name": "MKB",
+    "code": "mkb"
+  },
+  {
+    "name": "MLIR",
+    "code": "mlir"
+  },
+  {
+    "name": "Mojolicious",
+    "code": "mojolicious"
+  },
+  {
+    "name": "Monkey",
+    "code": "monkey"
+  },
+  {
+    "name": "Moonscript",
+    "code": "moonscript"
+  },
+  {
+    "name": "Motoko",
+    "code": "motoko"
+  },
+  {
+    "name": "N1QL",
+    "code": "n1ql"
+  },
+  {
+    "name": "NSIS",
+    "code": "nsis"
+  },
+  {
+    "name": "Never",
+    "code": "never"
+  },
+  {
+    "name": "Nginx",
+    "code": "nginx"
+  },
+  {
+    "name": "Nim",
+    "code": "nim"
+  },
+  {
+    "name": "Nix",
+    "code": "nix"
+  },
+  {
+    "name": "Oak",
+    "code": "oak"
+  },
+  {
+    "name": "Object Constraint Language",
+    "code": "ocl"
+  },
+  {
+    "name": "OCaml",
+    "code": "ocaml"
+  },
+  {
+    "name": "Objective C",
+    "code": "objectivec"
+  },
+  {
+    "name": "OpenGL Shading Language",
+    "code": "glsl"
+  },
+  {
+    "name": "OpenSCAD",
+    "code": "openscad"
+  },
+  {
+    "name": "Oracle Rules Language",
+    "code": "ruleslanguage"
+  },
+  {
+    "name": "Oxygene",
+    "code": "oxygene"
+  },
+  {
+    "name": "PF",
+    "code": "pf"
+  },
+  {
+    "name": "PHP",
+    "code": "php"
+  },
+  {
+    "name": "Papyrus",
+    "code": "papyrus"
+  },
+  {
+    "name": "Parser3",
+    "code": "parser3"
+  },
+  {
+    "name": "Perl",
+    "code": "perl"
+  },
+  {
+    "name": "Pine Script",
+    "code": "pine"
+  },
+  {
+    "name": "Plaintext",
+    "code": "plaintext"
+  },
+  {
+    "name": "Pony",
+    "code": "pony"
+  },
+  {
+    "name": "PostgreSQL &amp; PL/pgSQL",
+    "code": "pgsql"
+  },
+  {
+    "name": "PowerShell",
+    "code": "powershell"
+  },
+  {
+    "name": "Processing",
+    "code": "processing"
+  },
+  {
+    "name": "Prolog",
+    "code": "prolog"
+  },
+  {
+    "name": "Properties",
+    "code": "properties"
+  },
+  {
+    "name": "Protocol Buffers",
+    "code": "proto"
+  },
+  {
+    "name": "Puppet",
+    "code": "puppet"
+  },
+  {
+    "name": "Python",
+    "code": "python"
+  },
+  {
+    "name": "Python profiler results",
+    "code": "profile"
+  },
+  {
+    "name": "Python REPL",
+    "code": "python-repl"
+  },
+  {
+    "name": "Q#",
+    "code": "qsharp"
+  },
+  {
+    "name": "Q",
+    "code": "k"
+  },
+  {
+    "name": "QML",
+    "code": "qml"
+  },
+  {
+    "name": "R",
+    "code": "r"
+  },
+  {
+    "name": "Razor CSHTML",
+    "code": "cshtml"
+  },
+  {
+    "name": "ReasonML",
+    "code": "reasonml"
+  },
+  {
+    "name": "Rebol &amp; Red",
+    "code": "redbol"
+  },
+  {
+    "name": "RenderMan RIB",
+    "code": "rib"
+  },
+  {
+    "name": "RenderMan RSL",
+    "code": "rsl"
+  },
+  {
+    "name": "RiScript",
+    "code": "risc"
+  },
+  {
+    "name": "Roboconf",
+    "code": "graph"
+  },
+  {
+    "name": "Robot Framework",
+    "code": "robot"
+  },
+  {
+    "name": "RPM spec files",
+    "code": "rpm-specfile"
+  },
+  {
+    "name": "Ruby",
+    "code": "ruby"
+  },
+  {
+    "name": "Rust",
+    "code": "rust"
+  },
+  {
+    "name": "RVT Script",
+    "code": "rvt"
+  },
+  {
+    "name": "SAS",
+    "code": "SAS"
+  },
+  {
+    "name": "SCSS",
+    "code": "scss"
+  },
+  {
+    "name": "SQL",
+    "code": "sql"
+  },
+  {
+    "name": "STEP Part 21",
+    "code": "p21"
+  },
+  {
+    "name": "Scala",
+    "code": "scala"
+  },
+  {
+    "name": "Scheme",
+    "code": "scheme"
+  },
+  {
+    "name": "Scilab",
+    "code": "scilab"
+  },
+  {
+    "name": "SFZ",
+    "code": "sfz"
+  },
+  {
+    "name": "Shape Expressions",
+    "code": "shexc"
+  },
+  {
+    "name": "Shell",
+    "code": "shell"
+  },
+  {
+    "name": "Smali",
+    "code": "smali"
+  },
+  {
+    "name": "Smalltalk",
+    "code": "smalltalk"
+  },
+  {
+    "name": "SML",
+    "code": "sml"
+  },
+  {
+    "name": "Solidity",
+    "code": "solidity"
+  },
+  {
+    "name": "Splunk SPL",
+    "code": "spl"
+  },
+  {
+    "name": "Stan",
+    "code": "stan"
+  },
+  {
+    "name": "Stata",
+    "code": "stata"
+  },
+  {
+    "name": "Structured Text",
+    "code": "iecst"
+  },
+  {
+    "name": "Stylus",
+    "code": "stylus"
+  },
+  {
+    "name": "SubUnit",
+    "code": "subunit"
+  },
+  {
+    "name": "Supercollider",
+    "code": "supercollider"
+  },
+  {
+    "name": "Svelte",
+    "code": "svelte"
+  },
+  {
+    "name": "Swift",
+    "code": "swift"
+  },
+  {
+    "name": "Tcl",
+    "code": "tcl"
+  },
+  {
+    "name": "Terraform (HCL)",
+    "code": "terraform"
+  },
+  {
+    "name": "Test Anything Protocol",
+    "code": "tap"
+  },
+  {
+    "name": "Thrift",
+    "code": "thrift"
+  },
+  {
+    "name": "Toit",
+    "code": "toit"
+  },
+  {
+    "name": "TOML",
+    "code": "toml"
+  },
+  {
+    "name": "TP",
+    "code": "tp"
+  },
+  {
+    "name": "Transact-SQL",
+    "code": "tsql"
+  },
+  {
+    "name": "Twig",
+    "code": "twig"
+  },
+  {
+    "name": "TypeScript",
+    "code": "typescript"
+  },
+  {
+    "name": "Unicorn Rails log",
+    "code": "unicorn-rails-log"
+  },
+  {
+    "name": "VB.Net",
+    "code": "vbnet"
+  },
+  {
+    "name": "VBA",
+    "code": "vba"
+  },
+  {
+    "name": "VBScript",
+    "code": "vbscript"
+  },
+  {
+    "name": "VHDL",
+    "code": "vhdl"
+  },
+  {
+    "name": "Vala",
+    "code": "vala"
+  },
+  {
+    "name": "Verilog",
+    "code": "verilog"
+  },
+  {
+    "name": "Vim Script",
+    "code": "vim"
+  },
+  {
+    "name": "X#",
+    "code": "xsharp"
+  },
+  {
+    "name": "X++",
+    "code": "axapta"
+  },
+  {
+    "name": "x86 Assembly",
+    "code": "x86asm"
+  },
+  {
+    "name": "XL",
+    "code": "xl"
+  },
+  {
+    "name": "XML",
+    "code": "xml"
+  },
+  {
+    "name": "XQuery",
+    "code": "xquery"
+  },
+  {
+    "name": "YAML",
+    "code": "yml"
+  },
+  {
+    "name": "ZenScript",
+    "code": "zenscript"
+  },
+  {
+    "name": "Zephir",
+    "code": "zephir"
+  }
+]
