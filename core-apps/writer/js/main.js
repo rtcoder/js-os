@@ -28,27 +28,7 @@
         const file = getFullFile(userSettings.dirTree, fullPath, filename);
 
 
-        textarea.textContent = `#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    long factorial = 1.0;
-
-    cout << "Enter a positive integer: ";
-    cin >> n;
-
-    if (n < 0)
-        cout << "Error! Factorial of a negative number doesn't exist.";
-    else {
-        for(int i = 1; i <= n; ++i) {
-            factorial *= i;
-        }
-        cout << "Factorial of " << n << " = " << factorial;
-    }
-
-    return 0;
-}`;
+        textarea.textContent = file.content || '';
         setLanguage('cpp')
     }
 
@@ -100,7 +80,9 @@ int main() {
         textarea.innerHTML = textarea.value
         code.innerHTML = textarea.innerHTML;
         hljs.highlightBlock(code);
-        hljs.lineNumbersBlock(code);
+        if (textarea.value) {
+            hljs.lineNumbersBlock(code);
+        }
         textarea.style.color = "transparent";
         setTimeout(() => {
             highlightCurrentLine();
