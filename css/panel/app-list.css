@@ -4,6 +4,11 @@
     align-items: center;
     cursor: pointer;
     color: var(--appsBtnColor);
+    aspect-ratio: 1/1;
+    border-radius: var(--panelSize);
+    background: var(--appsBtnBgColorActive);
+    /*opacity: 0.8;*/
+    backdrop-filter: opacity(0.5);
 }
 
 .appsButton i {
@@ -14,16 +19,15 @@
 .appsButton:hover {
     background: var(--appsBtnBgColorActive);
     color: var(--appsBtnColorActive);
+    opacity: 1;
 }
 
 .panel:is(.left,.right) .appsButton {
     width: var(--panelSize);
-    height: 50px;
 }
 
 .panel:is(.top,.bottom) .appsButton {
     height: var(--panelSize);
-    width: 50px;
 }
 
 .appsButton.active ~ .appList {
@@ -45,12 +49,64 @@
     border-radius: 10px;
     height: 500px;
     width: 500px;
+    grid-template-rows: 50px auto;
+    grid-template-columns: 100%;
+    transition: opacity var(--animationDuration) ease-in;
+    overflow: hidden;
+}
+
+.appList .list {
+    display: grid;
     justify-content: space-evenly;
     grid-template-columns: 100px 100px 100px 100px;
-    grid-auto-rows: 100px;
+    grid-auto-rows: 80px;
     gap: 10px;
-    transition: opacity var(--animationDuration) ease-in;
+    margin-top: 10px;
     overflow: auto;
+}
+
+.appList .search {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 50px;
+    overflow: hidden;
+    padding: 5px 10px;
+    --shadow: 1px 0 #a0a0a0;
+    box-shadow: 1px 1px var(--shadow),
+    1px -1px var(--shadow),
+    -1px 1px var(--shadow),
+    -1px -1px var(--shadow);
+    transition: box-shadow var(--animationDuration) ease-in,
+    transform var(--animationDuration) ease-in;
+}
+.appList .search:has(input:focus) {
+    --shadow: 3px 0 #6a6a6a;
+    transform:scale(1.01);
+}
+
+.appList .search label {
+    display: grid;
+    grid-template-columns: auto 50px;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 50px;
+    width: 100%;
+}
+
+.appList .search label input {
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+
+.appList .search label i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .appList .appListElement {
@@ -61,6 +117,7 @@
     align-items: center;
     text-align: center;
     justify-content: space-between;
+    font-size: 14px;
     padding: 10px;
     border-radius: 10px;
     transition: color var(--animationDuration) ease-in,

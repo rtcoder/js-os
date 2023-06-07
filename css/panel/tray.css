@@ -1,8 +1,3 @@
-.panel .tray {
-    display: flex;
-    flex-direction: column;
-}
-
 .panel:is(.top,.bottom) .tray :is(.date, .time) {
     height: 100%;
 }

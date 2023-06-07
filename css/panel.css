@@ -13,13 +13,13 @@
 .panel:is(.top,.bottom) {
     width: 100vw;
     height: var(--panelSize);
-    grid-template-columns: 50px auto 100px 10px;
+    grid-template-columns: calc((100vw - var(--panelSize)) / 2) var(--panelSize) calc((100vw - var(--panelSize)) / 2);
 }
 
 .panel:is(.left,.right) {
     width: var(--panelSize);
     height: 100vh;
-    grid-template-rows: 50px auto 100px 10px;
+    grid-template-rows:calc((100vh - var(--panelSize)) / 2) var(--panelSize) calc((100vh - var(--panelSize)) / 2);
 }
 
 .panel:is(.top,.left) {
@@ -30,10 +30,4 @@
 .panel:is(.bottom,.right) {
     bottom: 0;
     right: 0;
-}
-
-.panel .showDesktop {
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    background: rgba(0, 0, 0, 0.5);
-    cursor: pointer;
 }

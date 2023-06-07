@@ -15,11 +15,13 @@ let isMouseDownAppTopBar = false;
 const panel = document.querySelector('.panel');
 const desktop = document.querySelector('.desktop');
 const appsButton = document.querySelector('.appsButton');
-const appListContainer = document.querySelector('.appList');
+const appListContainer = document.querySelector('.appList .list');
+const appListSearchBar = document.querySelector('.appList .search input');
 const openedWindowList = document.querySelector('.openedWindowList');
-const timeContainer = document.querySelector('.tray .time');
-const dateContainer = document.querySelector('.tray .date');
+const timeContainer = document.querySelector('.widgets .time');
+const dateContainer = document.querySelector('.widgets .date');
 let focusedWindow;
+let activeVirtualDesktop
 
 function setSavedUserData() {
     updateUserSettingsFromLocalStorage();
@@ -40,7 +42,10 @@ function initEvents() {
         }
     })
     desktop.addEventListener('click', e => {
-        appsButton.classList.remove('active');
+        console.log(e.target)
+        if (!e.target.closest('.appList')) {
+            appsButton.classList.remove('active');
+        }
         const {target} = e;
 
         const appWindow = target.closest('.appWindow');
@@ -80,8 +85,6 @@ function initEvents() {
             return;
         }
 
-        appsButton.classList.remove('active');
-
         const appBarIcon = target.closest('.barWindow');
         if (appBarIcon) {
             const appId = appBarIcon.getAttribute('data-appId');
@@ -93,12 +96,6 @@ function initEvents() {
             }
             return;
         }
-
-        if (target.closest('.showDesktop')) {
-            allWindows(el => {
-                minimizeApp(el.getAttribute('id'))
-            })
-        }
     });
     appListContainer.addEventListener('click', e => {
         const app = e.target.closest('.appListElement')
@@ -106,16 +103,51 @@ function initEvents() {
             return;
         }
         const name = app.getAttribute('data-name');
+        const args = JSON.parse(decodeURIComponent(app.getAttribute('data-arguments')));
         if (appList[name].options.singleInstance
             && runningApps.some(app => app.name === name)) {
             alert("already running");
             console.log(runningApps);
             return;
         }
-        runApp(name);
-
+        runApp(name, args);
         appsButton.classList.remove('active');
     });
+    appListSearchBar.addEventListener('input', e => {
+        const value = e.target.value.toLowerCase();
+        if (!value) {
+            createMenu();
+            return;
+        }
+
+        appListContainer.innerHTML = [
+            ...Object.keys(appList)
+                .filter(key => appList[key].title.toLowerCase().includes(value))
+                .map(key => ({
+                    appName: key,
+                    icon: appList[key].icon,
+                    title: appList[key].title,
+                    args: {}
+                })),
+            ...searchFiles(value).map(file => ({
+                appName: resolveAppForFileType(file.type),
+                icon: {
+                    name: getIconBaseOnType(file.type),
+                    bgColor: '#00c5ff'
+                },
+                title: file.name,
+                args: {file: file.path}
+            }))
+        ].map(({appName, icon, title, args}) => {
+
+            value.split('').forEach(chr => {
+                title = title
+                    .replaceAll(chr, `<b>${chr}</b>`)
+                    .replaceAll(chr.toUpperCase(), `<b>${chr.toUpperCase()}</b>`)
+            })
+            return getAppListIcon(appName, args, icon, title);
+        }).join('');
+    })
     document.addEventListener('dblclick', e => {
         const windowTitleBar = e.target.closest('.windowTitle');
         const appWindow = e.target.closest('.appWindow');
@@ -219,8 +251,8 @@ function initEvents() {
             if (windowResizeMouseDown.bottom || windowResizeMouseDown.bottomRight || windowResizeMouseDown.bottomLeft) {
                 focusedWindow.style.height = e.clientY + 5 - rect.top + 'px'
             }
-            if(Object.keys(windowResizeMouseDown).map(key=>windowResizeMouseDown[key]).some(key=>key===true)){
-                dispatchOsEvents(osEventsTypes.RESIZE_WINDOW,null);
+            if (Object.keys(windowResizeMouseDown).map(key => windowResizeMouseDown[key]).some(key => key === true)) {
+                dispatchOsEvents(osEventsTypes.RESIZE_WINDOW, null);
             }
         }
 
@@ -301,18 +333,23 @@ function createMenu() {
     appListContainer.innerHTML = Object.keys(appList).map(appName => {
         const {title, icon} = appList[appName];
 
-        return `<div class="appListElement" data-name="${appName}">
+        return getAppListIcon(appName, {}, icon, title);
+
+    }).join('');
+}
+
+function getAppListIcon(appName, args, icon, title) {
+    args = encodeURIComponent(JSON.stringify(args));
+    return `<div class="appListElement" data-name="${appName}" data-arguments="${args}">
                     <div class="icon" style="color: ${icon.bgColor}">
                         <i class="${icon.name}"></i>
                     </div>
-                    ${title}
+                    <div class="appTitle">${title}</div>
                 </div>`;
-
-    }).join('');
 }
 
 setSavedUserData();
 createMenu();
 initEvents();
 timer();
-runApp('terminal',{file:'home/info'})
+// runApp('terminal',{file:'home/info'})

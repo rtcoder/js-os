@@ -215,18 +215,28 @@
 </head>
 <body>
 <div class="panel bottom">
-    <div class="appsButton">
+    <div class="openedWindowList"></div>
+    <div class="appsButton active">
         <i class="fa-sharp fa-regular fa-rocket-launch fa-lg"></i>
     </div>
-    <div class="appList"></div>
+    <div class="appList">
+        <div class="search">
+            <label>
+                <input type="text" placeholder="Search..." spellcheck="false"/>
+                <i class="fa-sharp fa-regular fa-xmark"></i>
+            </label>
+        </div>
+        <div class="list"></div>
+    </div>
     <div class="openedWindowList"></div>
-    <div class="tray">
+</div>
+<div class="desktop">
+    <div class="virtual-desktops"></div>
+    <div class="widgets">
         <div class="date"></div>
         <div class="time"></div>
     </div>
-    <div class="showDesktop" title="Show Desktop"></div>
 </div>
-<div class="desktop"></div>
 
 <template id="window-template">
     <div class="appWindow focused"

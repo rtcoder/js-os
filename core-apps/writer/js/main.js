@@ -181,7 +181,7 @@
 
     function addClosure(char) {
         const openingChar = char;
-        const closingChar = {'{': '}', '[': ']', '(': ')'}[char];
+        const closingChar = {'{': '}', '[': ']', '(': ')', "'": "'", '"': '"','`':'`'}[char];
 
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
