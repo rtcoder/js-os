@@ -58,7 +58,7 @@ const appList = {
         }
     },
     photo_view: {
-        title: "Photos Viewer",
+        title: "Photos",
         path: "apps/photo_view/",
         icon: {name: "fa-sharp fa-regular fa-hexagon-image", bgColor: '#ae2405'},
         options: {
@@ -90,6 +90,20 @@ const appList = {
         title: "Writer",
         isSystemApp: true,
         icon: {name: "fa-sharp fa-regular fa-align-left", bgColor: '#05aea8'},
+        options: {
+            width: '500px',
+            height: '500px',
+            windowButtons: {
+                min: true,
+                max: true,
+                close: true
+            }
+        }
+    },
+    functions: {
+        title: "Functions",
+        isSystemApp: true,
+        icon: {name: "fa-regular fa-function", bgColor: '#61ff09'},
         options: {
             width: '500px',
             height: '500px',
