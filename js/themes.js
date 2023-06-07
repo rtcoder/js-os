@@ -6,7 +6,7 @@ const THEMES = {
         PANEL_POSITION:'bottom',
 
         BG_COLOR: '#000',
-        BG_IMAGE: 'url(\'../pics/wallpapers/wallpaper5.jpg\')',
+        BG_IMAGE: 'url(\'../pics/wallpapers/wallpaper7.jpeg\')',
         BG_SIZE: 'cover',
         BG_POSITION: 'center center',
         BG_REPEAT: 'no-repeat',
@@ -43,7 +43,7 @@ const THEMES = {
         PANEL_POSITION:'bottom',
 
         BG_COLOR: '#000',
-        BG_IMAGE: 'url(\'../pics/wallpapers/wallpaper5.jpg\')',
+        BG_IMAGE: 'url(\'../pics/wallpapers/wallpaper7.jpeg\')',
         BG_SIZE: 'cover',
         BG_POSITION: 'center center',
         BG_REPEAT: 'no-repeat',

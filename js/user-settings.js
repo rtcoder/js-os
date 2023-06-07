@@ -45,7 +45,7 @@ const SETTINGS = {
     ],
     wallpaper: {
         BG_COLOR: '#000',
-        BG_IMAGE: 'url(\'../pics/wallpapers/wallpaper5.jpg\')',
+        BG_IMAGE: 'url(\'../pics/wallpapers/wallpaper7.jpeg\')',
         BG_SIZE: 'cover',
         BG_POSITION: 'center center',
         BG_REPEAT: 'no-repeat',
