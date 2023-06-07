@@ -2,6 +2,9 @@
     const {currentScript} = document;
     const appWindow = currentScript.parentNode;
     const appId = appWindow.getAttribute('id');
+    const args = JSON.parse(
+        decodeURIComponent(appWindow.getAttribute('data-arguments'))
+    );
 
     const content = appWindow.querySelector('.files-app .content-panel');
     const navigationBar = appWindow.querySelector('.navigation-bar');
@@ -59,17 +62,6 @@
         modifyDirTree(foundDir.tree || [], rest, callback)
     }
 
-    function getIconBaseOnType(type) {
-        return {
-            [fileTypes.DIR]: 'fa-sharp fa-solid fa-folder',
-            [fileTypes.FILE]: 'fa-sharp fa-solid fa-file',
-            [fileTypes.TEXT]: 'fa-sharp fa-solid fa-file-lines',
-            [fileTypes.PDF]: 'fa-sharp fa-solid fa-file-pdf',
-            [fileTypes.CSV]: 'fa-sharp fa-solid fa-file-csv',
-            [fileTypes.IMAGE]: 'fa-sharp fa-solid fa-file-image',
-        }[type] || 'fa-sharp fa-solid fa-file';
-    }
-
     function blurFiles() {
         content.querySelectorAll('.file-item')
             .forEach(el => el.classList.remove('selected', 'dragover'));
@@ -94,6 +86,7 @@
         historyIndex++;
         refreshNavigationBar();
         displayContent(currentPath);
+        setTitle();
         backBtn.classList.remove('inactive');
         forwardBtn.classList.add('inactive');
     }
@@ -114,10 +107,18 @@
     }
 
     function openPath(pathString, affectHistory = true) {
+        if (pathString) {
+            const f = getFullFileByPath(userSettings.dirTree, pathString);
+            console.log({pathString, f})
+            if (!f || f.type !== fileTypes.DIR) {
+                pathString = '';
+            }
+        }
         const path = pathString.split('/').filter(v => v.length);
         currentPath.length = 0;
         path.forEach(item => currentPath.push(item));
         displayContent(currentPath);
+        setTitle();
         if (affectHistory) {
             if (!history.length ||
                 pathString !== history[history.length - 1].join('/')) {
@@ -137,6 +138,12 @@
             }
         }
         refreshNavigationBar();
+    }
+
+    function setTitle() {
+        if (currentPath.length) {
+            setWindowTitle(appId, currentPath[currentPath.length - 1]);
+        }
     }
 
     function refreshNavigationBar() {
@@ -194,10 +201,11 @@
         dispatchOsEvents(osEventsTypes.REFRESH_WINDOW, null)
     }
 
-    openPath('');
+    openPath(args.file || '');
     registerOsEvents(appId, {
         [osEventsTypes.REFRESH_WINDOW]: e => {
             displayContent(currentPath);
+            setTitle();
             refreshNavigationBar();
             console.log(userSettings)
         }

@@ -138,16 +138,3 @@ function makeId() {
     return 'app-' + result;
 }
 
-function getFullFile(tree, path, name) {
-    const [dir, ...rest] = path;
-    if (!dir) {
-        return;
-    }
-    const foundDir = tree.find(obj => obj.name === dir && obj.type === fileTypes.DIR);
-    if (!foundDir) {
-        return;
-    }
-    return !rest.length
-        ? (foundDir.tree || []).find(file => file.name === name)
-        : getFullFile(foundDir.tree || [], rest, name);
-}
