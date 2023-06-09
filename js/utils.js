@@ -110,22 +110,6 @@ function getNestedProp(obj, keyPath) {
     return val;
 }
 
-function hexToRgba(hex, opacity = 100) {
-    hex = hex.replace('#', '');
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-    const a = opacity / 100;
-    return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
-}
-
-function convertRgbaStringToArray(rgba) {
-    return rgba.replace(/^(rgb|rgba)\(/, '')
-        .replace(/\)$/, '')
-        .replace(/\s/g, '')
-        .split(',');
-}
-
 function makeId() {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

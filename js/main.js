@@ -26,7 +26,7 @@ let activeVirtualDesktop
 function setSavedUserData() {
     updateUserSettingsFromLocalStorage();
 
-    setTheme(userSettings.theme);
+    setTheme();
 }
 
 function timer() {

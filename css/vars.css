@@ -1,9 +1,10 @@
 body {
+    --activeVirtualDesktop: 1;
     --animationDuration: 0.1s;
 
-    --panelSize: 70px;
-    --panelBgColor: rgba(0, 0, 0, 0.3);
-    --panelFontColor: #000;
+    --panelSize: 50px;
+    --panelBgColor: rgba(0, 0, 0, 0.8);
+    --panelFontColor: #fff;
 
     --bgColor: #000;
     --bgImage: url('../pics/wallpapers/wallpaper7.jpeg');
@@ -15,14 +16,14 @@ body {
     --appsBtnColorActive: #00cc03;
     --appsBtnBgColorActive: rgba(0, 0, 0, 0.5);
 
-    --appListBgColor: #eee;
-    --appListFontColor: #1f1f1f;
+    --appListBgColor: #1f1f1f;
+    --appListFontColor: #eee;
     --appListFontColorActive: #fff;
     --appListElementBgColorActive: #4b9bff;
 
     --windowListActiveElementDotColor: #fff;
     --windowListHoveredElementBgColor: rgba(125, 125, 125, 0.3);
-    --windowListElementTitleBgColor: rgba(0, 0, 0, 0.3);
+    --windowListElementTitleBgColor: rgba(0, 0, 0, 0.8);
     --windowListElementTitleFontColor: #fff;
 
     --closeWindowButtonColor: #ff2c2c;
@@ -33,6 +34,6 @@ body {
     --windowButtonBorderWidth: 1px;
 
     --windowShadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
-    --windowBgColor: #ebebeb;
-    --windowFontColor: #000;
+    --windowBgColor: #1f1f1f;
+    --windowFontColor: #eee;
 }
