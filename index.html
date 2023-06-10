@@ -10,6 +10,8 @@
     <script src="vendor/highlight/highlight.js"></script>
     <script src="vendor/highlight/all-languages.js"></script>
     <script src="vendor/highlightjs-line-numbers.min.js"></script>
+    <script src="vendor/html2canvas/html2canvas.min.js"></script>
+
     <script src="js/cache.js"></script>
     <script src="js/os-events.js"></script>
     <script src="js/file-types.js"></script>
@@ -26,9 +28,11 @@
     <canvas></canvas>
 </div>
 <div class="panel bottom">
-    <div class="openedWindowList"></div>
     <div class="appsButton">
-        <i class="fa-sharp fa-regular fa-rocket-launch fa-lg"></i>
+        <i class="fa-thin fa-circle-nodes"></i>
+    </div>
+    <div class="expo-button">
+        <i class="fa-sharp fa-light fa-objects-column"></i>
     </div>
     <div class="appList">
         <div class="search">
@@ -39,10 +43,22 @@
         </div>
         <div class="list"></div>
     </div>
-    <div class="openedWindowList"></div>
+    <div class="openedWindowList">
+        <div class="virtual-panel active" data-id="v1"></div>
+    </div>
 </div>
 <div class="desktop">
-    <div class="virtual-desktops"></div>
+    <div class="desktops-list">
+        <div class="v-desktops-list">
+            <div class="virtual-preview active" data-id="v1"></div>
+        </div>
+        <div class="add-desktop">
+            <i class="fa-regular fa-plus"></i>
+        </div>
+    </div>
+    <div class="virtual-desktops">
+        <div class="virtual active" id="v1"></div>
+    </div>
     <div class="widgets">
         <div class="date"></div>
         <div class="time"></div>
@@ -59,6 +75,8 @@
          data-coreApp="[isSystemApp]"
          data-arguments="[args]"
          style="[style]">
+
+        <div class="canvas-container"></div>
 
         <div class="resize-field resize-left"></div>
         <div class="resize-field resize-right"></div>
@@ -86,14 +104,20 @@
 </template>
 <template id="bar-window-template">
     <div class="barWindow focused" data-appId="[name]">
-        <div class="barIcon" style="--color: [iconBgColor]">
+        <div class="barIcon" style="--iconBgColor: [iconBgColor]; --color: [iconColor]">
             <i class="[iconName]"></i>
         </div>
         <div class="barTitle">[title]</div>
     </div>
 </template>
+<template id="app-on-desktop-preview-thumbnail">
+    <div class="icon" style="--iconBgColor: [iconBgColor]; --color: [iconColor]" data-appId="[name]">
+        <i class="[iconName]"></i>
+    </div>
+</template>
 <script src="js/appList.js"></script>
 <script src="js/window-utils.js"></script>
+<script src="js/load-screen.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

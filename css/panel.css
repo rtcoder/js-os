@@ -3,23 +3,40 @@
 @import "panel/tray.css";
 
 .panel {
-    z-index: 9999999;
+    z-index: 99;
     position: fixed;
-    display: grid;
+    display: flex;
+    justify-content: center;
     color: var(--panelFontColor);
     background: var(--panelBgColor);
+}
+
+.panel.top {
+    transition: top var(--animationDuration) ease-in;
+}
+
+.panel.bottom {
+    transition: bottom var(--animationDuration) ease-in;
+}
+
+.panel.right {
+    transition: right var(--animationDuration) ease-in;
+}
+
+.panel.left {
+    transition: left var(--animationDuration) ease-in;
 }
 
 .panel:is(.top,.bottom) {
     width: 100vw;
     height: var(--panelSize);
-    grid-template-columns: calc((100vw - var(--panelSize)) / 2) var(--panelSize) calc((100vw - var(--panelSize)) / 2);
+    flex-direction: row;
 }
 
 .panel:is(.left,.right) {
     width: var(--panelSize);
     height: 100vh;
-    grid-template-rows:calc((100vh - var(--panelSize)) / 2) var(--panelSize) calc((100vh - var(--panelSize)) / 2);
+    flex-direction: column;
 }
 
 .panel:is(.top,.left) {

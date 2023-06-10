@@ -13,8 +13,8 @@ function resolveAppForFileType(type) {
         [fileTypes.DIR]: 'files',
         [fileTypes.TEXT]: 'writer',
         [fileTypes.PDF]: 'writer',
-        [fileTypes.CSV]: 'functions',
-        [fileTypes.IMAGE]: 'photo_view',
+        [fileTypes.CSV]: 'grid_calc',
+        [fileTypes.IMAGE]: 'pix_view',
     }[type] || '';
 }
 

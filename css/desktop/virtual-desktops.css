@@ -1,0 +1,82 @@
+.virtual-desktops {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.virtual-desktops .virtual {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+}
+.virtual-desktops .virtual.active {
+    display: flex;
+}
+
+.desktops-list {
+    position: absolute;
+    top: -150px;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.6);
+    transition: top var(--animationDuration) ease-in;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+}
+
+.desktops-list .v-desktops-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+}
+
+.desktops-list .add-desktop,
+.desktops-list .v-desktops-list .virtual-preview {
+    width: 150px;
+    height: 100px;
+    display: flex;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    padding: 5px;
+    gap: 3px;
+}
+
+.desktops-list .v-desktops-list .virtual-preview .icon {
+    height: 18px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    background-color: var(--iconBgColor);
+    color: var(--color);
+    border-radius: 10px;
+}
+
+.desktops-list .add-desktop {
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.desktops-list .add-desktop i {
+    pointer-events: none;
+}
+
+.desktops-list .virtual-preview.active {
+    border-color: #09c;
+}
+

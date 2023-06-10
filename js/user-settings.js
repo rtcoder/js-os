@@ -31,7 +31,6 @@ const SETTINGS = {
         }
     ],
     appSettings: {},
-    theme: 'light',
     wallpapersList: [
         'pics/wallpapers/wallpaper1.jpg',
         'pics/wallpapers/wallpaper2.jpg',
@@ -43,24 +42,14 @@ const SETTINGS = {
         'pics/wallpapers/wallpaper8.jpeg',
         'pics/wallpapers/wallpaper9.jpeg',
     ],
-    wallpaper: {
+    theme: {
         BG_COLOR: '#000',
         BG_IMAGE: 'url(\'../pics/wallpapers/wallpaper7.jpeg\')',
         BG_SIZE: 'cover',
         BG_POSITION: 'center center',
         BG_REPEAT: 'no-repeat',
     },
-    appList: {
-        APP_LIST_TYPE: 'grid',
-        APP_LIST_BG_COLOR: '#eee',
-        APP_LIST_FONT_COLOR: '#1f1f1f',
-        APP_LIST_FONT_COLOR_ACTIVE: '#fff',
-        APP_LIST_ELEMENT_BG_COLOR_ACTIVE: '#4b9bff',
-    },
     panel: {
-        PANEL_SIZE: '70px',
-        PANEL_BG_COLOR: 'rgba(0, 0, 0, 0.3)',
-        PANEL_FONT_COLOR: '#000',
         PANEL_POSITION: 'bottom',
     },
     dateTime: {

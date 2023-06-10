@@ -2,14 +2,30 @@
     display: flex;
 }
 
-.panel:is(.top,.bottom) .openedWindowList {
-    flex-direction: row;
+.openedWindowList .virtual-panel {
+    display: none;
+    width: inherit;
     height: inherit;
 }
 
+.openedWindowList .virtual-panel.active {
+    display: flex;
+}
+
+.panel:is(.top,.bottom) .openedWindowList {
+    height: inherit;
+}
+
+.panel:is(.top,.bottom) .openedWindowList .virtual-panel {
+    flex-direction: row;
+}
+
 .panel:is(.left,.right) .openedWindowList {
-    flex-direction: column;
     width: inherit;
+}
+
+.panel:is(.left,.right) .openedWindowList .virtual-panel {
+    flex-direction: column;
 }
 
 .openedWindowList .barWindow {
@@ -32,32 +48,27 @@
     height: 0;
 }
 
-.openedWindowList .barWindow.focused:after {
-    content: ' ';
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    bottom: 5px;
-    background: var(--windowListActiveElementDotColor);
-    border-radius: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 2px 0 #000;
+.openedWindowList .barWindow.focused .barIcon {
+    border-color: #fff;
 }
 
 .openedWindowList .barWindow .barIcon {
-    height: calc(var(--panelSize) - 30px);
+    position: relative;
+    height: 35px;
     aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: max(20px, calc(var(--panelSize) - 60px));
-    background-color: var(--color);
+    font-size: 18px;
+    border: 2px solid var(--iconBgColor);
+    background-color: var(--iconBgColor);
+    color: var(--color);
 }
 
 .openedWindowList .barWindow.minimized .barIcon {
     background-color: transparent;
-    color: var(--color);
+    border-color: transparent;
+    color: var(--iconBgColor);
 }
 
 .openedWindowList .barWindow .barIcon i:before {

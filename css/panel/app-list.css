@@ -1,32 +1,29 @@
-.panel .appsButton {
+.panel :is(.appsButton, .expo-button) {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     color: var(--appsBtnColor);
     aspect-ratio: 1/1;
-    border-radius: var(--panelSize);
-    background: var(--appsBtnBgColorActive);
-    /*opacity: 0.8;*/
     backdrop-filter: opacity(0.5);
 }
 
-.appsButton i {
+:is(.appsButton, .expo-button) i {
     pointer-events: none;
+    font-size: 30px;
 }
 
-.appsButton.active,
-.appsButton:hover {
+:is(.appsButton, .expo-button):is(:hover, .active) {
     background: var(--appsBtnBgColorActive);
     color: var(--appsBtnColorActive);
     opacity: 1;
 }
 
-.panel:is(.left,.right) .appsButton {
+.panel:is(.left,.right) :is(.appsButton, .expo-button) {
     width: var(--panelSize);
 }
 
-.panel:is(.top,.bottom) .appsButton {
+.panel:is(.top,.bottom) :is(.appsButton, .expo-button) {
     height: var(--panelSize);
 }
 
@@ -53,6 +50,7 @@
     grid-template-columns: 100%;
     transition: opacity var(--animationDuration) ease-in;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .4);
 }
 
 .appList .list {
@@ -81,9 +79,10 @@
     transition: box-shadow var(--animationDuration) ease-in,
     transform var(--animationDuration) ease-in;
 }
+
 .appList .search:has(input:focus) {
     --shadow: 3px 0 #6a6a6a;
-    transform:scale(1.01);
+    transform: scale(1.01);
 }
 
 .appList .search label {

@@ -1,6 +1,9 @@
 function allWindows(callback) {
     document.querySelectorAll('.appWindow').forEach(callback);
 }
+function allWindowsOnDesktop(desktopId,callback) {
+    document.querySelectorAll(`#${desktopId} .appWindow`).forEach(callback);
+}
 
 function getAppWindow(appId) {
     return document.querySelector(`.appWindow#${appId}`);
@@ -13,9 +16,28 @@ function getAppIconOnPanel(appId) {
 function isCoreApp(appId) {
     return !!appList[getAppNameById(appId)]?.isSystemApp;
 }
+function screenshotApp(node, callback){
+    if(isExpoMode()){
+        return;
+    }
+    html2canvas(node).then(canvas => {
+        node.querySelector('.canvas-container').innerHTML = '';
+        node.querySelector('.canvas-container').appendChild(canvas);
+        if(callback) {
+            callback(canvas);
+        }
+    });
+}
+function blurApp(appWindowNode) {
+    console.log('blur app')
+    if (appWindowNode.classList.contains('focused')) {
+        screenshotApp(appWindowNode);
+    }
+    appWindowNode.classList.remove('focused');
+}
 
 function blurAllApps() {
-    document.querySelectorAll('.appWindow').forEach(el => el.classList.remove('focused'));
+    document.querySelectorAll('.appWindow').forEach(blurApp);
     document.querySelectorAll('.barWindow').forEach(el => el.classList.remove('focused'));
 }
 
@@ -37,12 +59,14 @@ function closeApp(appId) {
     runningApps.splice(appKey, 1);
     const appWindow = document.querySelector(`.appWindow#${appId}`);
     const appBarIcon = document.querySelector(`.barWindow[data-appId="${appId}"]`);
+    const appOnDesktopPreview = document.querySelector(`.virtual-preview .icon[data-appId="${appId}"]`);
     appWindow.classList.add('closing');
     appBarIcon.classList.add('closing');
 
     setTimeout(() => {
         appWindow.remove();
         appBarIcon.remove();
+        appOnDesktopPreview.remove();
     }, userSettings.animationDuration);
 
     blurAllApps();
@@ -95,13 +119,15 @@ async function runApp(name, args = {}) {
         style += `height: ${options.height};`
     }
     const resizable = 'resizable' in options ? options.resizable : true;
-    const randomId = makeId();
+    const randomId = makeId('app');
+    const iconFontColor=lightOrDark(icon.bgColor)==='light' ? '#000':'#fff';
 
     const template = document.getElementById('window-template').innerHTML
         .replaceAll('[name]', name)
         .replaceAll('[id]', randomId)
         .replaceAll('[iconName]', icon.name)
         .replaceAll('[iconBgColor]', icon.bgColor)
+        .replaceAll('[iconColor]', iconFontColor)
         .replaceAll('[title]', title)
         .replaceAll('[buttonsOptions]', buttonsOptions)
         .replaceAll('[style]', style)
@@ -116,10 +142,18 @@ async function runApp(name, args = {}) {
         .replaceAll('[name]', randomId)
         .replaceAll('[iconName]', icon.name)
         .replaceAll('[iconBgColor]', icon.bgColor)
+        .replaceAll('[iconColor]', iconFontColor)
         .replaceAll('[title]', title);
 
-    desktop.appendChild(htmlToElement(template));
-    openedWindowList.append(htmlToElement(barTemplate));
+    const appOnDesktopPreviewTemplate = document.getElementById('app-on-desktop-preview-thumbnail').innerHTML
+        .replaceAll('[name]', randomId)
+        .replaceAll('[iconName]', icon.name)
+        .replaceAll('[iconBgColor]', icon.bgColor)
+        .replaceAll('[iconColor]', iconFontColor);
+
+    getActiveVirtualDesktop().appendChild(htmlToElement(template));
+    getActiveVirtualDesktopPreview().appendChild(htmlToElement(appOnDesktopPreviewTemplate));
+    getActiveVirtualPanel().appendChild(htmlToElement(barTemplate));
     if (isSystemApp) {
         addJsScriptToSystemAppHtml(randomId, systemAppSources.js);
     }

@@ -1,0 +1,81 @@
+body.expo-mode .desktops-list {
+    top: 0;
+}
+
+body.expo-mode .desktop .virtual-desktops {
+    height: calc(100% - 150px);
+    top: 150px;
+}
+
+body.expo-mode .desktop .virtual-desktops .virtual {
+    padding: 10px;
+}
+
+body.expo-mode .desktop .virtual {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+body.expo-mode .widgets {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.expo-mode .desktop .appWindow,
+body.expo-mode .desktop .appWindow[data-maximized="true"] {
+    position: relative;
+    cursor: pointer;
+    opacity: 1;
+    width: auto !important;
+    height: auto !important;
+    min-width: auto;
+    min-height: auto;
+    border: none;
+}
+
+body.expo-mode .desktop .appWindow.focused {
+    outline: 2px solid #09c;
+}
+
+body.expo-mode .desktop .appWindow {
+    display: flex;
+    overflow: hidden;
+}
+
+body.expo-mode .desktop .appWindow > * {
+    display: none;
+}
+
+body.expo-mode .desktop .appWindow .canvas-container {
+    display: block;
+}
+
+body.expo-mode .desktop .appWindow:first-child {
+    margin-left: 0;
+}
+
+body.expo-mode .panel.top {
+    top: calc(var(--panelSize) * -1);
+}
+
+body.expo-mode .panel.bottom {
+    bottom: calc(var(--panelSize) * -1);
+}
+
+body.expo-mode .panel.right {
+    right: calc(var(--panelSize) * -1);
+}
+
+body.expo-mode .panel.left {
+    left: calc(var(--panelSize) * -1);
+}
+
+body.expo-mode .panel:is(.left,.right) + .desktop {
+    width: 100vw;
+}
+
+body.expo-mode .panel:is(.top,.bottom) + .desktop {
+    height: 100vh;
+}

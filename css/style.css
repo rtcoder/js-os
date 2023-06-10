@@ -1,5 +1,6 @@
 @import "vars.css";
 @import "panel.css";
+@import "expo.css";
 @import "desktop.css";
 @import "load-screen.css";
 
@@ -26,6 +27,10 @@ body {
     height: 100vh;
     overflow: hidden;
     font-family: Arial, sans-serif;
+}
+
+body,
+.desktops-list .virtual-preview {
     background-color: var(--bgColor);
     background-image: var(--bgImage);
     background-size: var(--bgSize);

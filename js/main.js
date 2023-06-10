@@ -17,13 +17,17 @@ const loadScreen = body.querySelector('.load-screen');
 const panel = body.querySelector('.panel');
 const desktop = body.querySelector('.desktop');
 const appsButton = panel.querySelector('.appsButton');
+const expoButton = panel.querySelector('.expo-button');
 const appListContainer = panel.querySelector('.appList .list');
 const appListSearchBar = panel.querySelector('.appList .search input');
 const openedWindowList = panel.querySelector('.openedWindowList');
 const timeContainer = body.querySelector('.widgets .time');
 const dateContainer = body.querySelector('.widgets .date');
+const desktopsList = desktop.querySelector('.virtual-desktops');
+const desktopsListPreview = desktop.querySelector('.desktops-list .v-desktops-list');
 let focusedWindow;
-let activeVirtualDesktop
+let activeVirtualDesktop = 'v1';
+const EXPO_APP_THUMB_SIZE = 300;
 
 function setSavedUserData() {
     updateUserSettingsFromLocalStorage();
@@ -35,6 +39,78 @@ function timer() {
     timeContainer.innerText = dateToString(new Date(), userSettings.dateTime.time.format);
     dateContainer.innerText = dateToString(new Date(), userSettings.dateTime.date.format);
     setTimeout(timer, 1000);
+}
+
+function getAllVirtualDesktops() {
+    return desktopsList.querySelectorAll(`.virtual`);
+}
+
+function getActiveVirtualDesktop() {
+    return desktopsList.querySelector(`.virtual#${activeVirtualDesktop}`);
+}
+
+function getActiveVirtualPanel() {
+    return openedWindowList.querySelector(`.virtual-panel[data-id="${activeVirtualDesktop}"]`);
+}
+function getAllVirtualPanels() {
+    return openedWindowList.querySelectorAll(`.virtual-panel`);
+}
+
+function getActiveVirtualDesktopPreview() {
+    return desktopsListPreview.querySelector(`.virtual-preview[data-id="${activeVirtualDesktop}"]`);
+}
+
+function getAllVirtualDesktopPreviews() {
+    return desktopsListPreview.querySelectorAll(`.virtual-preview`);
+}
+
+function setActiveDesktop(id) {
+    getAllVirtualDesktops().forEach(el => el.classList.remove('active'));
+    getAllVirtualDesktopPreviews().forEach(el => el.classList.remove('active'));
+    getAllVirtualPanels().forEach(el => el.classList.remove('active'));
+
+    desktopsListPreview.querySelector(`.virtual-preview[data-id="${id}"]`).classList.add('active');
+    desktopsList.querySelector(`.virtual#${id}`).classList.add('active');
+    openedWindowList.querySelector(`.virtual-panel[data-id="${id}"]`).classList.add('active');;
+    activeVirtualDesktop = id;
+}
+
+function isExpoMode() {
+    return body.classList.contains('expo-mode');
+}
+
+function resizeCanvasPreview(canvas) {
+    const {width, height} = canvas;
+    let newWidth, newHeight, ratio;
+    if (width > height) {
+        ratio = width / height;
+        newWidth = EXPO_APP_THUMB_SIZE;
+        newHeight = height / ((width / EXPO_APP_THUMB_SIZE) * ratio);
+    } else {
+        ratio = height / width;
+        newHeight = EXPO_APP_THUMB_SIZE;
+        newWidth = width / ((height / EXPO_APP_THUMB_SIZE) * ratio);
+    }
+    canvas.style.width = newWidth + 'px';
+    canvas.style.height = newHeight + 'px';
+}
+
+function openExpoMode() {
+    allWindowsOnDesktop(activeVirtualDesktop, app => {
+        screenshotApp(app, canvas => resizeCanvasPreview(canvas));
+    })
+    body.classList.add('expo-mode');
+}
+
+function closeExpoMode() {
+    body.classList.remove('expo-mode');
+}
+
+function addVirtualDesktop() {
+    const randomId = makeId('virtual');
+    desktopsList.appendChild(htmlToElement(`<div class="virtual" id="${randomId}"></div>`));
+    desktopsListPreview.appendChild(htmlToElement(`<div class="virtual-preview" data-id="${randomId}"></div>`));
+    openedWindowList.appendChild(htmlToElement(`<div class="virtual-panel" data-id="${randomId}"></div>`));
 }
 
 function initEvents() {
@@ -52,18 +128,28 @@ function initEvents() {
         }
     })
     desktop.addEventListener('click', e => {
-        console.log(e.target)
-        if (!e.target.closest('.appList')) {
+        const {target} = e;
+        console.log(target);
+        if (!target.closest('.appList')) {
             appsButton.classList.remove('active');
         }
-        const {target} = e;
-
+        if (target.closest('.add-desktop')) {
+            addVirtualDesktop();
+            return;
+        }
+        if (target.classList.contains('virtual-preview')) {
+            setActiveDesktop(target.getAttribute('data-id'));
+        }
+        if (target.classList.contains('virtual')) {
+            closeExpoMode();
+        }
         const appWindow = target.closest('.appWindow');
 
         if (appWindow) {
             const appId = appWindow.getAttribute('id');
             blurAllApps();
             focusApp(appId);
+            closeExpoMode();
 
             if (target.classList.contains('windowButton')) {
 
@@ -94,7 +180,9 @@ function initEvents() {
             }
             return;
         }
-
+        if (target === expoButton) {
+            openExpoMode();
+        }
         const appBarIcon = target.closest('.barWindow');
         if (appBarIcon) {
             const appId = appBarIcon.getAttribute('data-appId');
@@ -358,7 +446,7 @@ function getAppListIcon(appName, args, icon, title) {
                 </div>`;
 }
 
-runScreenLoader();
+// runScreenLoader();
 
 setSavedUserData();
 createMenu();

@@ -57,9 +57,9 @@ const appList = {
             }
         }
     },
-    photo_view: {
-        title: "Photos",
-        path: "apps/photo_view/",
+    pix_view: {
+        title: "PixView",
+        path: "apps/pix_view/",
         icon: {name: "fa-sharp fa-regular fa-hexagon-image", bgColor: '#ae2405'},
         options: {
             singleInstance: true,
@@ -87,9 +87,9 @@ const appList = {
         }
     },
     writer: {
-        title: "Writer",
+        title: "ScriptPro",
         isSystemApp: true,
-        icon: {name: "fa-sharp fa-regular fa-align-left", bgColor: '#05aea8'},
+        icon: {name: "fa-sharp fa-light fa-code", bgColor: '#05aea8'},
         options: {
             width: '500px',
             height: '500px',
@@ -100,8 +100,8 @@ const appList = {
             }
         }
     },
-    functions: {
-        title: "Functions",
+    grid_calc: {
+        title: "GridCalc",
         isSystemApp: true,
         icon: {name: "fa-regular fa-function", bgColor: '#61ff09'},
         options: {
