@@ -32,8 +32,8 @@ const SETTINGS = {
     ],
     appSettings: {},
     wallpapersList: [
-        'pics/wallpapers/wallpaper1.jpg',
-        'pics/wallpapers/wallpaper2.jpg',
+        'pics/wallpapers/wallpaper1.jpeg',
+        'pics/wallpapers/wallpaper2.jpeg',
         'pics/wallpapers/wallpaper3.jpg',
         'pics/wallpapers/wallpaper4.jpg',
         'pics/wallpapers/wallpaper5.jpg',
@@ -44,7 +44,7 @@ const SETTINGS = {
     ],
     theme: {
         BG_COLOR: '#000',
-        BG_IMAGE: 'url(\'../pics/wallpapers/wallpaper7.jpeg\')',
+        BG_IMAGE: 'url(\'../pics/wallpapers/wallpaper2.jpeg\')',
         BG_SIZE: 'cover',
         BG_POSITION: 'center center',
         BG_REPEAT: 'no-repeat',
