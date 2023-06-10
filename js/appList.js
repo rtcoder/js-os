@@ -143,9 +143,9 @@ const appList = {
             }
         }
     },
-    music: {
+    sound_flow: {
         isSystemApp: true,
-        title: "Music",
+        title: "SoundFlow",
         icon: {name: "fa-regular fa-music", bgColor: '#ff33dd'},
         options: {
             width: '300px',

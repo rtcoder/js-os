@@ -5,5 +5,6 @@ const fileTypes = {
     PDF: 3,
     CSV: 4,
     IMAGE: 5,
+    AUDIO: 6,
 
 }

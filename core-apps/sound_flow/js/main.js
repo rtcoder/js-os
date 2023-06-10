@@ -457,11 +457,11 @@
         mousemove: mouseMove
     });
 
-    fetch('core-apps/music/json/tracks.json')
+    fetch('core-apps/sound_flow/json/tracks.json')
         .then(res => res.json())
         .then(jsonArr => {
             jsonArr.forEach(track => {
-                const sound = new Audio('core-apps/music/' + track.audio);
+                const sound = new Audio('core-apps/sound_flow/' + track.audio);
                 songs.push({
                     name: track.name,
                     author: track.author,
@@ -471,7 +471,7 @@
             slidesWrapper.innerHTML = jsonArr.map(json => {
                 return `<div class='slide'>
                 <div class='image'>
-                  <img src='core-apps/music/${json.cover}' alt=''>
+                  <img src='core-apps/sound_flow/${json.cover}' alt=''>
                 </div>
               </div>`;
             }).join('');

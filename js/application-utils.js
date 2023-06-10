@@ -15,6 +15,7 @@ function resolveAppForFileType(type) {
         [fileTypes.PDF]: 'writer',
         [fileTypes.CSV]: 'grid_calc',
         [fileTypes.IMAGE]: 'pix_view',
+        [fileTypes.AUDIO]: 'sound_flow',
     }[type] || '';
 }
 
