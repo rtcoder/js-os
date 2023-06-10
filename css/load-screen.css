@@ -7,7 +7,6 @@
     overflow: hidden;
     z-index: 999;
     background: #09c;
-    display: none;
 }
 
 .load-screen canvas {
