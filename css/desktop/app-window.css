@@ -22,6 +22,14 @@
     left var(--animationDuration) linear;
 }
 
+.appWindow[data-window-top-bar="false"] {
+    grid-template-rows: 100%;
+}
+
+.appWindow[data-window-top-bar="false"] > .windowTop {
+    display: none;
+}
+
 .appWindow.no-transition {
     transition-duration: 0s;
 }
@@ -50,14 +58,14 @@
     box-shadow: var(--windowShadow);
 }
 
-.appWindow .windowTop {
+.appWindow > .windowTop {
     width: 100%;
     height: 30px;
     display: grid;
     grid-template-columns: 30px auto 90px;
 }
 
-.appWindow .windowTop .windowIcon {
+.appWindow > .windowTop .windowIcon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,14 +76,14 @@
     align-self: center;
 }
 
-.appWindow .windowTop .windowIcon i {
+.appWindow > .windowTop .windowIcon i {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 10px;
 }
 
-.appWindow .windowTop .windowTitle {
+.appWindow > .windowTop .windowTitle {
     height: 30px;
     line-height: 30px;
     text-align: center;
@@ -85,7 +93,7 @@
     cursor: move;
 }
 
-.appWindow .windowTop .windowButtons {
+.appWindow > .windowTop .windowButtons {
     height: 30px;
     text-align: right;
     display: flex;
@@ -94,7 +102,7 @@
     align-items: center;
 }
 
-.appWindow .windowTop .windowButtons .windowButton {
+.appWindow > .windowTop .windowButtons .windowButton {
     width: 10px;
     height: 10px;
     border-radius: 100%;
@@ -105,22 +113,22 @@
     border: var(--windowButtonBorderWidth) solid var(--windowButtonBorderColor);
 }
 
-.appWindow[data-buttons*="min"] .windowTop .windowButtons .windowButton.minimize,
-.appWindow[data-buttons*="max"] .windowTop .windowButtons .windowButton.maximize,
-.appWindow[data-buttons*="close"] .windowTop .windowButtons .windowButton.close {
+.appWindow[data-buttons*="min"] > .windowTop .windowButtons .windowButton.minimize,
+.appWindow[data-buttons*="max"] > .windowTop .windowButtons .windowButton.maximize,
+.appWindow[data-buttons*="close"] > .windowTop .windowButtons .windowButton.close {
     cursor: pointer;
     pointer-events: initial;
 }
 
-.appWindow[data-buttons*="min"] .windowTop .windowButtons .windowButton.minimize {
+.appWindow[data-buttons*="min"] > .windowTop .windowButtons .windowButton.minimize {
     background: var(--minimizeWindowButtonColor);
 }
 
-.appWindow[data-buttons*="max"] .windowTop .windowButtons .windowButton.maximize {
+.appWindow[data-buttons*="max"] > .windowTop .windowButtons .windowButton.maximize {
     background: var(--maximizeWindowButtonColor);
 }
 
-.appWindow[data-buttons*="close"] .windowTop .windowButtons .windowButton.close {
+.appWindow[data-buttons*="close"] > .windowTop .windowButtons .windowButton.close {
     background: var(--closeWindowButtonColor);
 }
 
@@ -130,6 +138,9 @@
     overflow: auto;
     padding: 0 5px 5px;
     display: flex;
+}
+.appWindow[data-custom-window-style="true"] .appContent {
+    padding: 0;
 }
 
 .appWindow .canvas-container {

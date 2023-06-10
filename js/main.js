@@ -52,6 +52,7 @@ function getActiveVirtualDesktop() {
 function getActiveVirtualPanel() {
     return openedWindowList.querySelector(`.virtual-panel[data-id="${activeVirtualDesktop}"]`);
 }
+
 function getAllVirtualPanels() {
     return openedWindowList.querySelectorAll(`.virtual-panel`);
 }
@@ -71,7 +72,8 @@ function setActiveDesktop(id) {
 
     desktopsListPreview.querySelector(`.virtual-preview[data-id="${id}"]`).classList.add('active');
     desktopsList.querySelector(`.virtual#${id}`).classList.add('active');
-    openedWindowList.querySelector(`.virtual-panel[data-id="${id}"]`).classList.add('active');;
+    openedWindowList.querySelector(`.virtual-panel[data-id="${id}"]`).classList.add('active');
+    ;
     activeVirtualDesktop = id;
 }
 
@@ -117,6 +119,9 @@ function initEvents() {
     registerOsEvents('main', {
         [osEventsTypes.OPEN_APP]: ({appName, args}) => {
             runApp(appName, args)
+        },
+        [osEventsTypes.CLOSE_APP]: ({appId}) => {
+            closeApp(appId);
         },
         [osEventsTypes.SCREEN_LOAD_END]: () => {
             setTimeout(() => {
@@ -321,6 +326,15 @@ function initEvents() {
         const appId = appWindow?.getAttribute('id');
         if (isCoreApp(appId)) {
             dispatchAppEvents(appId, 'mouseup', e);
+        }
+    }, true);
+    document.addEventListener('mouseleave', e => {
+        if (e.target !== document) {
+            const appWindow = e.target.closest('.appWindow');
+            const appId = appWindow?.getAttribute('id');
+            if (isCoreApp(appId)) {
+                dispatchAppEvents(appId, 'mouseleave', e);
+            }
         }
     }, true);
     window.addEventListener('mousemove', e => {

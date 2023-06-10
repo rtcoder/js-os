@@ -1,6 +1,7 @@
 const osEventsTypes = {
     REFRESH_WINDOW: 'refreshWindow',
     OPEN_APP: 'openApp',
+    CLOSE_APP: 'closeApp',
     RESIZE_WINDOW: 'resizeWindow',
     SCREEN_LOAD_END: 'screenLoadEnd'
 }

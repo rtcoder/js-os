@@ -1,7 +1,8 @@
 function allWindows(callback) {
     document.querySelectorAll('.appWindow').forEach(callback);
 }
-function allWindowsOnDesktop(desktopId,callback) {
+
+function allWindowsOnDesktop(desktopId, callback) {
     document.querySelectorAll(`#${desktopId} .appWindow`).forEach(callback);
 }
 
@@ -16,18 +17,20 @@ function getAppIconOnPanel(appId) {
 function isCoreApp(appId) {
     return !!appList[getAppNameById(appId)]?.isSystemApp;
 }
-function screenshotApp(node, callback){
-    if(isExpoMode()){
+
+function screenshotApp(node, callback) {
+    if (isExpoMode()) {
         return;
     }
     html2canvas(node).then(canvas => {
         node.querySelector('.canvas-container').innerHTML = '';
         node.querySelector('.canvas-container').appendChild(canvas);
-        if(callback) {
+        if (callback) {
             callback(canvas);
         }
     });
 }
+
 function blurApp(appWindowNode) {
     console.log('blur app')
     if (appWindowNode.classList.contains('focused')) {
@@ -119,8 +122,10 @@ async function runApp(name, args = {}) {
         style += `height: ${options.height};`
     }
     const resizable = 'resizable' in options ? options.resizable : true;
+    const windowTopBar = 'windowTopBar' in options ? options.windowTopBar : true;
+    const customWindowStyle = 'customWindowStyle' in options ? options.customWindowStyle : false;
     const randomId = makeId('app');
-    const iconFontColor=lightOrDark(icon.bgColor)==='light' ? '#000':'#fff';
+    const iconFontColor = lightOrDark(icon.bgColor) === 'light' ? '#000' : '#fff';
 
     const template = document.getElementById('window-template').innerHTML
         .replaceAll('[name]', name)
@@ -135,6 +140,8 @@ async function runApp(name, args = {}) {
         .replaceAll('[fullscreen]', `${!!fullscreen}`)
         .replaceAll('[isSystemApp]', `${!!isSystemApp}`)
         .replaceAll('[resizable]', `${!!resizable}`)
+        .replaceAll('[windowTopBar]', `${!!windowTopBar}`)
+        .replaceAll('[customWindowStyle]', `${!!customWindowStyle}`)
         .replaceAll('[content]', content);
 
 

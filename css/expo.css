@@ -25,7 +25,7 @@ body.expo-mode .widgets {
 
 body.expo-mode .desktop .appWindow,
 body.expo-mode .desktop .appWindow[data-maximized="true"] {
-    position: relative;
+    position: static;
     cursor: pointer;
     opacity: 1;
     width: auto !important;

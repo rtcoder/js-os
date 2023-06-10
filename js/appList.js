@@ -75,7 +75,7 @@ const appList = {
         path: "apps/calc/calc.html",
         icon: {name: "fa-light fa-calculator-simple", bgColor: '#00c1b1'},
         options: {
-            resizable:false,
+            resizable: false,
             width: '250px',
             height: '360px',
             singleInstance: true,
@@ -139,6 +139,23 @@ const appList = {
             windowButtons: {
                 min: true,
                 max: true,
+                close: true
+            }
+        }
+    },
+    music: {
+        isSystemApp: true,
+        title: "Music",
+        icon: {name: "fa-regular fa-music", bgColor: '#ff33dd'},
+        options: {
+            width: '300px',
+            height: '600px',
+            customWindowStyle: true,
+            windowTopBar: false,
+            resizable: false,
+            windowButtons: {
+                min: true,
+                max: false,
                 close: true
             }
         }
