@@ -1,6 +1,7 @@
 @import "vars.css";
 @import "panel.css";
 @import "desktop.css";
+@import "load-screen.css";
 
 * {
     user-select: none;

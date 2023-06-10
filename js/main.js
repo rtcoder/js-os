@@ -12,14 +12,16 @@ const windowResizeMouseDown = {
     bottomRight: false
 };
 let isMouseDownAppTopBar = false;
-const panel = document.querySelector('.panel');
-const desktop = document.querySelector('.desktop');
-const appsButton = document.querySelector('.appsButton');
-const appListContainer = document.querySelector('.appList .list');
-const appListSearchBar = document.querySelector('.appList .search input');
-const openedWindowList = document.querySelector('.openedWindowList');
-const timeContainer = document.querySelector('.widgets .time');
-const dateContainer = document.querySelector('.widgets .date');
+const body = document.body;
+const loadScreen = body.querySelector('.load-screen');
+const panel = body.querySelector('.panel');
+const desktop = body.querySelector('.desktop');
+const appsButton = panel.querySelector('.appsButton');
+const appListContainer = panel.querySelector('.appList .list');
+const appListSearchBar = panel.querySelector('.appList .search input');
+const openedWindowList = panel.querySelector('.openedWindowList');
+const timeContainer = body.querySelector('.widgets .time');
+const dateContainer = body.querySelector('.widgets .date');
 let focusedWindow;
 let activeVirtualDesktop
 
@@ -39,6 +41,14 @@ function initEvents() {
     registerOsEvents('main', {
         [osEventsTypes.OPEN_APP]: ({appName, args}) => {
             runApp(appName, args)
+        },
+        [osEventsTypes.SCREEN_LOAD_END]: () => {
+            setTimeout(() => {
+                loadScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadScreen.style.display = 'none';
+                }, 1000);
+            }, 1000);
         }
     })
     desktop.addEventListener('click', e => {
@@ -347,6 +357,8 @@ function getAppListIcon(appName, args, icon, title) {
                     <div class="appTitle">${title}</div>
                 </div>`;
 }
+
+runScreenLoader();
 
 setSavedUserData();
 createMenu();

@@ -1,0 +1,30 @@
+.load-screen {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 999;
+    background: #09c;
+}
+
+.load-screen canvas {
+    width: 100vw;
+    height: 100vh;
+}
+
+.load-screen.hidden {
+    animation-name: hide;
+    animation-duration: 1s;
+    opacity: 0;
+}
+
+@keyframes hide {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
