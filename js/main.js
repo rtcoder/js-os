@@ -446,7 +446,7 @@ function getAppListIcon(appName, args, icon, title) {
                 </div>`;
 }
 
-// runScreenLoader();
+runScreenLoader();
 
 setSavedUserData();
 createMenu();
