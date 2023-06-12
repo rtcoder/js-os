@@ -1,0 +1,66 @@
+.grid-calc-app .table-container {
+    overflow: auto;
+    width: 100%;
+}
+
+.grid-calc-app table {
+    position: relative;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.grid-calc-app table td {
+    padding: 3px;
+    border: 1px solid #fff;
+    outline: none;
+}
+
+.grid-calc-app table td.active {
+    outline: 3px solid #FFEB3B;
+    outline-offset: -1px;
+}
+
+.grid-calc-app table td[data-type="number"] {
+    text-align: right;
+    color: #2edcff;
+}
+
+.grid-calc-app table td[data-type="string"] {
+    color: #0dd54f;
+}
+
+.grid-calc-app table tr {
+    border: 1px solid #fff;
+}
+
+.grid-calc-app table tr:first-child td {
+    z-index: 1;
+}
+
+.grid-calc-app table tr:first-child td:first-child {
+    z-index: 2;
+}
+
+.grid-calc-app table tr td:first-child,
+.grid-calc-app table tr:first-child td {
+    background: #686868;
+    user-select: none;
+}
+
+.grid-calc-app table tr td:first-child,
+.grid-calc-app table tr:first-child td {
+    position: sticky;
+}
+
+.grid-calc-app table tr:first-child td {
+    top: 0;
+}
+
+.grid-calc-app table tr td:first-child {
+    left: 0;
+}
+
+.grid-calc-app table tr:first-child td {
+    text-align: center;
+    text-transform: uppercase;
+}

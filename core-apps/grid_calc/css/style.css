@@ -1,0 +1,11 @@
+@import "table.css";
+.grid-calc-app {
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 50px auto;
+}
+
+.grid-calc-app .input-container input.input{
+    width: 100%;
+    padding: 5px;outline:none
+}

@@ -242,12 +242,14 @@ function initEvents() {
                 args: {file: file.path}
             }))
         ].map(({appName, icon, title, args}) => {
-
             value.split('').forEach(chr => {
                 title = title
                     .replaceAll(chr, `<b>${chr}</b>`)
                     .replaceAll(chr.toUpperCase(), `<b>${chr.toUpperCase()}</b>`)
-            })
+            });
+            title = title.replaceAll('</b><b>', '')
+            title = title.replaceAll('<b>', '<b><u>');
+            title = title.replaceAll('</b>', '</u></b>');
             return getAppListIcon(appName, args, icon, title);
         }).join('');
     })
@@ -452,8 +454,10 @@ function createMenu() {
 
 function getAppListIcon(appName, args, icon, title) {
     args = encodeURIComponent(JSON.stringify(args));
-    return `<div class="appListElement" data-name="${appName}" data-arguments="${args}">
-                    <div class="icon" style="color: ${icon.bgColor}">
+    const iconFontColor = lightOrDark(icon.bgColor) === 'light' ? '#000' : '#fff';
+    return `<div class="appListElement" data-name="${appName}" data-arguments="${args}" 
+                style="--color: ${icon.bgColor}; --textColor: ${iconFontColor}">
+                    <div class="icon">
                         <i class="${icon.name}"></i>
                     </div>
                     <div class="appTitle">${title}</div>
@@ -466,4 +470,4 @@ setSavedUserData();
 createMenu();
 initEvents();
 timer();
-// runApp('terminal',{file:'home/info'})
+// runApp('grid_calc', {file: 'home/users-list.csv'})
